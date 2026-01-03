@@ -1,0 +1,1816 @@
+{
+  "product": {
+    "LastModifiedDate": "2025-09-28T17:23:15.4492096Z",
+    "LocalizedProperties": [
+      {
+        "DeveloperName": "",
+        "PublisherName": "Ubisoft",
+        "PublisherAddress": null,
+        "PublisherWebsiteUri": "https://www.ubi.com/",
+        "SupportUri": "",
+        "SupportPhone": null,
+        "CMSVideos": [],
+        "EligibilityProperties": {
+          "Remediations": [],
+          "Affirmations": [
+            {
+              "AffirmationId": "B1FFW2F7JKV0",
+              "AffirmationProductId": "CFQ7TTC0KGQ8",
+              "Description": "with your Game Pass membership"
+            }
+          ]
+        },
+        "Franchises": [],
+        "Images": [
+          {
+            "FileId": "3013149370830417339",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 2019018,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/1",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "LA2S2ZwXqfHqa16pSbT8M1vbr0h6IC5gaZvwO8yEr/w=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.3372.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.2c22a542-b93d-4f5a-8418-96237a6d4930",
+            "Width": 1920
+          },
+          {
+            "FileId": "3026854033422128873",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 706572,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Poster",
+            "UnscaledImageSHA256Hash": "yUknUVxbjU48WBRyHWx+Aepr6TAylBtr0KMQ6GL1f2s=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.18889.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.cf2aa045-8681-4c4b-ab97-51bb1d994489",
+            "Width": 720
+          },
+          {
+            "FileId": "3023666781263784630",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 1048465,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "BoxArt",
+            "UnscaledImageSHA256Hash": "vscKCNURkCxUnEBe6iRVMiaftsHKAljYwEuAS7vlQo4=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.51134.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.9c25bcd1-e4d9-406b-90b1-c93fe585d185",
+            "Width": 1080
+          },
+          {
+            "FileId": "3018264809172860914",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 834062,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "SuperHeroArt",
+            "UnscaledImageSHA256Hash": "RsMBsio3wiIHDaFX9KJ05sWWRTzYjEcGVrDlBlLwWgc=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.49990.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.464ef391-ac97-4b23-ac7d-9c4031432afa",
+            "Width": 1920
+          },
+          {
+            "FileId": "3024593420879447987",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 887858,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "TitledHeroArt",
+            "UnscaledImageSHA256Hash": "rlLQ20xnumdkFq3m5Rmmh7waX4/sKxZnLHOqi7l+d/M=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.21166.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.4b890e67-dccc-49a1-878c-a786839c97f2",
+            "Width": 1920
+          },
+          {
+            "FileId": "3020814313640807583",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 1970946,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "FeaturePromotionalSquareArt",
+            "UnscaledImageSHA256Hash": "QUfPjoKxr2fJUsHJ2Bflkto+C1w7KIzXWqJ5nLINu14=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.18241.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.30dc4291-6066-408c-97cf-cd1d9b65290b",
+            "Width": 1080
+          },
+          {
+            "FileId": "3014248318035730111",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 3362420,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/2",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "pUSQWkeo4dum9v5qJgpcB+y78o6rWDmynA1KVrzzeQc=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.17573.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.5de9b3e4-3f05-4194-80df-e0415cd85dbc",
+            "Width": 1920
+          },
+          {
+            "FileId": "3044567010659618762",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 3116753,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/3",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "Polsm45k/1A0cWJdzkP6Z8s1t3TZRMV4TSkUVO2GfoU=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.35134.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.1f1daff5-744d-4c85-81e1-b345f9163244",
+            "Width": 1920
+          },
+          {
+            "FileId": "3012091036907854778",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 2759310,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/4",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "bJyiEcu7UO7AZshzCWWqFLWPzht1GsSRenEPOdpf5+U=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.40044.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.08225666-c61a-40dc-9e7d-8e30c673da2d",
+            "Width": 1920
+          },
+          {
+            "FileId": "3039941889701998739",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 1974662,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/5",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "KWLjMG9If+sBJOyVVQFVdwgPV6C/1dNdSGfnDlG/aP4=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.25129.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.1b9aaa72-3c4f-4756-aa86-abf2be76682a",
+            "Width": 1920
+          },
+          {
+            "FileId": "3039418862847994273",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 3653700,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/6",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "9IwhgNlSvJCy4jh8v3ZcBb3Xc2Mc13u/ep7EoSD9aNk=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.36084.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.f2e8b78f-2f04-4640-b7d6-1097ce4fca90",
+            "Width": 1920
+          },
+          {
+            "FileId": "3021044103498525106",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 3590539,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "Desktop/7",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "RqalchRUCGJPpjTDS6TE8b7La4Tp2Dn1ID0ns5oX5PU=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.42566.13727944956383478.3119126b-6257-481c-b345-8d344e8e5397.a91690b0-d50f-4f58-9c07-96e3c4c2e35b",
+            "Width": 1920
+          }
+        ],
+        "Videos": [],
+        "ProductDescription": "AN ADVENTURE AWAITS!\nCreated by a talented team at Ubisoft Montreal using the UbiArt Framework, Child of Light is an RPG inspired by fairy tales complemented with a story carefully crafted in verse and rhyme. Step into a living painting, the breathtaking scenery of Lemuria is an invitation to explore a long lost world.\n\nENTER THE WORLD OF LEMURIA\nAcross your journey through Lemuria you will encounter many eccentric creatures, from spirits of the forest to talking mice to wicked witches and evil sea serpents. Discover a vast land with iconic locations and exciting dungeons that will evolve as Aurora regains the stolen lights.\n\nFIGHT THE DARK\nBattle enemies using an Active-Time Battle System alongside the firefly Igniculus and other members of Aurora’s party on their quest to recover the sun, the moon and the stars. Beat your enemies using a deep party system and the varied skill trees of your party. Play with a friend as both Aurora and Igniculus using the seamless drop-in drop-out cooperative multiplayer.\n",
+        "ProductTitle": "Child of Light",
+        "ShortTitle": "Child of Light",
+        "SortTitle": "Child of Light",
+        "FriendlyTitle": null,
+        "ShortDescription": "Aurora, a young girl from 1895 Austria, awakens on the lost fairytale continent of Lemuria. To return home she must fight against the dark creatures of the Queen of the Night, who have stolen the sun, the moon and the star",
+        "SearchTitles": [
+          {
+            "SearchTitleString": "COL",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "Chold of light",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "COL Ult",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "Child",
+            "SearchTitleType": "SearchHint"
+          }
+        ],
+        "VoiceTitle": "",
+        "RenderGroupDetails": null,
+        "ProductDisplayRanks": [],
+        "InteractiveModelConfig": null,
+        "Interactive3DEnabled": false,
+        "Language": "en",
+        "Markets": [
+          "US",
+          "DZ",
+          "AR",
+          "AU",
+          "AT",
+          "BH",
+          "BD",
+          "BE",
+          "BR",
+          "BG",
+          "CA",
+          "CL",
+          "CN",
+          "CO",
+          "CR",
+          "HR",
+          "CY",
+          "CZ",
+          "DK",
+          "EG",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "GT",
+          "HK",
+          "HU",
+          "IS",
+          "IN",
+          "ID",
+          "IQ",
+          "IE",
+          "IL",
+          "IT",
+          "JP",
+          "JO",
+          "KZ",
+          "KE",
+          "KW",
+          "LV",
+          "LB",
+          "LI",
+          "LT",
+          "LU",
+          "MY",
+          "MT",
+          "MR",
+          "MX",
+          "MA",
+          "NL",
+          "NZ",
+          "NG",
+          "NO",
+          "OM",
+          "PK",
+          "PE",
+          "PH",
+          "PL",
+          "PT",
+          "QA",
+          "RO",
+          "RU",
+          "SA",
+          "RS",
+          "SG",
+          "SK",
+          "SI",
+          "ZA",
+          "KR",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "TH",
+          "TT",
+          "TN",
+          "TR",
+          "UA",
+          "AE",
+          "GB",
+          "VN",
+          "YE",
+          "LY",
+          "LK",
+          "UY",
+          "VE",
+          "AF",
+          "AX",
+          "AL",
+          "AS",
+          "AO",
+          "AI",
+          "AQ",
+          "AG",
+          "AM",
+          "AW",
+          "BO",
+          "BQ",
+          "BA",
+          "BW",
+          "BV",
+          "IO",
+          "BN",
+          "BF",
+          "BI",
+          "KH",
+          "CM",
+          "CV",
+          "KY",
+          "CF",
+          "TD",
+          "TL",
+          "DJ",
+          "DM",
+          "DO",
+          "EC",
+          "SV",
+          "GQ",
+          "ER",
+          "ET",
+          "FK",
+          "FO",
+          "FJ",
+          "GF",
+          "PF",
+          "TF",
+          "GA",
+          "GM",
+          "GE",
+          "GH",
+          "GI",
+          "GL",
+          "GD",
+          "GP",
+          "GU",
+          "GG",
+          "GN",
+          "GW",
+          "GY",
+          "HT",
+          "HM",
+          "HN",
+          "AZ",
+          "BS",
+          "BB",
+          "BY",
+          "BZ",
+          "BJ",
+          "BM",
+          "BT",
+          "KM",
+          "CG",
+          "CD",
+          "CK",
+          "CX",
+          "CC",
+          "CI",
+          "CW",
+          "JM",
+          "SJ",
+          "JE",
+          "KI",
+          "KG",
+          "LA",
+          "LS",
+          "LR",
+          "MO",
+          "MK",
+          "MG",
+          "MW",
+          "IM",
+          "MH",
+          "MQ",
+          "MU",
+          "YT",
+          "FM",
+          "MD",
+          "MN",
+          "MS",
+          "MZ",
+          "MM",
+          "NA",
+          "NR",
+          "NP",
+          "MV",
+          "ML",
+          "NC",
+          "NI",
+          "NE",
+          "NU",
+          "NF",
+          "PW",
+          "PS",
+          "PA",
+          "PG",
+          "PY",
+          "RE",
+          "RW",
+          "BL",
+          "MF",
+          "WS",
+          "ST",
+          "SN",
+          "MP",
+          "PN",
+          "SX",
+          "SB",
+          "SO",
+          "SC",
+          "SL",
+          "GS",
+          "SH",
+          "KN",
+          "LC",
+          "PM",
+          "VC",
+          "TJ",
+          "TZ",
+          "TG",
+          "TK",
+          "TO",
+          "TM",
+          "TC",
+          "TV",
+          "UM",
+          "UG",
+          "VI",
+          "VG",
+          "WF",
+          "EH",
+          "ZM",
+          "ZW",
+          "UZ",
+          "VU",
+          "SR",
+          "SZ",
+          "AD",
+          "MC",
+          "SM",
+          "ME",
+          "VA",
+          "NEUTRAL"
+        ]
+      }
+    ],
+    "MarketProperties": [
+      {
+        "OriginalReleaseDate": "2014-04-30T00:00:00.0000000Z",
+        "MinimumUserAge": 7,
+        "ContentRatings": [
+          {
+            "RatingSystem": "ESRB",
+            "RatingId": "ESRB:E10",
+            "RatingDescriptors": [
+              "ESRB:FanVio",
+              "ESRB:UseOfAlcAndTob"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "PEGI",
+            "RatingId": "PEGI:7",
+            "RatingDescriptors": [
+              "PEGI:Fea",
+              "PEGI:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "COB-AU",
+            "RatingId": "COB-AU:PG",
+            "RatingDescriptors": [
+              "COB-AU:MilFanVio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "USK",
+            "RatingId": "USK:6",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "TCA",
+            "RatingId": "TCA:PG12",
+            "RatingDescriptors": [
+              "TCA:Vio",
+              "TCA:Hor"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "GRB",
+            "RatingId": "GRB:All",
+            "RatingDescriptors": [
+              "GRB:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "CERO",
+            "RatingId": "CERO:A",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "DJCTQ",
+            "RatingId": "DJCTQ:L",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "PCBP",
+            "RatingId": "PCBP:16",
+            "RatingDescriptors": [
+              "PCBP:Vio",
+              "PCBP:Dru"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "IARC",
+            "RatingId": "IARC:7",
+            "RatingDescriptors": [
+              "IARC:MilVio",
+              "IARC:Fea"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "CCC",
+            "RatingId": "CCC:8",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "Microsoft",
+            "RatingId": "Microsoft:7",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          }
+        ],
+        "RelatedProducts": [],
+        "UsageData": [
+          {
+            "AggregateTimeSpan": "7Days",
+            "AverageRating": 0.0,
+            "PlayCount": 0,
+            "RatingCount": 0,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "30Days",
+            "AverageRating": 0.0,
+            "PlayCount": 0,
+            "RatingCount": 0,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "AllTime",
+            "AverageRating": 0.0,
+            "PlayCount": 0,
+            "RatingCount": 0,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          }
+        ],
+        "BundleConfig": null,
+        "Markets": [
+          "US"
+        ]
+      }
+    ],
+    "ProductASchema": "Product;3",
+    "ProductBSchema": "ProductGame;1",
+    "ProductId": "9NP1LC5MX609",
+    "Properties": {
+      "Attributes": [
+        {
+          "Name": "BroadcastSupport",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        }
+      ],
+      "CanInstallToSDCard": true,
+      "Category": "Action & adventure",
+      "Categories": [
+        "Action & adventure",
+        "Platformer",
+        "Role playing"
+      ],
+      "Subcategory": null,
+      "IsAccessible": false,
+      "IsDemo": false,
+      "IsLineOfBusinessApp": false,
+      "IsPublishedToLegacyWindowsPhoneStore": false,
+      "IsPublishedToLegacyWindowsStore": false,
+      "PackageFamilyName": "Ubisoft.PCCHILDOFLIGHT_ngz4m417e0mpw",
+      "PackageIdentityName": "Ubisoft.PCCHILDOFLIGHT",
+      "PublisherCertificateName": "CN=C3139357-8858-4D2E-A18E-8ADEAB85C66A",
+      "PublisherId": "10111770",
+      "SkuDisplayGroups": [
+        {
+          "Id": "01",
+          "Treatment": "MergeAvailabilities"
+        }
+      ],
+      "XboxLiveTier": null,
+      "XboxXPA": null,
+      "XboxCrossGenSetId": null,
+      "XboxConsoleGenOptimized": null,
+      "XboxConsoleGenCompatible": null,
+      "XboxLiveGoldRequired": false,
+      "ExtendedMetadata": "9NP1LC5MX609_d4eafe18-d027-4da6-aa0b-3579038e8270",
+      "XBOX": {
+        "XboxProperties": "8c4a51ce-98ff-4e3d-bce5-c56ea33aa73c",
+        "SubmissionId": "1152921505699899445",
+        "XboxGamingMetadata": "9NP1LC5MX609_d4eafe18-d027-4da6-aa0b-3579038e8270"
+      },
+      "ExtendedClientMetadata": {},
+      "OwnershipType": null,
+      "PdpBackgroundColor": "#FFFFFF",
+      "HasAddOns": false,
+      "RevisionId": "2025-09-28T17:23:18.9804964Z",
+      "ProductGroupId": "2dafec85-1d30-49ac-a3b5-c183bb6ebc81",
+      "ProductGroupName": "Child of Light",
+      "IsPrivateBeforeDateHint": "2025-10-01T16:00:00.0000000Z"
+    },
+    "AlternateIds": [
+      {
+        "IdType": "LegacyWindowsStoreProductId",
+        "Value": "98985df3-4287-44e8-8d56-bfaf2731e9d7"
+      },
+      {
+        "IdType": "LegacyWindowsPhoneProductId",
+        "Value": "4030cb12-6728-4460-972d-42d6d9d2e5b4"
+      },
+      {
+        "IdType": "XboxTitleId",
+        "Value": "1980327440"
+      }
+    ],
+    "DomainDataVersion": null,
+    "IngestionSource": "DCE",
+    "IsMicrosoftProduct": false,
+    "PreferredSkuId": "0010",
+    "ProductType": "Game",
+    "ValidationData": {
+      "PassedValidation": false,
+      "RevisionId": "2025-09-28T17:23:18.9804964Z||.||250d7e82-3133-4903-86a4-e2b6a43b8860||1152921505699899445||RETAIL||fullrelease",
+      "ValidationResultUri": ""
+    },
+    "MerchandizingTags": [],
+    "PartD": "",
+    "SandboxId": "RETAIL",
+    "ProductFamily": "Games",
+    "SchemaVersion": "3",
+    "IsSandboxedProduct": true,
+    "ProductKind": "Game",
+    "ProductPolicies": {},
+    "DisplaySkuAvailabilities": [
+      {
+        "Sku": {
+          "LastModifiedDate": "2025-09-28T17:23:15.4492096Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "AN ADVENTURE AWAITS!\nCreated by a talented team at Ubisoft Montreal using the UbiArt Framework, Child of Light is an RPG inspired by fairy tales complemented with a story carefully crafted in verse and rhyme. Step into a living painting, the breathtaking scenery of Lemuria is an invitation to explore a long lost world.\n\nENTER THE WORLD OF LEMURIA\nAcross your journey through Lemuria you will encounter many eccentric creatures, from spirits of the forest to talking mice to wicked witches and evil sea serpents. Discover a vast land with iconic locations and exciting dungeons that will evolve as Aurora regains the stolen lights.\n\nFIGHT THE DARK\nBattle enemies using an Active-Time Battle System alongside the firefly Igniculus and other members of Aurora’s party on their quest to recover the sun, the moon and the stars. Beat your enemies using a deep party system and the varied skill trees of your party. Play with a friend as both Aurora and Igniculus using the seamless drop-in drop-out cooperative multiplayer.\n",
+              "SkuTitle": "Child of Light",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2014 Ubisoft Entertainment. All Rights Reserved. Child of Light, the Child of Light logo, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment in the U.S. and/or other countries.",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "https://legal.ubi.com/privacypolicy",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2014-04-30T00:00:00.0000000Z",
+              "SupportedLanguages": [
+                "da",
+                "de",
+                "en",
+                "es",
+                "fi",
+                "fr",
+                "it",
+                "ja",
+                "ko",
+                "no",
+                "nl",
+                "pl",
+                "ru",
+                "sv",
+                "tr",
+                "zh-hans",
+                "zh-hant",
+                "fr-ca",
+                "es-mx",
+                "pt-br",
+                "ar"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9NP1LC5MX609",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9NP1LC5MX609",
+              "WuBundleId": "3e16afb3-660b-43b6-9ef8-e633ae941bfe",
+              "WuCategoryId": "5b0ff6b0-d72b-4df5-ad7e-43ead37c8c60",
+              "PackageFamilyName": "Ubisoft.PCCHILDOFLIGHT_ngz4m417e0mpw",
+              "SkuId": "0010",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": null,
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2025-09-28T17:23:15.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [
+                "mT0"
+              ],
+              "RecommendedHardware": [
+                "m04"
+              ],
+              "MinimumProcessor": "AMD Athlon II X2 240 @ 2.8 GHz, Intel Core 2 Duo E8200 @ 2.6 GHz, or better",
+              "RecommendedProcessor": "AMD Athlon II X4 620 @ 2.6 GHz, Intel Core 2 Quad Q8400 @ 2.6 GHz, or better",
+              "MinimumGraphics": "AMD Radeon HD 2900 XT (512 MB), NVIDIA GeForce 8800 GT (512 MB), or better",
+              "RecommendedGraphics": "AMD Radeon HD 4870 (512 MB), NVIDIA GeForce 9600 GT (512 MB), or better"
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsStandard",
+            "Packages": [],
+            "VersionString": "",
+            "SkuDisplayGroupIds": [
+              "01"
+            ],
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 0,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": false,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0010",
+          "SkuType": "full",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Browse",
+              "Curate",
+              "Redeem"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9SGSL5GD4MQ7",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-09-26T15:00:14.4716149Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-04-30T00:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 0,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9ZXHZ68D6P1G",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-09-26T15:00:14.4716149Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:CFQ7TTC0KGQ8:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:4030cb12-6728-4460-972d-42d6d9d2e5b4:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:98985df3-4287-44e8-8d56-bfaf2731e9d7:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "AffirmationId": "B1FFW2F7JKV0",
+            "DisplayRank": 1,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9W9BFCPK8C2M",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-09-26T15:00:14.4716149Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:4030cb12-6728-4460-972d-42d6d9d2e5b4:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:98985df3-4287-44e8-8d56-bfaf2731e9d7:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP1LC5MX609:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "DisplayRank": 2,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": []
+      },
+      {
+        "Sku": {
+          "LastModifiedDate": "2025-09-28T17:23:15.4492096Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "AN ADVENTURE AWAITS!\nCreated by a talented team at Ubisoft Montreal using the UbiArt Framework, Child of Light is an RPG inspired by fairy tales complemented with a story carefully crafted in verse and rhyme. Step into a living painting, the breathtaking scenery of Lemuria is an invitation to explore a long lost world.\n\nENTER THE WORLD OF LEMURIA\nAcross your journey through Lemuria you will encounter many eccentric creatures, from spirits of the forest to talking mice to wicked witches and evil sea serpents. Discover a vast land with iconic locations and exciting dungeons that will evolve as Aurora regains the stolen lights.\n\nFIGHT THE DARK\nBattle enemies using an Active-Time Battle System alongside the firefly Igniculus and other members of Aurora’s party on their quest to recover the sun, the moon and the stars. Beat your enemies using a deep party system and the varied skill trees of your party. Play with a friend as both Aurora and Igniculus using the seamless drop-in drop-out cooperative multiplayer.\n",
+              "SkuTitle": "Child of Light",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2014 Ubisoft Entertainment. All Rights Reserved. Child of Light, the Child of Light logo, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment in the U.S. and/or other countries.",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "https://legal.ubi.com/privacypolicy",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2014-04-30T00:00:00.0000000Z",
+              "SupportedLanguages": [
+                "da",
+                "de",
+                "en",
+                "es",
+                "fi",
+                "fr",
+                "it",
+                "ja",
+                "ko",
+                "no",
+                "nl",
+                "pl",
+                "ru",
+                "sv",
+                "tr",
+                "zh-hans",
+                "zh-hant",
+                "fr-ca",
+                "es-mx",
+                "pt-br",
+                "ar"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9NP1LC5MX609",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9NP1LC5MX609",
+              "WuBundleId": "3e16afb3-660b-43b6-9ef8-e633ae941bfe",
+              "WuCategoryId": "5b0ff6b0-d72b-4df5-ad7e-43ead37c8c60",
+              "PackageFamilyName": "Ubisoft.PCCHILDOFLIGHT_ngz4m417e0mpw",
+              "SkuId": "0011",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": null,
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2025-09-28T17:23:15.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [
+                "mT0"
+              ],
+              "RecommendedHardware": [
+                "m04"
+              ],
+              "MinimumProcessor": "AMD Athlon II X2 240 @ 2.8 GHz, Intel Core 2 Duo E8200 @ 2.6 GHz, or better",
+              "RecommendedProcessor": "AMD Athlon II X4 620 @ 2.6 GHz, Intel Core 2 Quad Q8400 @ 2.6 GHz, or better",
+              "MinimumGraphics": "AMD Radeon HD 2900 XT (512 MB), NVIDIA GeForce 8800 GT (512 MB), or better",
+              "RecommendedGraphics": "AMD Radeon HD 4870 (512 MB), NVIDIA GeForce 9600 GT (512 MB), or better"
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsStandard",
+            "Packages": [],
+            "VersionString": "",
+            "SkuDisplayGroupIds": null,
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 2,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": true,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0011",
+          "SkuType": "trial",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "License",
+              "Fulfill"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9QWDWR82GFRX",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-09-26T15:00:14.4716149Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 0,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B4JK16Q2GTCL",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-09-26T15:00:14.4716149Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 1,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": []
+      }
+    ]
+  }
+}

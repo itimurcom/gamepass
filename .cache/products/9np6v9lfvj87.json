@@ -1,0 +1,2812 @@
+{
+  "product": {
+    "LastModifiedDate": "2024-12-13T19:44:25.8202393Z",
+    "LocalizedProperties": [
+      {
+        "DeveloperName": "Metalhead Software Inc.",
+        "PublisherName": "Electronic Arts",
+        "PublisherAddress": null,
+        "PublisherWebsiteUri": "https://supermegabaseball.com/",
+        "SupportUri": "mailto:support@metalheadsoftware.com",
+        "SupportPhone": null,
+        "CMSVideos": [
+          {
+            "DASH": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/869f0ae7-6808-4405-9375-2d1986496241-AVS.mpd",
+            "HLS": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/869f0ae7-6808-4405-9375-2d1986496241-AVS.m3u8?packagedStreaming=true",
+            "CMS": null,
+            "CC": null,
+            "VideoPurpose": "trailer",
+            "Height": 2160,
+            "Width": 3840,
+            "AudioEncoding": "",
+            "VideoEncoding": "avc1",
+            "VideoPositionInfo": "Video/0",
+            "Caption": "Super Mega Baseball 3 - Trailer",
+            "FileSizeInBytes": 437263045,
+            "PreviewImage": {
+              "FileId": "2000000000059725367",
+              "EISListingIdentifier": null,
+              "BackgroundColor": null,
+              "Caption": "Super Mega Baseball 3 - Trailer",
+              "FileSizeInBytes": 1041091,
+              "ForegroundColor": null,
+              "Height": 1080,
+              "ImagePositionInfo": null,
+              "ImagePurpose": "trailer",
+              "UnscaledImageSHA256Hash": "gcYelzP7HGJfpR9ikVWXQ8v20pbjb7Ldo8jR99qXRgc=",
+              "Uri": "//store-images.s-microsoft.com/image/apps.50817.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.c9b00439-3a70-4b64-963c-70a681d432d9",
+              "Width": 1920
+            },
+            "TrailerId": "472e1280-ccea-17b7-cce5-0ba2f98cf354",
+            "SortOrder": 1
+          },
+          {
+            "DASH": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/62a37ff3-1c3c-4624-94c8-694baf4238ea-AVS.mpd",
+            "HLS": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/62a37ff3-1c3c-4624-94c8-694baf4238ea-AVS.m3u8?packagedStreaming=true",
+            "CMS": null,
+            "CC": null,
+            "VideoPurpose": "HeroTrailer",
+            "Height": 1080,
+            "Width": 1920,
+            "AudioEncoding": "",
+            "VideoEncoding": "avc1",
+            "VideoPositionInfo": "Video/0",
+            "Caption": "Super Mega Baseball 3 - Gameplay Trailer",
+            "FileSizeInBytes": 437636836,
+            "PreviewImage": {
+              "FileId": "2000000000082303840",
+              "EISListingIdentifier": null,
+              "BackgroundColor": null,
+              "Caption": "Super Mega Baseball 3 - Gameplay Trailer",
+              "FileSizeInBytes": 3331304,
+              "ForegroundColor": null,
+              "Height": 1080,
+              "ImagePositionInfo": null,
+              "ImagePurpose": "trailer",
+              "UnscaledImageSHA256Hash": "tRkBvu0waanh/iRsyswJBaT8HFeoTLOk3gezuRt5v38=",
+              "Uri": "//store-images.s-microsoft.com/image/apps.6581.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.43160128-5c93-4406-9563-8f07ed197894",
+              "Width": 1920
+            },
+            "TrailerId": "9642d253-0999-9907-3907-e804b1b04442",
+            "SortOrder": 2
+          }
+        ],
+        "EligibilityProperties": {
+          "Remediations": [
+            {
+              "RemediationId": "9N8KCDNKJJQ6",
+              "Description": "Better With EA Access"
+            }
+          ],
+          "Affirmations": [
+            {
+              "AffirmationId": "B0HFJ7PW900M",
+              "AffirmationProductId": "CFQ7TTC0K5DH",
+              "Description": "Better With EA Access"
+            }
+          ]
+        },
+        "Franchises": [],
+        "Images": [
+          {
+            "FileId": "2000000000056645664",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 2161804,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Poster",
+            "UnscaledImageSHA256Hash": "VhhBLLitJ8MAomczuMnauG0okGVt8eoFy9Au9M5ww3Y=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.6230.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.a837a727-84fc-4acc-9b6a-7584c6c7e4bd",
+            "Width": 1440
+          },
+          {
+            "FileId": "2000000000056645635",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 2795231,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "BoxArt",
+            "UnscaledImageSHA256Hash": "/y+WZQTm5gQ2FLYsF3unxTAiRaIgdxSLZbjboUDMefg=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.12287.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.15cf7c9c-94b9-441e-99f5-b58eb5e57040",
+            "Width": 2160
+          },
+          {
+            "FileId": "2000000000056645993",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 4602736,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "SuperHeroArt",
+            "UnscaledImageSHA256Hash": "wUAPT1eTIRvCdkKZtCORBMt2jfiEd9bQIRrvA3J3W1g=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.16577.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.c71fc5d0-f4f7-40d4-b971-7b61004c57ed",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000056646007",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 423359,
+            "ForegroundColor": "",
+            "Height": 800,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "BrandedKeyArt",
+            "UnscaledImageSHA256Hash": "vq08FQe2wNJiF/jLe3ooVQBsPU/hsFbsddkulGkW85A=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.44478.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.21efb2d3-6210-47fb-b6d4-e7a331820341",
+            "Width": 584
+          },
+          {
+            "FileId": "2000000000057034891",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 1780174,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "TitledHeroArt",
+            "UnscaledImageSHA256Hash": "vk20hUk+c9GPQxfbeUjK6/lgSjktQ7f0o0TK0KoH8x8=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.19902.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.e41b12fc-8075-4149-a9fc-d438f88c7091",
+            "Width": 1920
+          },
+          {
+            "FileId": "2000000000057034857",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": null,
+            "FileSizeInBytes": 1182795,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "FeaturePromotionalSquareArt",
+            "UnscaledImageSHA256Hash": "7cIczOAH+dwQx+4BAuAUPdq+u26qF7O0aCeR5c0Aybo=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.49901.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.e4f62a66-f417-48ee-aeb5-efe2989acd6f",
+            "Width": 1080
+          },
+          {
+            "FileId": "2000000000059725082",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 11613351,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/1",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "mbLoyF+x8D1VOOmGgVsN6yPvG7Sxna7/U969nh/LW+M=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.45721.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.300e378f-2c7f-4a7e-8970-93c13620de35",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725065",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 9404867,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/2",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "QDgVd5b2R4ZeJsh3RBaVbft7zMDfzxo2Ur/gbpu4ovU=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.14400.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.ab62c7fc-4287-4f5c-860b-2b452713bad2",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725126",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 10501705,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/3",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "lSljexB9DksVMNPnZEGpSnMQPJXXzY67n+UF+++kKHA=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.10645.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.b3dea9af-d51d-4bdf-a578-5988203cb398",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725053",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 5360778,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/4",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "Vg2sw9H/ofyt0T9hl6QoIZ8e4/KBGP+TnVfxiAuq2Gk=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.3414.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.4660a8b1-0089-4407-8b80-844d9111b7f1",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725049",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 10502323,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/5",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "K012+kEJdASDiSw1rGLsILMape/LNx082234ohWSw+U=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.19755.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.4ff1b2a3-df2b-4352-8140-8029f74609cd",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725208",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 13617501,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/6",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "0HdM8Ztlr4jzZRbVDPt5HEPPUZrQNrXc4r9KVPxKcas=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.30672.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.0691df1f-cd0e-441e-820e-fe9512c36855",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725227",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 13465087,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/7",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "j6mtFHIQUsqYVzZnpm5GDkA/0HQCw/98W13/fX+NW8Q=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.43407.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.6678de66-4c34-4939-a1a6-bbda5de9a71c",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725228",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 11353336,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/8",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "Sw6E0gMrXIjvGZKHkXyaJfHXx14FeegOl6lQyTxq9LI=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.3659.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.1d44856d-035f-4c88-af14-53f83105ac65",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725280",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 10310876,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/9",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "rHBod3MTu0pkH7HFqW0Dd0nQBEYYmlTtdZYj7ONixEg=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.28844.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.95985b04-f752-4703-89c1-8795387deba9",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000059725358",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 11421707,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/10",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "GG6G6mI8bansREZDux5ReV8IVpGbRzgUNCt18TZVe9g=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.28184.13728510900587088.c32ad4cb-c837-4a7f-ab8d-c3d9ca2cb384.c9fadd4d-9519-4ef7-834b-ee1dfe6075b7",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000082300998",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 14954909,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/11",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "5uG7qViwUFUuar7a0UncQ+0kbwGQiosqCeIoOj7yiNg=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.57830.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.4e792d6f-42a6-4b5f-996d-bdd3fead7d98",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000082301193",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 12967789,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/12",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "oOCbB5TEpAc3IZTsziE4fozbqhZGsbj6PxaE+rafc9Y=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.57504.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.17879094-48e3-45db-951f-dbec36a0ece0",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000082301195",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 8850759,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/13",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "5gkpHOePFtNqS/AK6Oecm5H1Qgte1z1oDI8qK4QKqIE=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.2534.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.8216ad2a-ed33-4850-811f-4314a8fa0f7d",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000082301202",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2616118,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/14",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "SbIFDORCihgolWUEdjgYBdBLPHkCgbNYNUHozN2kL3M=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.45641.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.931d0ec2-7fba-453e-b80f-ab9c33124b31",
+            "Width": 3840
+          },
+          {
+            "FileId": "2000000000082301203",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2880820,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "Xbox/15",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "1hd15/blkM4ceUYDEaXXnqUqDnvzsd/ZUlxXdlckJH8=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.6102.13728510900587088.e56c8a9b-414a-4cd2-a8f7-7a01ab85bf69.ca4ab1ea-7586-4908-a8b4-96543a3eb096",
+            "Width": 3840
+          }
+        ],
+        "Videos": [],
+        "ProductDescription": "Super Mega Baseball 3 refines the series’ formula with the deepest on-field simulation yet, comprehensive offline and online play including Franchise mode and the newly added Online Leagues mode, and vastly improved graphics. New content includes revamped UI plus tons of new audio, team/character content, and stadiums with variable lighting conditions.\r\n\r\nFeatures:\r\n•\tChallenge your hand-eye coordination or relax and hit dingers with fluid gameplay that scales seamlessly from novice to beyond-expert levels of difficulty.\r\n•\tApply and refine your baseball instincts with a sophisticated baseball simulation featuring new pickoff and stealing mechanics, wild pitches/passed balls, designated hitters, and situational player traits.\r\n•\tTake in the sights and sounds of 14 richly detailed ballparks, each featuring unique day, night and alternate lighting conditions.\r\n•\tGuide an evolving team to greatness over multiple seasons in the all new Franchise mode featuring player development, aging, retirement and signing/releasing of free agents (1vCPU, 2vCPU, local or online).\r\n•\tOrganize a cross-platform league with your friends in the newly added, versatile Online Leagues mode (1v1, online only).\r\n•\tCompete online to win pennants and climb to higher divisions in the cross-platform Pennant Race mode (1v1, online only).\r\n•\tCreate your ideal league with a comprehensive customization suite that includes season length/structure, team names/uniforms/logos, and player names/appearance/attributes.\r\n•\tPlay or simulate any combination of games/teams in customized Seasons and Elimination brackets, solo or with friends (1vCPU, 2vCPU, 1v1, 2v1, 2v2, CPUvCPU, local or online).\r\n•\tSkip customization and compete for top leaderboard scores with standardized teams and settings (locked player attributes) in Standard Season and Standard Elimination modes (1vCPU, 2vCPU, local or online).\r\n\r\nDownload the free trial to play an unlimited number of games in the competitive online Pennant Race mode, play Exhibition games against the AI, or experiment with the customization suite.\r\n\r\nCONDITIONS AND RESTRICTIONS APPLY. SEE WWW.EA.COM/LEGAL FOR DETAILS.",
+        "ProductTitle": "Super Mega Baseball 3",
+        "ShortTitle": "Super Mega Baseball 3",
+        "SortTitle": "Super Mega Baseball 3",
+        "FriendlyTitle": null,
+        "ShortDescription": "Run up the score in a relaxed slugfest or push the limits of your reflexes in this refined baseball simulator. The third entry in the series features all-new Franchise and Online Leagues modes, major graphical enhancements, and on-field additions including pickoffs and situational player traits.",
+        "SearchTitles": [
+          {
+            "SearchTitleString": "SMB RBI rounders",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "baseball softball fastball",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "hardball ballgame sports",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "multiplayer coop online",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "franchise indie arcade",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "simulation show ego",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "ranked matchmaking local",
+            "SearchTitleType": "SearchHint"
+          }
+        ],
+        "VoiceTitle": "Super Mega Baseball 3",
+        "RenderGroupDetails": null,
+        "ProductDisplayRanks": [],
+        "InteractiveModelConfig": null,
+        "Interactive3DEnabled": false,
+        "Language": "en",
+        "Markets": [
+          "US",
+          "DZ",
+          "AR",
+          "AU",
+          "AT",
+          "BH",
+          "BD",
+          "BE",
+          "BR",
+          "BG",
+          "CA",
+          "CL",
+          "CN",
+          "CO",
+          "CR",
+          "HR",
+          "CY",
+          "CZ",
+          "DK",
+          "EG",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "GT",
+          "HK",
+          "HU",
+          "IS",
+          "IN",
+          "ID",
+          "IQ",
+          "IE",
+          "IL",
+          "IT",
+          "JP",
+          "JO",
+          "KZ",
+          "KE",
+          "KW",
+          "LV",
+          "LB",
+          "LI",
+          "LT",
+          "LU",
+          "MY",
+          "MT",
+          "MR",
+          "MX",
+          "MA",
+          "NL",
+          "NZ",
+          "NG",
+          "NO",
+          "OM",
+          "PK",
+          "PE",
+          "PH",
+          "PL",
+          "PT",
+          "QA",
+          "RO",
+          "RU",
+          "SA",
+          "RS",
+          "SG",
+          "SK",
+          "SI",
+          "ZA",
+          "KR",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "TH",
+          "TT",
+          "TN",
+          "TR",
+          "UA",
+          "AE",
+          "GB",
+          "VN",
+          "YE",
+          "LY",
+          "LK",
+          "UY",
+          "VE",
+          "AF",
+          "AX",
+          "AL",
+          "AS",
+          "AO",
+          "AI",
+          "AQ",
+          "AG",
+          "AM",
+          "AW",
+          "BO",
+          "BQ",
+          "BA",
+          "BW",
+          "BV",
+          "IO",
+          "BN",
+          "BF",
+          "BI",
+          "KH",
+          "CM",
+          "CV",
+          "KY",
+          "CF",
+          "TD",
+          "TL",
+          "DJ",
+          "DM",
+          "DO",
+          "EC",
+          "SV",
+          "GQ",
+          "ER",
+          "ET",
+          "FK",
+          "FO",
+          "FJ",
+          "GF",
+          "PF",
+          "TF",
+          "GA",
+          "GM",
+          "GE",
+          "GH",
+          "GI",
+          "GL",
+          "GD",
+          "GP",
+          "GU",
+          "GG",
+          "GN",
+          "GW",
+          "GY",
+          "HT",
+          "HM",
+          "HN",
+          "AZ",
+          "BS",
+          "BB",
+          "BY",
+          "BZ",
+          "BJ",
+          "BM",
+          "BT",
+          "KM",
+          "CG",
+          "CD",
+          "CK",
+          "CX",
+          "CC",
+          "CI",
+          "CW",
+          "JM",
+          "SJ",
+          "JE",
+          "KI",
+          "KG",
+          "LA",
+          "LS",
+          "LR",
+          "MO",
+          "MK",
+          "MG",
+          "MW",
+          "IM",
+          "MH",
+          "MQ",
+          "MU",
+          "YT",
+          "FM",
+          "MD",
+          "MN",
+          "MS",
+          "MZ",
+          "MM",
+          "NA",
+          "NR",
+          "NP",
+          "MV",
+          "ML",
+          "NC",
+          "NI",
+          "NE",
+          "NU",
+          "NF",
+          "PW",
+          "PS",
+          "PA",
+          "PG",
+          "PY",
+          "RE",
+          "RW",
+          "BL",
+          "MF",
+          "WS",
+          "ST",
+          "SN",
+          "MP",
+          "PN",
+          "SX",
+          "SB",
+          "SO",
+          "SC",
+          "SL",
+          "GS",
+          "SH",
+          "KN",
+          "LC",
+          "PM",
+          "VC",
+          "TJ",
+          "TZ",
+          "TG",
+          "TK",
+          "TO",
+          "TM",
+          "TC",
+          "TV",
+          "UM",
+          "UG",
+          "VI",
+          "VG",
+          "WF",
+          "EH",
+          "ZM",
+          "ZW",
+          "UZ",
+          "VU",
+          "SR",
+          "SZ",
+          "AD",
+          "MC",
+          "SM",
+          "ME",
+          "VA",
+          "NEUTRAL"
+        ]
+      }
+    ],
+    "MarketProperties": [
+      {
+        "OriginalReleaseDate": "2020-05-13T16:00:00.0000000Z",
+        "MinimumUserAge": 0,
+        "ContentRatings": [
+          {
+            "RatingSystem": "ESRB",
+            "RatingId": "ESRB:E",
+            "RatingDescriptors": [
+              "ESRB:MilVio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "ESRB:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "PEGI",
+            "RatingId": "PEGI:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "PEGI:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "DJCTQ",
+            "RatingId": "DJCTQ:L",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "DJCTQ:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "USK",
+            "RatingId": "USK:Everyone",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "USK:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "IARC",
+            "RatingId": "IARC:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "IARC:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "COB-AU",
+            "RatingId": "COB-AU:G",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [
+              "COB-AU:OnlAct"
+            ],
+            "InteractiveElements": [
+              "COB-AU:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "GRB",
+            "RatingId": "GRB:All",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "GRB:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "PCBP",
+            "RatingId": "PCBP:0",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "PCBP:UseInt"
+            ]
+          },
+          {
+            "RatingSystem": "CSRR",
+            "RatingId": "CSRR:G",
+            "RatingDescriptors": [
+              "CSRR:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "CCC",
+            "RatingId": "CCC:TE",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "Microsoft",
+            "RatingId": "Microsoft:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          }
+        ],
+        "RelatedProducts": [],
+        "UsageData": [
+          {
+            "AggregateTimeSpan": "7Days",
+            "AverageRating": 0.0,
+            "PlayCount": 0,
+            "RatingCount": 0,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "30Days",
+            "AverageRating": 5.0,
+            "PlayCount": 0,
+            "RatingCount": 2,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "AllTime",
+            "AverageRating": 3.0,
+            "PlayCount": 0,
+            "RatingCount": 906,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          }
+        ],
+        "BundleConfig": null,
+        "Markets": [
+          "US"
+        ]
+      }
+    ],
+    "ProductASchema": "Product;3",
+    "ProductBSchema": "ProductGame;1",
+    "ProductId": "9NP6V9LFVJ87",
+    "Properties": {
+      "Attributes": [
+        {
+          "Name": "XblLocalCoop",
+          "Minimum": 2,
+          "Maximum": 2,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblOnlineCoop",
+          "Minimum": 2,
+          "Maximum": 2,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblLocalMultiPlayer",
+          "Minimum": 2,
+          "Maximum": 4,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblOnlineMultiPlayer",
+          "Minimum": 2,
+          "Maximum": 4,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "BroadcastSupport",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblCrossPlatformMultiPlayer",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "SinglePlayer",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": [
+            "Xbox"
+          ],
+          "Group": null
+        },
+        {
+          "Name": "XblAchievements",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblPresence",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XblCloudSaves",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XboxLive",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        }
+      ],
+      "CanInstallToSDCard": true,
+      "Category": "Action & adventure",
+      "Categories": [
+        "Action & adventure",
+        "Family & kids",
+        "Simulation",
+        "Sports"
+      ],
+      "Subcategory": null,
+      "IsAccessible": false,
+      "IsDemo": false,
+      "IsLineOfBusinessApp": false,
+      "IsPublishedToLegacyWindowsPhoneStore": false,
+      "IsPublishedToLegacyWindowsStore": false,
+      "PackageFamilyName": "MetalheadSoftwareInc.SuperMegaBaseball3_38nh3e7fkk334",
+      "PackageIdentityName": "MetalheadSoftwareInc.SuperMegaBaseball3",
+      "PublisherCertificateName": "CN=2C1262CB-D12B-4CDB-B7CD-5DD269158268",
+      "PublisherId": "54143930",
+      "SkuDisplayGroups": [
+        {
+          "Id": "01",
+          "Treatment": "MergeAvailabilities"
+        }
+      ],
+      "XboxLiveTier": "Full",
+      "XboxXPA": null,
+      "XboxCrossGenSetId": null,
+      "XboxConsoleGenOptimized": [
+        "ConsoleGen8"
+      ],
+      "XboxConsoleGenCompatible": [
+        "ConsoleGen8",
+        "ConsoleGen9"
+      ],
+      "XboxLiveGoldRequired": false,
+      "ExtendedMetadata": "9NP6V9LFVJ87_4265e639-2c9c-489f-8b24-ba6e26214329",
+      "XBOX": {
+        "XboxGamingMetadata": "9NP6V9LFVJ87_4265e639-2c9c-489f-8b24-ba6e26214329"
+      },
+      "ExtendedClientMetadata": {},
+      "OwnershipType": null,
+      "PdpBackgroundColor": "#FFFFFF",
+      "HasAddOns": false,
+      "RevisionId": "2024-12-13T19:44:36.5390640Z",
+      "ProductGroupId": "4ab4de78-5793-4fba-8caf-c90f6d58d6b6",
+      "ProductGroupName": "Super Mega Baseball 3"
+    },
+    "AlternateIds": [
+      {
+        "IdType": "LegacyWindowsStoreProductId",
+        "Value": "02f812b3-d4ae-419d-b508-869ed41d49ea"
+      },
+      {
+        "IdType": "LegacyWindowsPhoneProductId",
+        "Value": "eb3f6ff1-d577-4d8f-bdd7-f7811c42c99b"
+      },
+      {
+        "IdType": "XboxTitleId",
+        "Value": "2017944493"
+      },
+      {
+        "IdType": "LegacyXboxProductId",
+        "Value": "00000000-0000-0000-0000-0000784763ad"
+      }
+    ],
+    "DomainDataVersion": null,
+    "IngestionSource": "DCE",
+    "IsMicrosoftProduct": false,
+    "PreferredSkuId": "0010",
+    "ProductType": "Game",
+    "ValidationData": {
+      "PassedValidation": false,
+      "RevisionId": "2024-12-13T19:44:36.5390640Z||.||d7d78271-897b-461f-b535-6eae791ef90f||1152921505694694017||RETAIL||fullrelease",
+      "ValidationResultUri": ""
+    },
+    "MerchandizingTags": [],
+    "PartD": "",
+    "SandboxId": "RETAIL",
+    "ProductFamily": "Games",
+    "SchemaVersion": "3",
+    "IsSandboxedProduct": true,
+    "ProductKind": "Game",
+    "ProductPolicies": {},
+    "DisplaySkuAvailabilities": [
+      {
+        "Sku": {
+          "LastModifiedDate": "2024-12-13T19:44:25.8202393Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "Super Mega Baseball 3 refines the series’ formula with the deepest on-field simulation yet, comprehensive offline and online play including Franchise mode and the newly added Online Leagues mode, and vastly improved graphics. New content includes revamped UI plus tons of new audio, team/character content, and stadiums with variable lighting conditions.\r\n\r\nFeatures:\r\n•\tChallenge your hand-eye coordination or relax and hit dingers with fluid gameplay that scales seamlessly from novice to beyond-expert levels of difficulty.\r\n•\tApply and refine your baseball instincts with a sophisticated baseball simulation featuring new pickoff and stealing mechanics, wild pitches/passed balls, designated hitters, and situational player traits.\r\n•\tTake in the sights and sounds of 14 richly detailed ballparks, each featuring unique day, night and alternate lighting conditions.\r\n•\tGuide an evolving team to greatness over multiple seasons in the all new Franchise mode featuring player development, aging, retirement and signing/releasing of free agents (1vCPU, 2vCPU, local or online).\r\n•\tOrganize a cross-platform league with your friends in the newly added, versatile Online Leagues mode (1v1, online only).\r\n•\tCompete online to win pennants and climb to higher divisions in the cross-platform Pennant Race mode (1v1, online only).\r\n•\tCreate your ideal league with a comprehensive customization suite that includes season length/structure, team names/uniforms/logos, and player names/appearance/attributes.\r\n•\tPlay or simulate any combination of games/teams in customized Seasons and Elimination brackets, solo or with friends (1vCPU, 2vCPU, 1v1, 2v1, 2v2, CPUvCPU, local or online).\r\n•\tSkip customization and compete for top leaderboard scores with standardized teams and settings (locked player attributes) in Standard Season and Standard Elimination modes (1vCPU, 2vCPU, local or online).\r\n\r\nDownload the free trial to play an unlimited number of games in the competitive online Pennant Race mode, play Exhibition games against the AI, or experiment with the customization suite.\r\n\r\nCONDITIONS AND RESTRICTIONS APPLY. SEE WWW.EA.COM/LEGAL FOR DETAILS.",
+              "SkuTitle": "Super Mega Baseball 3",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2020 Metalhead Software Inc.",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "https://www.ea.com/legal/privacy-policy",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2020-05-13T16:00:00.0000000Z",
+              "SupportedLanguages": [
+                "en",
+                "fr",
+                "de",
+                "he",
+                "it",
+                "ja",
+                "no",
+                "pl",
+                "pt",
+                "ru",
+                "es",
+                "sv",
+                "tr"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9NP6V9LFVJ87",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9NP6V9LFVJ87",
+              "WuBundleId": "de525238-c3cf-4471-be6f-2ac635263a73",
+              "WuCategoryId": "33654027-a9b2-4e5c-b738-9efbdf8fd167",
+              "PackageFamilyName": "MetalheadSoftwareInc.SuperMegaBaseball3_38nh3e7fkk334",
+              "SkuId": "0010",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": "XVC",
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2024-12-13T19:44:25.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [],
+              "RecommendedHardware": [],
+              "MinimumProcessor": "",
+              "RecommendedProcessor": "",
+              "MinimumGraphics": "",
+              "RecommendedGraphics": ""
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsRestrictiveXbox",
+            "Packages": [
+              {
+                "Applications": [],
+                "Architectures": [
+                  "x64"
+                ],
+                "Capabilities": [],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [],
+                "MaxDownloadSizeInBytes": 14589145088,
+                "MaxInstallSizeInBytes": 0,
+                "PackageFormat": "XVC",
+                "PackageFamilyName": null,
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "",
+                "PackageId": "9ea453e6-f707-4d57-8633-6fc5edd66221",
+                "ContentId": "9ea453e6-f707-4d57-8633-6fc5edd66221",
+                "KeyId": "c8cc3ccc-a93f-4a72-8c24-5bf75f1828b5",
+                "PackageRank": 50000,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "",
+                "ResourceId": "",
+                "Version": "0",
+                "PackageDownloadUris": [
+                  {
+                    "Rank": 0,
+                    "Uri": "https://productingestionbin1.blob.core.windows.net"
+                  },
+                  {
+                    "Rank": 1,
+                    "Uri": "https://productingestionbin1.blob.core.windows.net"
+                  }
+                ],
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9NP6V9LFVJ87",
+                  "WuBundleId": "de525238-c3cf-4471-be6f-2ac635263a73",
+                  "WuCategoryId": "33654027-a9b2-4e5c-b738-9efbdf8fd167",
+                  "PackageFamilyName": "MetalheadSoftwareInc.SuperMegaBaseball3_38nh3e7fkk334",
+                  "SkuId": "0010",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              }
+            ],
+            "VersionString": "",
+            "SkuDisplayGroupIds": [
+              "01"
+            ],
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 0,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": false,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0010",
+          "SkuType": "full",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase",
+              "Browse",
+              "Curate",
+              "Redeem"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9R13VDGPG4G4",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 44.99,
+                "MSRP": 44.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 31.49
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2020-05-13T16:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 0,
+            "AlternateIds": [
+              {
+                "IdType": "LegacyTokenIdentifier",
+                "Value": "00000000-0000-0000-0000-0000784763ad"
+              }
+            ],
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "Details",
+              "Purchase",
+              "Curate"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9NZ1KF9FJ67H",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 0.0
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2020-05-13T16:00:00.0000000Z",
+              "MerchandisingTags": [
+                "LegacyVault"
+              ]
+            },
+            "SkuId": "0010",
+            "DisplayRank": 1,
+            "RemediationRequired": true,
+            "Remediations": [
+              {
+                "RemediationId": "9N8KCDNKJJQ6",
+                "Type": "Upsell",
+                "BigId": "CFQ7TTC0K5DH"
+              }
+            ]
+          },
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Browse",
+              "Curate",
+              "Gift"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B2WF74C1010S",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 44.99,
+                "MSRP": 44.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 31.49
+              },
+              "OrderManagementPolicyIdOverride": "microsoft.mint.token",
+              "GeofencingPolicyId": "GIFTGEO:US"
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2020-05-13T16:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 2,
+            "AlternateIds": [],
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B38MV1TFQBBV",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:eb3f6ff1-d577-4d8f-bdd7-f7811c42c99b:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:02f812b3-d4ae-419d-b508-869ed41d49ea:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Presale"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0003"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "DisplayRank": 3,
+            "AlternateIds": [
+              {
+                "IdType": "LegacyTokenIdentifier",
+                "Value": "00000000-0000-0000-0000-0000784763ad"
+              }
+            ],
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9QGPJ57V4BQJ",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:eb3f6ff1-d577-4d8f-bdd7-f7811c42c99b:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:02f812b3-d4ae-419d-b508-869ed41d49ea:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Presale"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0003"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {
+              "MerchandisingTags": [
+                "LegacyDiscountEAAccess"
+              ]
+            },
+            "SkuId": "0010",
+            "AffirmationId": "B0HFJ7PW900M",
+            "DisplayRank": 4,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9XHQWXXRR62T",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-31T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:CFQ7TTC0K5DH:0006"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:Subscription:6baa7937-295f-4497-9b8b-8f766f20e78f:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:eb3f6ff1-d577-4d8f-bdd7-f7811c42c99b:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:02f812b3-d4ae-419d-b508-869ed41d49ea:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Presale"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0003"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {
+              "MerchandisingTags": [
+                "LegacyVault"
+              ]
+            },
+            "SkuId": "0010",
+            "AffirmationId": "B0HFJ7PW900M",
+            "DisplayRank": 5,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9SWD2K21CL0R",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "1753-01-01T00:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:eb3f6ff1-d577-4d8f-bdd7-f7811c42c99b:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:02f812b3-d4ae-419d-b508-869ed41d49ea:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9NP6V9LFVJ87:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "xbx:GameV2:00000000-0000-0000-0000-0000784763ad:Presale"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:BNRW7XSS6818:0003"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "DisplayRank": 6,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase",
+              "Browse",
+              "Curate",
+              "Redeem"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9R13VDGPG4G4",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "2799-12-30T23:59:59.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2022-03-15T10:00:00.0000000Z",
+              "EligibilityPredicateIds": [
+                "CannotSeenByChinaClient"
+              ],
+              "SupportedCatalogVersion": 7
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 44.99,
+                "MSRP": 44.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 31.49
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2020-05-13T16:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 3,
+            "AlternateIds": [
+              {
+                "IdType": "LegacyTokenIdentifier",
+                "Value": "00000000-0000-0000-0000-0000784763ad"
+              }
+            ],
+            "ProductASchema": "Product;3"
+          }
+        ]
+      },
+      {
+        "Sku": {
+          "LastModifiedDate": "2024-12-13T19:44:25.8202393Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "Super Mega Baseball 3 refines the series’ formula with the deepest on-field simulation yet, comprehensive offline and online play including Franchise mode and the newly added Online Leagues mode, and vastly improved graphics. New content includes revamped UI plus tons of new audio, team/character content, and stadiums with variable lighting conditions.\r\n\r\nFeatures:\r\n•\tChallenge your hand-eye coordination or relax and hit dingers with fluid gameplay that scales seamlessly from novice to beyond-expert levels of difficulty.\r\n•\tApply and refine your baseball instincts with a sophisticated baseball simulation featuring new pickoff and stealing mechanics, wild pitches/passed balls, designated hitters, and situational player traits.\r\n•\tTake in the sights and sounds of 14 richly detailed ballparks, each featuring unique day, night and alternate lighting conditions.\r\n•\tGuide an evolving team to greatness over multiple seasons in the all new Franchise mode featuring player development, aging, retirement and signing/releasing of free agents (1vCPU, 2vCPU, local or online).\r\n•\tOrganize a cross-platform league with your friends in the newly added, versatile Online Leagues mode (1v1, online only).\r\n•\tCompete online to win pennants and climb to higher divisions in the cross-platform Pennant Race mode (1v1, online only).\r\n•\tCreate your ideal league with a comprehensive customization suite that includes season length/structure, team names/uniforms/logos, and player names/appearance/attributes.\r\n•\tPlay or simulate any combination of games/teams in customized Seasons and Elimination brackets, solo or with friends (1vCPU, 2vCPU, 1v1, 2v1, 2v2, CPUvCPU, local or online).\r\n•\tSkip customization and compete for top leaderboard scores with standardized teams and settings (locked player attributes) in Standard Season and Standard Elimination modes (1vCPU, 2vCPU, local or online).\r\n\r\nDownload the free trial to play an unlimited number of games in the competitive online Pennant Race mode, play Exhibition games against the AI, or experiment with the customization suite.\r\n\r\nCONDITIONS AND RESTRICTIONS APPLY. SEE WWW.EA.COM/LEGAL FOR DETAILS.",
+              "SkuTitle": "Super Mega Baseball 3",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2020 Metalhead Software Inc.",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "https://www.ea.com/legal/privacy-policy",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2020-05-13T16:00:00.0000000Z",
+              "SupportedLanguages": [
+                "en",
+                "fr",
+                "de",
+                "he",
+                "it",
+                "ja",
+                "no",
+                "pl",
+                "pt",
+                "ru",
+                "es",
+                "sv",
+                "tr"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9NP6V9LFVJ87",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9NP6V9LFVJ87",
+              "WuBundleId": "de525238-c3cf-4471-be6f-2ac635263a73",
+              "WuCategoryId": "33654027-a9b2-4e5c-b738-9efbdf8fd167",
+              "PackageFamilyName": "MetalheadSoftwareInc.SuperMegaBaseball3_38nh3e7fkk334",
+              "SkuId": "0011",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": "XVC",
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2024-12-13T19:44:25.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [],
+              "RecommendedHardware": [],
+              "MinimumProcessor": "",
+              "RecommendedProcessor": "",
+              "MinimumGraphics": "",
+              "RecommendedGraphics": ""
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsRestrictiveXbox",
+            "Packages": [
+              {
+                "Applications": [],
+                "Architectures": [
+                  "x64"
+                ],
+                "Capabilities": [],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [],
+                "MaxDownloadSizeInBytes": 14589145088,
+                "MaxInstallSizeInBytes": 0,
+                "PackageFormat": "XVC",
+                "PackageFamilyName": null,
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "",
+                "PackageId": "9ea453e6-f707-4d57-8633-6fc5edd66221",
+                "ContentId": "9ea453e6-f707-4d57-8633-6fc5edd66221",
+                "KeyId": "c8cc3ccc-a93f-4a72-8c24-5bf75f1828b5",
+                "PackageRank": 50000,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "",
+                "ResourceId": "",
+                "Version": "0",
+                "PackageDownloadUris": [
+                  {
+                    "Rank": 0,
+                    "Uri": "https://productingestionbin1.blob.core.windows.net"
+                  },
+                  {
+                    "Rank": 1,
+                    "Uri": "https://productingestionbin1.blob.core.windows.net"
+                  }
+                ],
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9NP6V9LFVJ87",
+                  "WuBundleId": "de525238-c3cf-4471-be6f-2ac635263a73",
+                  "WuCategoryId": "33654027-a9b2-4e5c-b738-9efbdf8fd167",
+                  "PackageFamilyName": "MetalheadSoftwareInc.SuperMegaBaseball3_38nh3e7fkk334",
+                  "SkuId": "0011",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              }
+            ],
+            "VersionString": "",
+            "SkuDisplayGroupIds": null,
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 1,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": true,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0011",
+          "SkuType": "trial",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B0F784GMR71P",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2020-05-13T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 0,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9X53S098DXLF",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2020-05-13T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 1,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B0QJK2L2RGBL",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "1753-01-01T00:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 2,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B0F784GMR71P",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2020-05-13T16:00:00.0000000Z",
+              "EligibilityPredicateIds": [
+                "CannotSeenByChinaClient"
+              ],
+              "SupportedCatalogVersion": 7
+            },
+            "LastModifiedDate": "2022-04-01T20:18:06.4531936Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 0,
+            "ProductASchema": "Product;3"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+:root {
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --text-sec: #86868b;
+    --accent: #0071e3;
+    --accent-hover: #0077ED;
+    --border: #d2d2d7;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --input-bg: #fff;
+}
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg: #1c1c1e;
+    --card: #2c2c2e;
+    --text: #f5f5f7;
+    --text-sec: #a1a1a6;
+    --accent: #0a84ff;
+    --accent-hover: #409cff;
+    --border: #3a3a3c;
+    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+    --input-bg: #1c1c1e;
+}
+
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding-bottom: 80px; transition: background 0.3s, color 0.3s; }
+.container { max-width:1400px; margin:0 auto; padding:20px; }
+
+h1 { font-size: 26px; margin: 0 0 20px 0; font-weight: 700; }
+.controls { display:flex; flex-wrap:wrap; gap:16px; padding:20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow); margin-bottom:24px; align-items: flex-end; }
+.field { display:flex; flex-direction:column; gap:6px; flex:1; min-width:160px; }
+.field label { font-size:11px; font-weight:700; color:var(--text-sec); text-transform:uppercase; letter-spacing: 0.5px; }
+select, input { width:100%; height:42px; border:1px solid var(--border); border-radius:10px; padding:0 12px; font-size:14px; background: var(--input-bg); color: var(--text); box-sizing: border-box; }
+select[multiple] { height:100px; padding:6px; }
+
+.btn { height:42px; padding:0 24px; border-radius:21px; border:1px solid var(--border); background:var(--card); cursor:pointer; font-weight:600; color: var(--text); font-size: 14px; transition: all 0.2s; }
+.btn:hover { background: var(--bg); }
+.btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.btn-reset { color: #ff3b30; border-color: rgba(255,59,48,0.3); }
+
+/* Table */
+.table-wrap { background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; border: 1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-size:14px; min-width:1100px; }
+th { background:var(--bg); padding:16px; text-align:left; border-bottom:1px solid var(--border); font-weight:600; color: var(--text-sec); position: sticky; top: 0; z-index: 10; cursor: pointer; user-select: none; }
+th .th-content { display: flex; align-items: center; justify-content: space-between; }
+td { padding:12px 16px; border-bottom:1px solid var(--border); vertical-align: middle; }
+tr:hover { background-color: rgba(0,0,0,0.02); }
+[data-theme="dark"] tr:hover { background-color: rgba(255,255,255,0.05); }
+
+img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; background: #eee; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: block; }
+.tier-badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 4px; }
+.tier-AAA { background: var(--accent); color: white; }
+.tier-Indie { background: rgba(10, 132, 255, 0.15); color: var(--accent); }
+
+.rating-val { font-weight: 700; font-size: 15px; }
+.rating-high { color: #008a4b; }
+.rating-mid { color: #bf8600; }
+[data-theme="dark"] .rating-high { color: #30d158; }
+[data-theme="dark"] .rating-mid { color: #ffd60a; }
+
+.btn-read { color: var(--accent); background: rgba(10, 132, 255, 0.1); padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; }
+.btn-read:hover { background: rgba(10, 132, 255, 0.2); }
+.fav { background:none; border:none; font-size:26px; color:var(--border); cursor:pointer; line-height: 1; padding: 0; transition: color 0.2s; }
+.fav.on { color:var(--accent); } 
+
+/* Tiles */
+.tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:24px; }
+.tile { background:var(--card); border-radius:16px; padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; cursor: pointer; transition: transform 0.2s; }
+.tile:hover { transform: translateY(-6px); }
+.tile img { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:10px; margin-bottom:12px; }
+.tile-title { font-weight:700; margin-bottom:6px; font-size:16px; line-height: 1.3; }
+
+/* Pagination */
+.pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 30px; flex-wrap: wrap; }
+.pg-btn { min-width: 36px; height: 36px; padding: 0 6px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 600; cursor: pointer; }
+.pg-active { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; pointer-events: none; }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(4px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal { background: var(--card); color: var(--text); width: 90%; max-width: 800px; max-height: 90vh; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow-y: auto; position: relative; animation: slideUp 0.3s ease-out; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header { position: sticky; top: 0; background: var(--card); padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+.modal-close { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; color: var(--text); }
+.modal-body { padding: 30px; }
+.game-hero { display: flex; gap: 30px; margin-bottom: 30px; }
+.game-poster { width: 200px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); align-self: flex-start; }
+.game-info { flex: 1; }
+.tag { background: var(--bg); padding: 4px 10px; border-radius: 6px; color: var(--text); border: 1px solid var(--border); }
+.desc-text { font-size: 16px; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
+
+/* FLOATING SETTINGS - Z-INDEX FIXED */
+.float-settings { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column-reverse; gap: 10px; align-items: center; }
+.fab-main { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; border: none; transition: transform 0.2s; }
+.fab-main:hover { transform: scale(1.1); }
+.fab-opts { display: none; flex-direction: column; gap: 10px; padding-bottom: 10px; }
+.float-settings:hover .fab-opts { display: flex; animation: slideUpFab 0.2s; }
+.fab-mini { width: 44px; height: 44px; border-radius: 50%; background: var(--card); color: var(--text); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-weight: bold; }
+@keyframes slideUpFab { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* INJECTED CSS FOR DESCRIPTION BLOCKS */
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 id="lblTitle">Game Pass Catalog</h1>
+    
+    <div class="controls">
+        <div class="field" style="flex: 0 0 auto;">
+            <div style="display:flex; gap:0;">
+                <button id="btnTable" class="btn active" style="border-radius: 21px 0 0 21px;" data-t="viewList">☰ Список</button>
+                <button id="btnTiles" class="btn" style="border-radius: 0 21px 21px 0; border-left:none;" data-t="viewTiles">▦ Плитка</button>
+            </div>
+        </div>
+        <div class="field"><label data-t="search">Пошук</label><input id="searchTxt"></div>
+        <div class="field"><label data-t="year">Рік</label><select id="filterYear" multiple></select></div>
+        <div class="field"><label data-t="genre">Жанр</label><select id="filterGenre" multiple></select></div>
+        <div class="field"><label>Tier</label><select id="filterTier"><option value="">All</option><option value="AAA">AAA</option><option value="Indie/AA">Indie/AA</option></select></div>
+        <div class="field" style="flex:0 0 80px;"><label data-t="rating">Рейт. ≥</label><input id="filterRating" type="number" min="0" max="100"></div>
+        <div class="field" style="flex:0 0 auto; justify-content:center; padding-bottom: 10px;">
+            <label style="cursor:pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px;">
+                <input id="filterFav" type="checkbox" style="width:18px; height:18px;"> <span data-t="fav">Обране</span>
+            </label>
+        </div>
+        <button id="btnReset" class="btn btn-reset" data-t="reset">✕ Скинути</button>
+    </div>
+
+    <div id="tableView"><div class="table-wrap"><table>
+        <thead><tr>
+            <th style="width:80px" data-t="poster">Постер</th>
+            <th class="sortable" data-key="name"><div class="th-content"><span data-t="name">Назва</span> <span class="sort-icon">↕</span></div></th>
+            <th style="width:15%" data-t="genre">Жанр</th>
+            <th style="width:80px" data-t="info">Інфо</th>
+            <th class="sortable sort-desc" data-key="rating"><div class="th-content"><span data-t="rating">Рейт</span> <span class="sort-icon">▼</span></div></th>
+            <th class="sortable" data-key="year"><div class="th-content"><span data-t="year">Рік</span> <span class="sort-icon">↕</span></div></th>
+            <th class="sortable" data-key="hours"><div class="th-content"><span data-t="time">Час</span> <span class="sort-icon">↕</span></div></th>
+            <th data-t="actions">Дії</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+    </table></div></div>
+    
+    <div id="tilesView" style="display:none"><div class="tiles" id="tiles"></div></div>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<div class="float-settings">
+    <button class="fab-main">⚙</button>
+    <div class="fab-opts">
+        <button class="fab-mini" id="btnTheme" title="Theme">◑</button>
+        <button class="fab-mini" id="btnLang" title="Lang">EN</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 style="margin:0" data-t="details">Деталі</h3>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+const DATA = __DATA_JSON__;
+const PAGE_SIZE = 50;
+let CUR_PAGE = 1;
+let FILTERED_LIST = DATA;
+let SORT = { key: 'rating', asc: false };
+let CUR_THEME = localStorage.getItem("gp_theme") || "light";
+let CUR_LANG = localStorage.getItem("gp_lang") || "uk";
+let OPEN_GAME_ID = null; // Track opened game
+
+const I18N = {
+    uk: {
+        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути",
+        viewList: "☰ Список", viewTiles: "▦ Плитка", poster: "Постер", name: "Назва", info: "Інфо", time: "Час", actions: "Дії", details: "Деталі гри", read: "Читати", hours: "год."
+    },
+    en: {
+        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", rating: "RATING", fav: "Favorites", reset: "✕ Reset",
+        viewList: "☰ List", viewTiles: "▦ Tiles", poster: "Poster", name: "Name", info: "Info", time: "Time", actions: "Actions", details: "Game Details", read: "Read", hours: "h"
+    }
+};
+
+function init() {
+    applyTheme(CUR_THEME);
+    applyLang(CUR_LANG);
+    setupFilters();
+    applyFilters();
+}
+
+function esc(s){return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+const getFavs=()=>{try{return new Set(JSON.parse(localStorage.getItem("gp_favs")||"[]"))}catch{return new Set()}};
+const setFavs=s=>localStorage.setItem("gp_favs",JSON.stringify(Array.from(s)));
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    CUR_THEME = theme;
+    localStorage.setItem("gp_theme", theme);
+}
+
+function applyLang(lang) {
+    CUR_LANG = lang;
+    localStorage.setItem("gp_lang", lang);
+    document.getElementById("btnLang").innerText = lang.toUpperCase();
+    
+    // 1. Static UI
+    const t = I18N[lang];
+    document.getElementById("lblTitle").innerText = t.title;
+    document.querySelectorAll("[data-t]").forEach(el => {
+        const k = el.getAttribute("data-t");
+        if(t[k]) {
+            if(el.tagName === 'INPUT') el.placeholder = t[k];
+            else el.innerText = t[k];
+        }
+    });
+    
+    // 2. Refresh Table
+    render(); 
+    
+    // 3. Refresh Modal if open (INSTANTLY)
+    if(document.getElementById("modalOverlay").classList.contains("open") && OPEN_GAME_ID) {
+        const idx = FILTERED_LIST.findIndex(x => x.id === OPEN_GAME_ID);
+        if(idx !== -1) openModal(idx);
+    }
+}
+
+document.getElementById("btnTheme").onclick = () => applyTheme(CUR_THEME === "light" ? "dark" : "light");
+document.getElementById("btnLang").onclick = () => applyLang(CUR_LANG === "uk" ? "en" : "uk");
+
+function openModal(idx) {
+    const game = FILTERED_LIST[idx]; 
+    OPEN_GAME_ID = game.id;
+    const content = document.getElementById("modalContent");
+    const t = I18N[CUR_LANG];
+    const i18nData = game.i18n ? game.i18n[CUR_LANG] : { name: game.name, genre: game.genre, desc: "No data" };
+    
+    content.innerHTML = `
+        <div class="game-hero">
+            <img src="${esc(game.image)}" class="game-poster">
+            <div class="game-info">
+                <div style="font-size:24px; font-weight:800; margin-bottom:10px; line-height:1.2;">${esc(i18nData.name)}</div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:15px;">
+                    <span class="tag">${esc(game.year)}</span>
+                    <span class="tag">${esc(game.publisher)}</span>
+                    <span class="tag" style="background:${game.tier==='AAA'?'var(--accent)':'var(--bg)'}; color:${game.tier==='AAA'?'#fff':'inherit'}">${esc(game.tier)}</span>
+                </div>
+                <div style="font-size:20px; font-weight:700;">
+                    <span style="color:${game.rating>=80?'#008a4b':(game.rating>=60?'#bf8600':'#666')}">★ ${game.rating||'-'}</span>
+                    <span style="font-size:13px; color:var(--text-sec); font-weight:400; margin-left:6px;">(${esc(game.ratingSource)})</span>
+                </div>
+                <div style="margin-top:6px; color:var(--text-sec);">⏳ ${esc(game.hours)} ${t.hours}</div>
+            </div>
+        </div>
+        <div class="desc-text">${i18nData.desc}</div>
+    `; // Using innerHTML for desc because it contains HTML blocks now
+    
+    document.getElementById("modalOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal() { 
+    document.getElementById("modalOverlay").classList.remove("open"); 
+    document.body.style.overflow = ""; 
+    OPEN_GAME_ID = null;
+}
+document.getElementById("modalOverlay").onclick = (e) => { if(e.target === document.getElementById("modalOverlay")) closeModal(); };
+
+function renderPagination(total) {
+    const container = document.getElementById("pagination");
+    container.innerHTML = "";
+    if (total <= 1) return; 
+    const createBtn = (label, page, isActive = false) => {
+        const btn = document.createElement("button");
+        btn.className = `pg-btn ${isActive ? "pg-active" : ""}`;
+        btn.innerHTML = label;
+        btn.onclick = () => { CUR_PAGE = page; render(); window.scrollTo({top:0, behavior:'smooth'}); };
+        return btn;
+    };
+    container.appendChild(createBtn("←", Math.max(1, CUR_PAGE - 1)));
+    let pages = [];
+    if (total <= 7) { for (let i = 1; i <= total; i++) pages.push(i); } 
+    else {
+        if(CUR_PAGE < 5) pages = [1,2,3,4,5, '...', total];
+        else if (CUR_PAGE > total - 4) pages = [1, '...', total-4, total-3, total-2, total-1, total];
+        else pages = [1, '...', CUR_PAGE-1, CUR_PAGE, CUR_PAGE+1, '...', total];
+    }
+    pages.forEach(p => {
+        if(p === '...') { const d=document.createElement("span"); d.style.color="var(--text-sec)"; d.innerText="..."; container.appendChild(d); } 
+        else container.appendChild(createBtn(p, p, CUR_PAGE === p));
+    });
+    container.appendChild(createBtn("→", Math.min(total, CUR_PAGE + 1)));
+}
+
+function render() {
+    const t = I18N[CUR_LANG];
+    FILTERED_LIST.sort((a, b) => {
+        let valA = a[SORT.key], valB = b[SORT.key];
+        if (SORT.key === 'name') {
+             valA = (a.i18n && a.i18n[CUR_LANG] ? a.i18n[CUR_LANG].name : a.name).toLowerCase();
+             valB = (b.i18n && b.i18n[CUR_LANG] ? b.i18n[CUR_LANG].name : b.name).toLowerCase();
+        } else if (['rating', 'year', 'hours'].includes(SORT.key)) {
+            valA = Number(valA) || 0; valB = Number(valB) || 0;
+        }
+        if (valA < valB) return SORT.asc ? -1 : 1;
+        if (valA > valB) return SORT.asc ? 1 : -1;
+        return 0;
+    });
+
+    document.querySelectorAll("th.sortable").forEach(th => {
+        th.classList.remove("sort-asc", "sort-desc");
+        th.querySelector(".sort-icon").textContent = "↕";
+        if(th.dataset.key === SORT.key) {
+            th.classList.add(SORT.asc ? "sort-asc" : "sort-desc");
+            th.querySelector(".sort-icon").textContent = SORT.asc ? "▲" : "▼";
+        }
+    });
+
+    const totalPages = Math.ceil(FILTERED_LIST.length / PAGE_SIZE) || 1;
+    if (CUR_PAGE > totalPages) CUR_PAGE = totalPages;
+    const start = (CUR_PAGE - 1) * PAGE_SIZE;
+    const pageData = FILTERED_LIST.slice(start, start + PAGE_SIZE);
+    
+    const favs = getFavs();
+    const isTiles = localStorage.getItem("gp_view") === "tiles";
+
+    document.getElementById("tableView").style.display = isTiles ? "none" : "block";
+    document.getElementById("tilesView").style.display = isTiles ? "block" : "none";
+    document.getElementById("btnTable").className = isTiles ? "btn" : "btn active";
+    document.getElementById("btnTiles").className = isTiles ? "btn active" : "btn";
+    
+    renderPagination(totalPages);
+
+    const getRowData = (x) => {
+        const d = x.i18n ? x.i18n[CUR_LANG] : {name: x.name, genre: x.genre};
+        return { ...x, displayName: d.name, displayGenre: d.genre };
+    };
+
+    if(isTiles) {
+        document.getElementById("tiles").innerHTML = pageData.map((raw, i) => {
+            const x = getRowData(raw);
+            const globalIdx = start + i;
+            return `
+            <div class="tile" onclick="openModal(${globalIdx})">
+                <div style="position:relative">
+                    <img src="${esc(x.image)}" loading="lazy">
+                    <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="event.stopPropagation(); toggleFav(this)">★</button>
+                </div>
+                <div class="tile-title">${esc(x.displayName)}</div>
+                <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
+                    <span>${esc(x.year)}</span>
+                    <span style="font-weight:bold; color:${x.rating>=80?'#008a4b':(x.rating>=60?'#bf8600':'var(--text-sec)')}">★ ${x.rating||'-'}</span>
+                </div>
+            </div>`
+        }).join("");
+    } else {
+        document.getElementById("tbody").innerHTML = pageData.map((raw, i) => {
+            const x = getRowData(raw);
+            const globalIdx = start + i;
+            return `
+            <tr>
+                <td><img src="${esc(x.image)}" class="cover" loading="lazy"></td>
+                <td>
+                    <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
+                    ${x.tier === "AAA" ? '<span class="tier-badge tier-AAA">AAA</span>' : '<span class="tier-badge tier-Indie">Indie/AA</span>'}
+                    <div style="font-size:12px; color:var(--text-sec); margin-top:4px;">${esc(x.developer)}</div>
+                </td>
+                <td>${esc(x.displayGenre)}</td>
+                <td><button class="btn-read" onclick="openModal(${globalIdx})">${t.read}</button></td>
+                <td>
+                    <div class="rating-val ${x.rating>=80?'rating-high':(x.rating>=60?'rating-mid':'rating-low')}">${esc(x.rating || '-')}</div>
+                    <div style="font-size:10px; color:var(--text-sec);">${esc(x.ratingSource)}</div>
+                </td>
+                <td>${esc(x.year)}</td>
+                <td>${esc(x.hours)}</td>
+                <td>
+                    <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="toggleFav(this)">★</button>
+                </td>
+            </tr>`
+        }).join("");
+    }
+}
+
+function toggleFav(btn) {
+    const id = btn.dataset.id;
+    const s = getFavs();
+    s.has(id) ? s.delete(id) : s.add(id);
+    setFavs(s);
+    btn.classList.toggle("on");
+    if(document.getElementById("filterFav").checked) applyFilters();
+}
+
+function setupFilters() {
+    const years = [...new Set(DATA.map(x=>x.year).filter(Boolean))].sort().reverse();
+    const genres = [...new Set(DATA.flatMap(x=> (x.i18n?.uk?.genre || "").split(", ")).filter(Boolean))].sort();
+    
+    document.getElementById("filterYear").innerHTML = years.map(y=>`<option>${y}</option>`).join("");
+    document.getElementById("filterGenre").innerHTML = genres.map(g=>`<option>${g}</option>`).join("");
+    
+    document.querySelectorAll("select, input").forEach(e => e.onchange = applyFilters);
+    document.getElementById("searchTxt").oninput = applyFilters;
+    document.getElementById("btnReset").onclick = () => {
+        document.querySelectorAll("select").forEach(s => Array.from(s.options).forEach(o => o.selected = false));
+        document.querySelectorAll("input").forEach(i => {if(i.type==='checkbox')i.checked=false; else i.value=''});
+        SORT = { key: 'rating', asc: false };
+        applyFilters();
+    };
+    document.getElementById("btnTable").onclick = () => { localStorage.setItem("gp_view","table"); render(); };
+    document.getElementById("btnTiles").onclick = () => { localStorage.setItem("gp_view","tiles"); render(); };
+    
+    document.querySelectorAll("th.sortable").forEach(th => {
+        th.onclick = () => {
+            const key = th.dataset.key;
+            if (SORT.key === key) SORT.asc = !SORT.asc;
+            else {
+                SORT.key = key;
+                SORT.asc = ['rating','year'].includes(key) ? false : true;
+            }
+            render();
+        };
+    });
+}
+
+function applyFilters() {
+    const txt = document.getElementById("searchTxt").value.toLowerCase();
+    const years = Array.from(document.getElementById("filterYear").selectedOptions).map(o=>o.value);
+    const genres = Array.from(document.getElementById("filterGenre").selectedOptions).map(o=>o.value);
+    const tier = document.getElementById("filterTier").value;
+    const r = Number(document.getElementById("filterRating").value);
+    const f = document.getElementById("filterFav").checked;
+    const favs = getFavs();
+
+    FILTERED_LIST = DATA.filter(x => {
+        const name = (x.i18n && x.i18n[CUR_LANG] ? x.i18n[CUR_LANG].name : x.name).toLowerCase();
+        if(txt && !name.includes(txt)) return false;
+        if(years.length && !years.includes(x.year)) return false;
+        const gStr = x.i18n?.uk?.genre || "";
+        if(genres.length && !gStr.split(", ").some(g=>genres.includes(g))) return false;
+        if(tier && x.tier !== tier) return false;
+        if(r && (Number(x.rating)||0) < r) return false;
+        if(f && !favs.has(x.id)) return false;
+        return true;
+    });
+    CUR_PAGE = 1; render();
+}
+
+init();
+</script>
+</body>
+</html>

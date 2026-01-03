@@ -1,0 +1,2984 @@
+{
+  "product": {
+    "LastModifiedDate": "2025-10-14T21:46:22.2160021Z",
+    "LocalizedProperties": [
+      {
+        "DeveloperName": "",
+        "PublisherName": "Microsoft Studios",
+        "PublisherAddress": null,
+        "PublisherWebsiteUri": "https://www.halowaypoint.com/",
+        "SupportUri": "https://www.halowaypoint.com/",
+        "SupportPhone": "",
+        "CMSVideos": [
+          {
+            "DASH": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/ddf0878c-d9aa-444f-b680-f14529fa0254-AVS.mpd",
+            "HLS": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftassets/ddf0878c-d9aa-444f-b680-f14529fa0254-AVS.m3u8?packagedStreaming=true",
+            "CMS": null,
+            "CC": null,
+            "VideoPurpose": "trailer",
+            "Height": 1080,
+            "Width": 1920,
+            "AudioEncoding": "",
+            "VideoEncoding": "avc1",
+            "VideoPositionInfo": "Video/0",
+            "Caption": "Launch",
+            "FileSizeInBytes": 198887651,
+            "PreviewImage": {
+              "FileId": "2000000000037962770",
+              "EISListingIdentifier": null,
+              "BackgroundColor": null,
+              "Caption": "Launch",
+              "FileSizeInBytes": 4669079,
+              "ForegroundColor": null,
+              "Height": 1080,
+              "ImagePositionInfo": null,
+              "ImagePurpose": "trailer",
+              "UnscaledImageSHA256Hash": "ROC6jfLdQnG6Y2GPyxbM3NY7e2SHzN/zukBUApvHnFg=",
+              "Uri": "//store-images.s-microsoft.com/image/apps.57412.9007199266252681.b5374dc0-d930-4d35-9a0c-e06668602376.2f92aaef-d2b7-48e2-ad82-b4405ef1ac8f",
+              "Width": 1920
+            },
+            "TrailerId": null,
+            "SortOrder": 1
+          }
+        ],
+        "EligibilityProperties": {
+          "Remediations": [
+            {
+              "RemediationId": "B330MZTCQQBD",
+              "Description": "Get Xbox Game Pass Standard today to take advantage of a catalog of hundreds of high-quality games, online console multiplayer, and exclusive deals."
+            },
+            {
+              "RemediationId": "9ZNPVF4DTWVC",
+              "Description": "With Game Pass, you can play more great games anytime."
+            }
+          ],
+          "Affirmations": [
+            {
+              "AffirmationId": "9THBW754ZLJR",
+              "AffirmationProductId": "CFQ7TTC0P85B",
+              "Description": "with your Xbox Game Pass Standard membership."
+            },
+            {
+              "AffirmationId": "B1FFW2F7JKV0",
+              "AffirmationProductId": "CFQ7TTC0KGQ8",
+              "Description": "with your Game Pass membership"
+            }
+          ]
+        },
+        "Franchises": [],
+        "Images": [
+          {
+            "FileId": "2000000000039832335",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 237060,
+            "ForegroundColor": "",
+            "Height": 300,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Logo",
+            "UnscaledImageSHA256Hash": "hcdx3JHLsqtJ7FdbTmpZOash53s/oaiEDa5j91Smiro=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.51077.9007199266252681.2f2dda9a-782c-43aa-a406-8488cabb6e7c.451a956b-e7de-44e1-975e-9e24712eccd7",
+            "Width": 300
+          },
+          {
+            "FileId": "1152921504607413339",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "Promethean Knights know no fear, and will fight until their bodies utterly fail.",
+            "FileSizeInBytes": 1876551,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/0",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "195b9M80IGuYDCq/W2bsHPWbYZ6dNsX2lKBOLM1Ae+I=",
+            "Uri": "//store-images.microsoft.com/image/apps.57047.9007199266252681.d4647536-a5da-4a13-97ef-c19b1e43a190.220984c0-8ad3-40d0-a993-c5beb12e49c2",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413343",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "See Halo 2’s battle for Mombasa from a new perspective!",
+            "FileSizeInBytes": 443364,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/1",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "oPZV5f2wyvLyBqgVMSKjzB+ym78DSQug9kvgVlvjMQI=",
+            "Uri": "//store-images.microsoft.com/image/apps.63136.9007199266252681.8699d01c-27cc-4879-a1a0-ddc6ebcaad1a.0ad2718b-8610-464e-8856-e265c27cfbc0",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413324",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "This vibrant jungle overlooks a temple complex abandoned for over a hundred thousand years.",
+            "FileSizeInBytes": 494687,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/2",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "9aw5xNI7Bbyk7xYRCvRw1rI+jEfqM4IqnOzQydu1yQU=",
+            "Uri": "//store-images.microsoft.com/image/apps.44277.9007199266252681.eae389bb-de41-4038-93e6-2d0421e068ab.9e2c2ac4-f84b-46c9-a458-5d83a051e1a9",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607414031",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "Forerunner control mechanisms are often surrounded by devices of arcane functionality.",
+            "FileSizeInBytes": 439743,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/3",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "yd93CZueKHQ1kn8qDzgzmf7aFyYT41z03gypKmFjoss=",
+            "Uri": "//store-images.microsoft.com/image/apps.57289.9007199266252681.3e45d1d6-c529-4f47-a518-6c55a67aaea3.dcc5fe82-719a-493d-ad1a-0c2c3d04327f",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413608",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "ONI has delved deeply into Forerunner technology … perhaps too deeply.",
+            "FileSizeInBytes": 1998688,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/4",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "pT1x8Osw/n/fA9fW6y2EHdyGOPZS5gx9u0OBpsT1/6g=",
+            "Uri": "//store-images.microsoft.com/image/apps.15781.9007199266252681.43a5a853-3dbd-4a95-8cda-47b86974fb31.d649b009-42b2-4dc9-826d-c0a9182f4a4e",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607414663",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "The M850 Grizzly is the ultimate word in UNSC heavy metal.",
+            "FileSizeInBytes": 463525,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/5",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "765JvwcVL+dKqTzeBYwi3Ah9+ZZCd3xufmb1OvhQ/qE=",
+            "Uri": "//store-images.microsoft.com/image/apps.44783.9007199266252681.8b6874f4-d76c-4665-8cb7-0c6e020ec1ce.f742e94e-ed2d-493d-bf52-114b6621d5c6",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607414037",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "Fast and deadly, the Kestrel is the perfect chariot for Spartans operating in dangerous environments.",
+            "FileSizeInBytes": 517584,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/6",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "7QvmQaFU/dDOgYCtYeqFrwSRn4RwQsSwjUjaR4nszew=",
+            "Uri": "//store-images.microsoft.com/image/apps.3053.9007199266252681.8920446b-4eff-4a63-a6d1-17932f193468.6a5105e2-ded2-4b6e-a95d-c1efd5a42a1a",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413467",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "The Halo 3 bubble shield returns, creating dynamic tactical challenges for your Spartan.",
+            "FileSizeInBytes": 449266,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/7",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "Bip5Spao/JWZhQtLtKiNlxp05k4tWFMbI5Kwv3Gk6AE=",
+            "Uri": "//store-images.microsoft.com/image/apps.10758.9007199266252681.9d119085-706e-4cd7-8eec-02662026373d.d0ef5f63-becf-47f1-9da2-9b0fda2d12b2",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413425",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "The Promethean Knights are ancient mechanized warriors, relentless and without mercy.",
+            "FileSizeInBytes": 1418665,
+            "ForegroundColor": "",
+            "Height": 768,
+            "ImagePositionInfo": "Desktop/8",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "ai+IVytlB3tHfBzzcBB4tg99zhuE9r65RZ6Xrbk3L1M=",
+            "Uri": "//store-images.microsoft.com/image/apps.12138.9007199266252681.50159669-3e9c-46f0-96f9-47ad5732476b.483db4c8-be53-46c6-89cb-a3ad7ea1870f",
+            "Width": 1366
+          },
+          {
+            "FileId": "1152921504607413611",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 840034,
+            "ForegroundColor": "",
+            "Height": 468,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Hero",
+            "UnscaledImageSHA256Hash": "htd3XRUBV13WOGUAw89nd7S0HIi62OF4W9NCTFFwSqE=",
+            "Uri": "//store-images.microsoft.com/image/apps.55174.9007199266252681.c208418b-3f31-42b8-bd1e-3b4e1db0bda6.00ddff49-2f71-45bd-93f5-fa48b0391181",
+            "Width": 846
+          },
+          {
+            "FileId": "1152921504607413463",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 672244,
+            "ForegroundColor": "",
+            "Height": 558,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Hero",
+            "UnscaledImageSHA256Hash": "X4WtBNh1iyOXg2hZgc7o3Ogsly9w6aRHYFlZAe9KTRQ=",
+            "Uri": "//store-images.microsoft.com/image/apps.34143.9007199266252681.bfc9b586-4229-49e3-ae8e-dd199b7fbb87.a40532c2-b0a6-490b-b890-e427eb16d8cd",
+            "Width": 558
+          },
+          {
+            "FileId": "1152921504607414659",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 206029,
+            "ForegroundColor": "",
+            "Height": 180,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Hero",
+            "UnscaledImageSHA256Hash": "gXOaErASILF1sPycGEGwLDTr4/wGv5dXd6zKL4Y2wrk=",
+            "Uri": "//store-images.microsoft.com/image/apps.29569.9007199266252681.43fe5fa0-2425-40f3-a2e2-fa5554786203.26de55ba-9be0-4dd4-95b7-54f9dd2cd7d2",
+            "Width": 414
+          },
+          {
+            "FileId": "1152921504607490281",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2608897,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/1",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "hhnDi3H08MNAPzBp+Rt8NrjXSXoTyq8tnbP7Cdk08hM=",
+            "Uri": "//store-images.microsoft.com/image/apps.6534.9007199266252681.aaefe57d-139b-4a12-8857-95248e5b3c28.725b8d28-5dc7-4826-bbf9-b63a3b41ffef",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504607490265",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2444211,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/0",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "rs7ppKolIumg1OD4z+asjruQMwzCNk5+Y9qbyyARguU=",
+            "Uri": "//store-images.microsoft.com/image/apps.52910.9007199266252681.11457a22-d650-4995-aa17-028641169de9.b07e7798-0c8a-406d-b3a1-c20f197a16c6",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883680",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2436224,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/2",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "WeOX5mdkzX6y2kzc5N4qz79cMQhEuJcPiZ7QusIE8Nc=",
+            "Uri": "//store-images.microsoft.com/image/apps.58201.9007199266252681.c8747ebe-6ac0-4606-b196-ed8a737766bd.569fae94-fb52-435d-ac39-5cb0ab2dd5c7",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883886",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2351477,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/3",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "Sow6+NGfHWZHcJXcJqO/RFZ87VM0pvVk7myXZkzCb78=",
+            "Uri": "//store-images.microsoft.com/image/apps.35914.9007199266252681.be36dca1-2b8e-4305-94ef-71548e4b4265.a64be917-eae7-4c3e-82d5-b4c0ca3a3350",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883889",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2041503,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/4",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "SGYZFJgl7aIRvStHnU7942KXmG9zbPLvUeNZuMGG1t0=",
+            "Uri": "//store-images.microsoft.com/image/apps.26184.9007199266252681.b8f629b9-f123-4fbf-a88c-18ac3555f873.fce50e11-6114-4ffd-8ba0-e322328813db",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883890",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2509852,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/5",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "EW0wjFON1IU8aUCoOt1ZVVD0Xx3qerZOGmH1gGkZYjE=",
+            "Uri": "//store-images.microsoft.com/image/apps.27921.9007199266252681.9fd096b8-5455-4247-84b0-61108b119feb.640affb2-4ac0-4b98-bd91-7878a8fe2963",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883891",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2549744,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/6",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "S2jIkhXqs/deU4nQs+H3aaiwZkmjpVb3q2UWxN/JScw=",
+            "Uri": "//store-images.microsoft.com/image/apps.26699.9007199266252681.51c2e905-c7cb-440c-b05a-7981ffb0d8f0.2df8b1b1-0313-43cc-952a-32804eba9755",
+            "Width": 768
+          },
+          {
+            "FileId": "1152921504632883892",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 2420448,
+            "ForegroundColor": "",
+            "Height": 1280,
+            "ImagePositionInfo": "Mobile/7",
+            "ImagePurpose": "Screenshot",
+            "UnscaledImageSHA256Hash": "sx+Pe0UMRwIGhGvSdvsH24xoQDrR/omXJJFFQYB8moo=",
+            "Uri": "//store-images.microsoft.com/image/apps.8115.9007199266252681.8aeff46f-53db-49e1-bfad-b36894e9c29b.7b50b8b1-a432-4617-bb76-3e9b7b54fab3",
+            "Width": 768
+          },
+          {
+            "FileId": "2000000000036927733",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 1529695,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "Poster",
+            "UnscaledImageSHA256Hash": "hwc6mpDu0r7jBQONQl0doLaCKth4BZcZNXJWDErDsOw=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.1927.9007199266252681.a54fc68d-3697-4a7d-b1fe-2ea1d2be7e83.034e4b9e-2f21-4f11-b4a8-55c2d48add5d",
+            "Width": 720
+          },
+          {
+            "FileId": "2000000000039832258",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 7244246,
+            "ForegroundColor": "",
+            "Height": 2160,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "BoxArt",
+            "UnscaledImageSHA256Hash": "hLgO9P8fKiN94iURA+rgpmvf4qt5fUrVIVeExQg+KGA=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.47236.9007199266252681.b5374dc0-d930-4d35-9a0c-e06668602376.5155a0c1-9b4b-4106-a0c9-5354cd5b65ef",
+            "Width": 2160
+          },
+          {
+            "FileId": "2000000000040430778",
+            "EISListingIdentifier": null,
+            "BackgroundColor": "",
+            "Caption": "",
+            "FileSizeInBytes": 4669079,
+            "ForegroundColor": "",
+            "Height": 1080,
+            "ImagePositionInfo": "",
+            "ImagePurpose": "SuperHeroArt",
+            "UnscaledImageSHA256Hash": "ROC6jfLdQnG6Y2GPyxbM3NY7e2SHzN/zukBUApvHnFg=",
+            "Uri": "//store-images.s-microsoft.com/image/apps.57412.9007199266252681.b5374dc0-d930-4d35-9a0c-e06668602376.2f92aaef-d2b7-48e2-ad82-b4405ef1ac8f",
+            "Width": 1920
+          }
+        ],
+        "Videos": [],
+        "ProductDescription": "Halo: Spartan Strike makes you a new Spartan recruit battling evil forces in this touch-based top-down shooter. Be the Spartan and deny your foes the conquest of Earth. Encounter Promethean and Covenant enemies in 30 thrilling missions through jungles and cities as you seek to thwart plans to make Earth their next conquest. \r\n\r\nIt’s time to challenge your enemies. Strike Fast. Be a Spartan!",
+        "ProductTitle": "Halo: Spartan Strike",
+        "ShortTitle": "",
+        "SortTitle": "",
+        "FriendlyTitle": null,
+        "ShortDescription": "Halo: Spartan Strike makes you a new Spartan recruit battling evil forces in this touch-based top-down shooter. Be the Spartan and deny your foes the conquest of Earth. Encounter Promethean and Covenant enemies in 30 thrilling missions through jungles and cities as you seek to thwart plans to make Earth their next conquest. ",
+        "SearchTitles": [
+          {
+            "SearchTitleString": "Halo",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "Spartan",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "Strike",
+            "SearchTitleType": "SearchHint"
+          },
+          {
+            "SearchTitleString": "Twin stick shooter",
+            "SearchTitleType": "SearchHint"
+          }
+        ],
+        "VoiceTitle": "",
+        "RenderGroupDetails": null,
+        "ProductDisplayRanks": [],
+        "InteractiveModelConfig": null,
+        "Interactive3DEnabled": false,
+        "Language": "en-us",
+        "Markets": [
+          "US",
+          "DZ",
+          "AR",
+          "AU",
+          "AT",
+          "BH",
+          "BD",
+          "BE",
+          "BR",
+          "BG",
+          "CA",
+          "CL",
+          "CN",
+          "CO",
+          "CR",
+          "HR",
+          "CY",
+          "CZ",
+          "DK",
+          "EG",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "GT",
+          "HK",
+          "HU",
+          "IS",
+          "IN",
+          "ID",
+          "IQ",
+          "IE",
+          "IL",
+          "IT",
+          "JP",
+          "JO",
+          "KZ",
+          "KE",
+          "KW",
+          "LV",
+          "LB",
+          "LI",
+          "LT",
+          "LU",
+          "MY",
+          "MT",
+          "MR",
+          "MX",
+          "MA",
+          "NL",
+          "NZ",
+          "NG",
+          "NO",
+          "OM",
+          "PK",
+          "PE",
+          "PH",
+          "PL",
+          "PT",
+          "QA",
+          "RO",
+          "RU",
+          "SA",
+          "RS",
+          "SG",
+          "SK",
+          "SI",
+          "ZA",
+          "KR",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "TH",
+          "TT",
+          "TN",
+          "TR",
+          "UA",
+          "AE",
+          "GB",
+          "VN",
+          "YE",
+          "LY",
+          "LK",
+          "UY",
+          "VE",
+          "AF",
+          "AX",
+          "AL",
+          "AS",
+          "AO",
+          "AI",
+          "AQ",
+          "AG",
+          "AM",
+          "AW",
+          "BO",
+          "BQ",
+          "BA",
+          "BW",
+          "BV",
+          "IO",
+          "BN",
+          "BF",
+          "BI",
+          "KH",
+          "CM",
+          "CV",
+          "KY",
+          "CF",
+          "TD",
+          "TL",
+          "DJ",
+          "DM",
+          "DO",
+          "EC",
+          "SV",
+          "GQ",
+          "ER",
+          "ET",
+          "FK",
+          "FO",
+          "FJ",
+          "GF",
+          "PF",
+          "TF",
+          "GA",
+          "GM",
+          "GE",
+          "GH",
+          "GI",
+          "GL",
+          "GD",
+          "GP",
+          "GU",
+          "GG",
+          "GN",
+          "GW",
+          "GY",
+          "HT",
+          "HM",
+          "HN",
+          "AZ",
+          "BS",
+          "BB",
+          "BY",
+          "BZ",
+          "BJ",
+          "BM",
+          "BT",
+          "KM",
+          "CG",
+          "CD",
+          "CK",
+          "CX",
+          "CC",
+          "CI",
+          "CW",
+          "JM",
+          "SJ",
+          "JE",
+          "KI",
+          "KG",
+          "LA",
+          "LS",
+          "LR",
+          "MO",
+          "MK",
+          "MG",
+          "MW",
+          "IM",
+          "MH",
+          "MQ",
+          "MU",
+          "YT",
+          "FM",
+          "MD",
+          "MN",
+          "MS",
+          "MZ",
+          "MM",
+          "NA",
+          "NR",
+          "NP",
+          "MV",
+          "ML",
+          "NC",
+          "NI",
+          "NE",
+          "NU",
+          "NF",
+          "PW",
+          "PS",
+          "PA",
+          "PG",
+          "PY",
+          "RE",
+          "RW",
+          "BL",
+          "MF",
+          "WS",
+          "ST",
+          "SN",
+          "MP",
+          "PN",
+          "SX",
+          "SB",
+          "SO",
+          "SC",
+          "SL",
+          "GS",
+          "SH",
+          "KN",
+          "LC",
+          "PM",
+          "VC",
+          "TJ",
+          "TZ",
+          "TG",
+          "TK",
+          "TO",
+          "TM",
+          "TC",
+          "TV",
+          "UM",
+          "UG",
+          "VI",
+          "VG",
+          "WF",
+          "EH",
+          "ZM",
+          "ZW",
+          "UZ",
+          "VU",
+          "SR",
+          "SZ",
+          "AD",
+          "MC",
+          "SM",
+          "ME",
+          "VA",
+          "NEUTRAL"
+        ]
+      }
+    ],
+    "MarketProperties": [
+      {
+        "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z",
+        "MinimumUserAge": 0,
+        "ContentRatings": [
+          {
+            "RatingSystem": "GRB",
+            "RatingId": "GRB:15",
+            "RatingDescriptors": [
+              "GRB:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "ESRB",
+            "RatingId": "ESRB:T",
+            "RatingDescriptors": [
+              "ESRB:Vio",
+              "ESRB:Blo"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": [
+              "ESRB:InGamPur"
+            ]
+          },
+          {
+            "RatingSystem": "PEGI",
+            "RatingId": "PEGI:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "DJCTQ",
+            "RatingId": "DJCTQ:L",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "USK",
+            "RatingId": "USK:6",
+            "RatingDescriptors": [
+              "USK:ComVio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "IARC",
+            "RatingId": "IARC:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "COB-AU",
+            "RatingId": "COB-AU:G",
+            "RatingDescriptors": [
+              "COB-AU:VerMilVio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "PCBP",
+            "RatingId": "PCBP:12",
+            "RatingDescriptors": [
+              "PCBP:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "TCA",
+            "RatingId": "TCA:PG12",
+            "RatingDescriptors": [
+              "TCA:Vio"
+            ],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "CCC",
+            "RatingId": "CCC:14",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          },
+          {
+            "RatingSystem": "Microsoft",
+            "RatingId": "Microsoft:3",
+            "RatingDescriptors": [],
+            "RatingDisclaimers": [],
+            "InteractiveElements": []
+          }
+        ],
+        "RelatedProducts": [],
+        "UsageData": [
+          {
+            "AggregateTimeSpan": "7Days",
+            "AverageRating": 0.0,
+            "PlayCount": 0,
+            "RatingCount": 0,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "30Days",
+            "AverageRating": 3.0,
+            "PlayCount": 0,
+            "RatingCount": 2,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          },
+          {
+            "AggregateTimeSpan": "AllTime",
+            "AverageRating": 4.0,
+            "PlayCount": 0,
+            "RatingCount": 5181,
+            "RentalCount": "0",
+            "TrialCount": "0",
+            "PurchaseCount": "0"
+          }
+        ],
+        "BundleConfig": null,
+        "Markets": [
+          "US"
+        ]
+      }
+    ],
+    "ProductASchema": "Product;3",
+    "ProductBSchema": "ProductGame;1",
+    "ProductId": "9WZDNCRFJBFJ",
+    "Properties": {
+      "Attributes": [
+        {
+          "Name": "XblAchievements",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        },
+        {
+          "Name": "XboxLive",
+          "Minimum": null,
+          "Maximum": null,
+          "ApplicablePlatforms": null,
+          "Group": null
+        }
+      ],
+      "CanInstallToSDCard": true,
+      "Category": "Action & adventure",
+      "Categories": [
+        "Action & adventure"
+      ],
+      "Subcategory": null,
+      "IsAccessible": false,
+      "IsDemo": false,
+      "IsLineOfBusinessApp": false,
+      "IsPublishedToLegacyWindowsPhoneStore": true,
+      "IsPublishedToLegacyWindowsStore": true,
+      "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+      "PackageIdentityName": "Microsoft.HaloSpartanAssault2",
+      "PublisherCertificateName": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+      "PublisherId": "10101150",
+      "SkuDisplayGroups": [
+        {
+          "Id": "01",
+          "Treatment": "MergeAvailabilities"
+        }
+      ],
+      "XboxLiveTier": "Full",
+      "XboxXPA": null,
+      "XboxCrossGenSetId": null,
+      "XboxConsoleGenOptimized": null,
+      "XboxConsoleGenCompatible": null,
+      "XboxLiveGoldRequired": false,
+      "ExtendedMetadata": null,
+      "XBOX": {},
+      "ExtendedClientMetadata": {
+        "StoreApp": "{\"schemaVersion\":1,\"id\":\"cdfaf193-9777-4742-8c09-f04514a72c6e\",\"secondaryCategories\":[],\"productDeclarations\":{\"usesGenerativeAI\":false}}"
+      },
+      "OwnershipType": null,
+      "PdpBackgroundColor": "#FFFFFF",
+      "HasAddOns": false,
+      "RevisionId": "2025-10-14T21:46:33.5639797Z",
+      "ProductGroupId": "dc3d3f4b-190f-4ec5-8fa4-0b76f4a0f9ef",
+      "ProductGroupName": "Halo Spartan Strike"
+    },
+    "AlternateIds": [
+      {
+        "IdType": "LegacyWindowsStoreProductId",
+        "Value": "7a2d6436-ba93-4a90-aa57-d3433416b7c3"
+      },
+      {
+        "IdType": "LegacyWindowsPhoneProductId",
+        "Value": "8590b06f-acfa-4edd-82f1-0b52da2ea657"
+      },
+      {
+        "IdType": "XboxTitleId",
+        "Value": "2122543949"
+      }
+    ],
+    "DomainDataVersion": null,
+    "IngestionSource": "DCE",
+    "IsMicrosoftProduct": true,
+    "PreferredSkuId": "0010",
+    "ProductType": "Game",
+    "ValidationData": {
+      "PassedValidation": false,
+      "RevisionId": "2025-10-14T21:46:33.5639797Z||.||2cfc2d87-8c1d-426d-b1b4-59f214a1cb00||1152921505689345807||Null||fullrelease",
+      "ValidationResultUri": ""
+    },
+    "MerchandizingTags": [],
+    "PartD": "",
+    "ProductFamily": "Games",
+    "SchemaVersion": "3",
+    "ProductKind": "Game",
+    "ProductPolicies": {},
+    "DisplaySkuAvailabilities": [
+      {
+        "Sku": {
+          "LastModifiedDate": "2025-10-14T21:46:22.2160021Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [
+                "Crush your enemies using the iconic Warthog jeep, or sweep them from the battlefield using the all-new Kestrel VTOL.",
+                "Face off against new Promethean enemies; deadly mechanical warriors who seek mankind’s annihilation.",
+                "Use all-new Promethean weapons and armor abilities to dominate on the battlefield.",
+                "Experience an all-new story that will take you from New Mombasa on Earth to the enigmatic Gamma Halo located at the edge of charted space.",
+                "Pick and play through shared progress between Windows devices.",
+                "Complete weekly challenges and take the top position in leaderboards that showcase your Halo gaming skills.",
+                "Take control! Choose between keyboard and mouse, USB Xbox controller, or touch-based virtual joystick.",
+                "Earn achievements in Halo: Spartan Strike to unlock an exclusive emblem, nameplate, and avatar in Halo: The Master Chief Collection on Xbox One (sold separately)."
+              ],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "Halo: Spartan Strike makes you a new Spartan recruit battling evil forces in this touch-based top-down shooter. Be the Spartan and deny your foes the conquest of Earth. Encounter Promethean and Covenant enemies in 30 thrilling missions through jungles and cities as you seek to thwart plans to make Earth their next conquest. \r\n\r\nIt’s time to challenge your enemies. Strike Fast. Be a Spartan!",
+              "SkuTitle": "Halo: Spartan Strike",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2014 Microsoft Corporation",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "http://go.microsoft.com/fwlink/?LinkID=256618",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en-us",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2014-11-25T22:00:00.0000000Z",
+              "SupportedLanguages": [
+                "en-us",
+                "de-de",
+                "es-mx",
+                "fr-fr",
+                "it-it",
+                "pt-br"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9WZDNCRFJBFJ",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9WZDNCRFJBFJ",
+              "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+              "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+              "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+              "SkuId": "0010",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": null,
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2025-10-14T21:46:22.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [],
+              "RecommendedHardware": [],
+              "MinimumProcessor": "",
+              "RecommendedProcessor": "",
+              "MinimumGraphics": "",
+              "RecommendedGraphics": ""
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsStandard",
+            "Packages": [
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "WP",
+                    "DeclarationOrder": 0,
+                    "Extensions": []
+                  }
+                ],
+                "Architectures": [
+                  "neutral"
+                ],
+                "Capabilities": [
+                  "ID_RESOLUTION_WVGA",
+                  "ID_RESOLUTION_WXGA",
+                  "ID_RESOLUTION_HD720P",
+                  "ID_FUNCCAP_EXTEND_MEM",
+                  "ID_CAP_NETWORKING",
+                  "ID_CAP_GAMERSERVICES",
+                  "ID_CAP_MEDIALIB_AUDIO",
+                  "ID_CAP_MEDIALIB_PLAYBACK",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "oOEVbZ4TaV2ujqK+pSexNxcYUVgO+rYbN+wXhgus9qA=",
+                "HashAlgorithm": "SHA256",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "fr-fr",
+                  "de-de",
+                  "it-it",
+                  "es-mx",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 788315146,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "Xap",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "",
+                "PackageId": "b695408d-e93e-4187-b6a1-cd6cc9638aaf",
+                "ContentId": "98bd6f22-8202-42b9-c996-cc9449255b02",
+                "KeyId": null,
+                "PackageRank": 11000,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 2251804108652544,
+                    "MinVersion": 2251799813685248,
+                    "PlatformName": "Windows.WindowsPhone8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.payloadId\":\"b695408d-e93e-4187-b6a1-cd6cc9638aaf\",\"content.productId\":\"8590b06f-acfa-4edd-82f1-0b52da2ea657\",\"content.type\":2,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281492156579840",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0010",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              },
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "App",
+                    "DeclarationOrder": 0,
+                    "Extensions": [
+                      "protocol-xboxliveapp-1297292194"
+                    ]
+                  }
+                ],
+                "Architectures": [
+                  "arm"
+                ],
+                "Capabilities": [
+                  "internetClientServer",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 3096228093100033,
+                    "PackageIdentity": "Microsoft.VCLibs.110.00"
+                  }
+                ],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "de-de",
+                  "es-mx",
+                  "fr-fr",
+                  "it-it",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 1017357112,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "appx",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "Microsoft.HaloSpartanAssault2_1.0.1507.3015_arm__8wekyb3d8bbwe",
+                "PackageId": "38ce3dd0-e509-47fd-8874-fc38f32b1efa-Arm",
+                "ContentId": "756c6a8d-78d0-5edb-ef45-f4707ac9cc90",
+                "KeyId": null,
+                "PackageRank": 20003,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 1688858450264064,
+                    "MinVersion": 1688858450264064,
+                    "PlatformName": "Windows.Windows8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.maxOSTested\":1688858450264064,\"content.minOS\":1688858450264064,\"content.packageId\":\"Microsoft.HaloSpartanAssault2_1.0.1507.3015_arm__8wekyb3d8bbwe\",\"content.type\":5,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281475075476423",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0010",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              },
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "App",
+                    "DeclarationOrder": 0,
+                    "Extensions": [
+                      "protocol-xboxliveapp-1297292194"
+                    ]
+                  }
+                ],
+                "Architectures": [
+                  "x86"
+                ],
+                "Capabilities": [
+                  "internetClientServer",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 3096228093100033,
+                    "PackageIdentity": "Microsoft.VCLibs.110.00"
+                  }
+                ],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "de-de",
+                  "es-mx",
+                  "fr-fr",
+                  "it-it",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 1203809689,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "appx",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "Microsoft.HaloSpartanAssault2_1.0.1507.3015_x86__8wekyb3d8bbwe",
+                "PackageId": "70b75bb9-f121-4c6b-b5fa-391f8d56d278-X86",
+                "ContentId": "756c6a8d-78d0-5edb-ef45-f4707ac9cc90",
+                "KeyId": null,
+                "PackageRank": 20001,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 1688858450264064,
+                    "MinVersion": 1688858450264064,
+                    "PlatformName": "Windows.Windows8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.maxOSTested\":1688858450264064,\"content.minOS\":1688858450264064,\"content.packageId\":\"Microsoft.HaloSpartanAssault2_1.0.1507.3015_x86__8wekyb3d8bbwe\",\"content.type\":5,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281475075476423",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0010",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              }
+            ],
+            "VersionString": "",
+            "SkuDisplayGroupIds": [
+              "01"
+            ],
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 0,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": false,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0010",
+          "SkuType": "full",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase",
+              "Browse",
+              "Curate",
+              "Redeem"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9NS650CV1KDD",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 2.99,
+                "MSRP": 2.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 2.09
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 0,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "Details",
+              "Purchase",
+              "Curate"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9T8P2T7XD2ZN",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 0.0
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 1,
+            "RemediationRequired": true,
+            "Remediations": [
+              {
+                "RemediationId": "B330MZTCQQBD",
+                "Type": "Upsell",
+                "BigId": "CFQ7TTC0P85B"
+              }
+            ]
+          },
+          {
+            "Actions": [
+              "Details",
+              "Purchase",
+              "Curate"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9T8FC3M68NL3",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 0.0
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 2,
+            "RemediationRequired": true,
+            "Remediations": [
+              {
+                "RemediationId": "9ZNPVF4DTWVC",
+                "Type": "Upsell",
+                "BigId": "CFQ7TTC0KGQ8"
+              }
+            ]
+          },
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Browse",
+              "Curate",
+              "Gift"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9T9GN6MTRG1F",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 2.99,
+                "MSRP": 2.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 2.09
+              },
+              "OrderManagementPolicyIdOverride": "microsoft.mint.token",
+              "GeofencingPolicyId": "GIFTGEO:US"
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 3,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9XLQT2FMFXHB",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:8590b06f-acfa-4edd-82f1-0b52da2ea657:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:7a2d6436-ba93-4a90-aa57-d3433416b7c3:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "DisplayRank": 4,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9W33SR63795B",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:8590b06f-acfa-4edd-82f1-0b52da2ea657:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:7a2d6436-ba93-4a90-aa57-d3433416b7c3:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "AffirmationId": "B1FFW2F7JKV0",
+            "DisplayRank": 5,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9WLS3QHQ2WGD",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:CFQ7TTC0KGQ8:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:8590b06f-acfa-4edd-82f1-0b52da2ea657:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:7a2d6436-ba93-4a90-aa57-d3433416b7c3:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "AffirmationId": "B1FFW2F7JKV0",
+            "DisplayRank": 6,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Browse",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "B4FTH5D2HSPZ",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:CFQ7TTC0P85B:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:8590b06f-acfa-4edd-82f1-0b52da2ea657:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:7a2d6436-ba93-4a90-aa57-d3433416b7c3:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "AffirmationId": "9THBW754ZLJR",
+            "DisplayRank": 7,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9ZC10KCZTNKS",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "1753-01-01T00:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "LicensingData": {
+              "SatisfyingEntitlementKeys": [
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0010"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:8590b06f-acfa-4edd-82f1-0b52da2ea657:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "wes:App:7a2d6436-ba93-4a90-aa57-d3433416b7c3:Full"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0001"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                },
+                {
+                  "EntitlementKeys": [
+                    "big:9WZDNCRFJBFJ:0002"
+                  ],
+                  "LicensingKeyIds": [
+                    "1"
+                  ]
+                }
+              ]
+            },
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0010",
+            "DisplayRank": 8,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": [
+          {
+            "Actions": [
+              "Details",
+              "Fulfill",
+              "Purchase",
+              "Browse",
+              "Curate",
+              "Redeem"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9NS650CV1KDD",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "2025-10-01T16:00:00.0000000Z",
+              "EligibilityPredicateIds": [
+                "CannotSeenByChinaClient"
+              ],
+              "SupportedCatalogVersion": 6
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "PIFilter": {
+                "ExclusionProperties": [],
+                "InclusionProperties": []
+              },
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 2.99,
+                "MSRP": 2.99,
+                "TaxType": "TaxesNotIncluded",
+                "WholesaleCurrencyCode": "USD",
+                "WholesalePrice": 2.09
+              }
+            },
+            "Properties": {
+              "OriginalReleaseDate": "2014-11-25T22:00:00.0000000Z"
+            },
+            "SkuId": "0010",
+            "DisplayRank": 4,
+            "ProductASchema": "Product;3"
+          }
+        ]
+      },
+      {
+        "Sku": {
+          "LastModifiedDate": "2025-10-14T21:46:22.2160021Z",
+          "LocalizedProperties": [
+            {
+              "Contributors": [],
+              "Features": [
+                "Crush your enemies using the iconic Warthog jeep, or sweep them from the battlefield using the all-new Kestrel VTOL.",
+                "Face off against new Promethean enemies; deadly mechanical warriors who seek mankind’s annihilation.",
+                "Use all-new Promethean weapons and armor abilities to dominate on the battlefield.",
+                "Experience an all-new story that will take you from New Mombasa on Earth to the enigmatic Gamma Halo located at the edge of charted space.",
+                "Pick and play through shared progress between Windows devices.",
+                "Complete weekly challenges and take the top position in leaderboards that showcase your Halo gaming skills.",
+                "Take control! Choose between keyboard and mouse, USB Xbox controller, or touch-based virtual joystick.",
+                "Earn achievements in Halo: Spartan Strike to unlock an exclusive emblem, nameplate, and avatar in Halo: The Master Chief Collection on Xbox One (sold separately)."
+              ],
+              "MinimumNotes": "",
+              "RecommendedNotes": "",
+              "ReleaseNotes": "",
+              "DisplayPlatformProperties": null,
+              "SkuDescription": "Halo: Spartan Strike makes you a new Spartan recruit battling evil forces in this touch-based top-down shooter. Be the Spartan and deny your foes the conquest of Earth. Encounter Promethean and Covenant enemies in 30 thrilling missions through jungles and cities as you seek to thwart plans to make Earth their next conquest. \r\n\r\nIt’s time to challenge your enemies. Strike Fast. Be a Spartan!",
+              "SkuTitle": "Halo: Spartan Strike",
+              "SkuButtonTitle": "",
+              "DeliveryDateOverlay": null,
+              "SkuDisplayRank": [],
+              "TextResources": null,
+              "Images": [],
+              "LegalText": {
+                "AdditionalLicenseTerms": "",
+                "Copyright": "© 2014 Microsoft Corporation",
+                "CopyrightUri": "",
+                "PrivacyPolicy": "",
+                "PrivacyPolicyUri": "http://go.microsoft.com/fwlink/?LinkID=256618",
+                "Tou": "",
+                "TouUri": ""
+              },
+              "Language": "en-us",
+              "Markets": [
+                "US",
+                "DZ",
+                "AR",
+                "AU",
+                "AT",
+                "BH",
+                "BD",
+                "BE",
+                "BR",
+                "BG",
+                "CA",
+                "CL",
+                "CN",
+                "CO",
+                "CR",
+                "HR",
+                "CY",
+                "CZ",
+                "DK",
+                "EG",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "GT",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KW",
+                "LV",
+                "LB",
+                "LI",
+                "LT",
+                "LU",
+                "MY",
+                "MT",
+                "MR",
+                "MX",
+                "MA",
+                "NL",
+                "NZ",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "SA",
+                "RS",
+                "SG",
+                "SK",
+                "SI",
+                "ZA",
+                "KR",
+                "ES",
+                "SE",
+                "CH",
+                "TW",
+                "TH",
+                "TT",
+                "TN",
+                "TR",
+                "UA",
+                "AE",
+                "GB",
+                "VN",
+                "YE",
+                "LY",
+                "LK",
+                "UY",
+                "VE",
+                "AF",
+                "AX",
+                "AL",
+                "AS",
+                "AO",
+                "AI",
+                "AQ",
+                "AG",
+                "AM",
+                "AW",
+                "BO",
+                "BQ",
+                "BA",
+                "BW",
+                "BV",
+                "IO",
+                "BN",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CV",
+                "KY",
+                "CF",
+                "TD",
+                "TL",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "SV",
+                "GQ",
+                "ER",
+                "ET",
+                "FK",
+                "FO",
+                "FJ",
+                "GF",
+                "PF",
+                "TF",
+                "GA",
+                "GM",
+                "GE",
+                "GH",
+                "GI",
+                "GL",
+                "GD",
+                "GP",
+                "GU",
+                "GG",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "HM",
+                "HN",
+                "AZ",
+                "BS",
+                "BB",
+                "BY",
+                "BZ",
+                "BJ",
+                "BM",
+                "BT",
+                "KM",
+                "CG",
+                "CD",
+                "CK",
+                "CX",
+                "CC",
+                "CI",
+                "CW",
+                "JM",
+                "SJ",
+                "JE",
+                "KI",
+                "KG",
+                "LA",
+                "LS",
+                "LR",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "IM",
+                "MH",
+                "MQ",
+                "MU",
+                "YT",
+                "FM",
+                "MD",
+                "MN",
+                "MS",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "MV",
+                "ML",
+                "NC",
+                "NI",
+                "NE",
+                "NU",
+                "NF",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "RE",
+                "RW",
+                "BL",
+                "MF",
+                "WS",
+                "ST",
+                "SN",
+                "MP",
+                "PN",
+                "SX",
+                "SB",
+                "SO",
+                "SC",
+                "SL",
+                "GS",
+                "SH",
+                "KN",
+                "LC",
+                "PM",
+                "VC",
+                "TJ",
+                "TZ",
+                "TG",
+                "TK",
+                "TO",
+                "TM",
+                "TC",
+                "TV",
+                "UM",
+                "UG",
+                "VI",
+                "VG",
+                "WF",
+                "EH",
+                "ZM",
+                "ZW",
+                "UZ",
+                "VU",
+                "SR",
+                "SZ",
+                "AD",
+                "MC",
+                "SM",
+                "ME",
+                "VA",
+                "NEUTRAL"
+              ]
+            }
+          ],
+          "MarketProperties": [
+            {
+              "FirstAvailableDate": "2014-11-25T22:00:00.0000000Z",
+              "SupportedLanguages": [
+                "en-us",
+                "de-de",
+                "es-mx",
+                "fr-fr",
+                "it-it",
+                "pt-br"
+              ],
+              "PackageIds": null,
+              "PIFilter": null,
+              "Markets": [
+                "US"
+              ]
+            }
+          ],
+          "ProductId": "9WZDNCRFJBFJ",
+          "Properties": {
+            "EarlyAdopterEnrollmentUrl": null,
+            "FulfillmentData": {
+              "ProductId": "9WZDNCRFJBFJ",
+              "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+              "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+              "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+              "SkuId": "0011",
+              "Content": null,
+              "PackageFeatures": null
+            },
+            "FulfillmentType": null,
+            "FulfillmentPluginId": null,
+            "HasThirdPartyIAPs": false,
+            "LastUpdateDate": "2025-10-14T21:46:22.0000000Z",
+            "HardwareProperties": {
+              "MinimumHardware": [],
+              "RecommendedHardware": [],
+              "MinimumProcessor": "",
+              "RecommendedProcessor": "",
+              "MinimumGraphics": "",
+              "RecommendedGraphics": ""
+            },
+            "HardwareRequirements": [],
+            "HardwareWarningList": [],
+            "InstallationTerms": "InstallationTermsStandard",
+            "Packages": [
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "WP",
+                    "DeclarationOrder": 0,
+                    "Extensions": []
+                  }
+                ],
+                "Architectures": [
+                  "neutral"
+                ],
+                "Capabilities": [
+                  "ID_RESOLUTION_WVGA",
+                  "ID_RESOLUTION_WXGA",
+                  "ID_RESOLUTION_HD720P",
+                  "ID_FUNCCAP_EXTEND_MEM",
+                  "ID_CAP_NETWORKING",
+                  "ID_CAP_GAMERSERVICES",
+                  "ID_CAP_MEDIALIB_AUDIO",
+                  "ID_CAP_MEDIALIB_PLAYBACK",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "oOEVbZ4TaV2ujqK+pSexNxcYUVgO+rYbN+wXhgus9qA=",
+                "HashAlgorithm": "SHA256",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "fr-fr",
+                  "de-de",
+                  "it-it",
+                  "es-mx",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 788315146,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "Xap",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "",
+                "PackageId": "b695408d-e93e-4187-b6a1-cd6cc9638aaf",
+                "ContentId": "98bd6f22-8202-42b9-c996-cc9449255b02",
+                "KeyId": null,
+                "PackageRank": 11000,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 2251804108652544,
+                    "MinVersion": 2251799813685248,
+                    "PlatformName": "Windows.WindowsPhone8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.payloadId\":\"b695408d-e93e-4187-b6a1-cd6cc9638aaf\",\"content.productId\":\"8590b06f-acfa-4edd-82f1-0b52da2ea657\",\"content.type\":2,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281492156579840",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0011",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              },
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "App",
+                    "DeclarationOrder": 0,
+                    "Extensions": [
+                      "protocol-xboxliveapp-1297292194"
+                    ]
+                  }
+                ],
+                "Architectures": [
+                  "arm"
+                ],
+                "Capabilities": [
+                  "internetClientServer",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 3096228093100033,
+                    "PackageIdentity": "Microsoft.VCLibs.110.00"
+                  }
+                ],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "de-de",
+                  "es-mx",
+                  "fr-fr",
+                  "it-it",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 1017357112,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "appx",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "Microsoft.HaloSpartanAssault2_1.0.1507.3015_arm__8wekyb3d8bbwe",
+                "PackageId": "38ce3dd0-e509-47fd-8874-fc38f32b1efa-Arm",
+                "ContentId": "756c6a8d-78d0-5edb-ef45-f4707ac9cc90",
+                "KeyId": null,
+                "PackageRank": 20003,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 1688858450264064,
+                    "MinVersion": 1688858450264064,
+                    "PlatformName": "Windows.Windows8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.maxOSTested\":1688858450264064,\"content.minOS\":1688858450264064,\"content.packageId\":\"Microsoft.HaloSpartanAssault2_1.0.1507.3015_arm__8wekyb3d8bbwe\",\"content.type\":5,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281475075476423",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0011",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              },
+              {
+                "Applications": [
+                  {
+                    "ApplicationId": "App",
+                    "DeclarationOrder": 0,
+                    "Extensions": [
+                      "protocol-xboxliveapp-1297292194"
+                    ]
+                  }
+                ],
+                "Architectures": [
+                  "x86"
+                ],
+                "Capabilities": [
+                  "internetClientServer",
+                  "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe"
+                ],
+                "DeviceCapabilities": [],
+                "ExperienceIds": [],
+                "FrameworkDependencies": [
+                  {
+                    "MaxTested": 0,
+                    "MinVersion": 3096228093100033,
+                    "PackageIdentity": "Microsoft.VCLibs.110.00"
+                  }
+                ],
+                "HardwareDependencies": [],
+                "HardwareRequirements": [],
+                "Hash": "",
+                "HashAlgorithm": "",
+                "IsStreamingApp": false,
+                "Languages": [
+                  "en-us",
+                  "de-de",
+                  "es-mx",
+                  "fr-fr",
+                  "it-it",
+                  "pt-br"
+                ],
+                "MaxDownloadSizeInBytes": 1203809689,
+                "MaxInstallSizeInBytes": null,
+                "PackageFormat": "appx",
+                "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                "MainPackageFamilyNameForDlc": null,
+                "PackageFullName": "Microsoft.HaloSpartanAssault2_1.0.1507.3015_x86__8wekyb3d8bbwe",
+                "PackageId": "70b75bb9-f121-4c6b-b5fa-391f8d56d278-X86",
+                "ContentId": "756c6a8d-78d0-5edb-ef45-f4707ac9cc90",
+                "KeyId": null,
+                "PackageRank": 20001,
+                "PackageUri": "https://productingestionbin1.blob.core.windows.net",
+                "PlatformDependencies": [
+                  {
+                    "MaxTested": 1688858450264064,
+                    "MinVersion": 1688858450264064,
+                    "PlatformName": "Windows.Windows8x"
+                  }
+                ],
+                "PlatformDependencyXmlBlob": "{\"blob.version\":1688867040526336,\"content.isMain\":false,\"content.maxOSTested\":1688858450264064,\"content.minOS\":1688858450264064,\"content.packageId\":\"Microsoft.HaloSpartanAssault2_1.0.1507.3015_x86__8wekyb3d8bbwe\",\"content.type\":5,\"policy\":{\"category.first\":\"game\",\"category.second\":\"Games\",\"category.third\":\"Action & adventure\",\"optOut.backupRestore\":false,\"optOut.removeableMedia\":false},\"policy2\":{\"ageRating\":1,\"optOut.DVR\":false,\"thirdPartyAppRatings\":[{\"level\":19,\"systemId\":6},{\"level\":9,\"systemId\":3},{\"level\":12,\"systemId\":5},{\"level\":48,\"systemId\":12},{\"level\":28,\"systemId\":9},{\"level\":76,\"systemId\":16},{\"level\":39,\"systemId\":10},{\"level\":70,\"systemId\":15}]}}",
+                "ResourceId": "",
+                "Version": "281475075476423",
+                "PackageDownloadUris": null,
+                "DriverDependencies": [],
+                "FulfillmentData": {
+                  "ProductId": "9WZDNCRFJBFJ",
+                  "WuBundleId": "35a3e1b2-34e7-458c-9f21-5a45444f6156",
+                  "WuCategoryId": "7a2d6436-ba93-4a90-aa57-d3433416b7c3",
+                  "PackageFamilyName": "Microsoft.HaloSpartanAssault2_8wekyb3d8bbwe",
+                  "SkuId": "0011",
+                  "Content": null,
+                  "PackageFeatures": null
+                }
+              }
+            ],
+            "VersionString": "",
+            "SkuDisplayGroupIds": null,
+            "XboxXPA": false,
+            "BundledSkus": [],
+            "IsRepurchasable": false,
+            "SkuDisplayRank": 2,
+            "DisplayPhysicalStoreInventory": null,
+            "VisibleToB2BServiceIds": [],
+            "AdditionalIdentifiers": [],
+            "IsTrial": true,
+            "IsPreOrder": false,
+            "IsBundle": false
+          },
+          "SkuASchema": "Sku;3",
+          "SkuBSchema": "SkuGame;1",
+          "SkuId": "0011",
+          "SkuType": "trial",
+          "RecurrencePolicy": null,
+          "SubscriptionPolicyId": null
+        },
+        "Availabilities": [
+          {
+            "Actions": [
+              "Details",
+              "License",
+              "Fulfill"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9T9T03KBMMJ7",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Desktop"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Mobile"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "1753-01-01T00:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 0,
+            "RemediationRequired": false
+          },
+          {
+            "Actions": [
+              "License",
+              "Details"
+            ],
+            "AvailabilityASchema": "Availability;3",
+            "AvailabilityBSchema": "AvailabilityGame;1",
+            "AvailabilityId": "9V97G88HVS5J",
+            "Conditions": {
+              "ClientConditions": {
+                "AllowedPlatforms": [
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Team"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Xbox"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Holographic"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.8828080"
+                  },
+                  {
+                    "MaxVersion": 2147483647,
+                    "MinVersion": 0,
+                    "PlatformName": "Windows.Core"
+                  }
+                ]
+              },
+              "EndDate": "9998-12-30T00:00:00.0000000Z",
+              "ResourceSetIds": [
+                "1"
+              ],
+              "StartDate": "1753-01-01T00:00:00.0000000Z"
+            },
+            "LastModifiedDate": "2025-10-14T21:44:58.0000000Z",
+            "Markets": [
+              "US"
+            ],
+            "OrderManagementData": {
+              "GrantedEntitlementKeys": [],
+              "Price": {
+                "CurrencyCode": "USD",
+                "IsPIRequired": false,
+                "ListPrice": 0.0,
+                "MSRP": 0.0,
+                "TaxType": "",
+                "WholesaleCurrencyCode": ""
+              }
+            },
+            "Properties": {},
+            "SkuId": "0011",
+            "DisplayRank": 1,
+            "RemediationRequired": false
+          }
+        ],
+        "HistoricalBestAvailabilities": []
+      }
+    ]
+  }
+}

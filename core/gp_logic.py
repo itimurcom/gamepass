@@ -1,9 +1,10 @@
-# gp_logic.py
-# Логіка: Dual-Language Extraction + Smart Metrics
+# core/gp_logic.py
+# Версія: 12.0 (Refactored: All Logic Here)
 
 import os
 import json
 import re
+import html
 
 # --- КОНСТАНТИ ---
 AAA_PUBLISHERS = [
@@ -19,43 +20,118 @@ INDIE_MARKERS = ["indie", "independent", "аркади", "arcade", "platformer",
 def safe_name(s):
     return "".join(c for c in (s or "").lower() if c.isalnum() or c in "-_")[:180] or "x"
 
-def rw_json(path, data=None):
-    if data is None: # Read
-        if os.path.exists(path):
-            try:
-                with open(path, "r", encoding="utf-8") as f:
-                    content = json.load(f)
-                    if not content: return None 
-                    return content
-            except (json.JSONDecodeError, OSError):
-                return None
-        return None
-    else: # Write
-        tmp = path + ".tmp"
+def clean_text(text):
+    """Очищує текст від HTML тегів та зайвих пробілів."""
+    if not text: return ""
+    text = html.unescape(text)
+    text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = text.replace('\xa0', ' ').replace('\r', '')
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'(\n\s*){3,}', '\n\n', text)
+    return text.strip()
+
+def make_html_desc(store_txt, wiki_txt, links, lang="uk"):
+    """Формує HTML блок опису для модального вікна."""
+    html_out = ""
+    
+    if store_txt and "Опис відсутній" not in store_txt:
+        safe_txt = html.escape(store_txt).replace("\n", "<br>")
+        url = links.get("store", "#")
+        html_out += f'<div class="desc-block"><a href="{url}" target="_blank" class="desc-header">🎮 Microsoft Store</a><div class="desc-body">{safe_txt}</div></div>'
+    
+    if wiki_txt:
+        safe_txt = html.escape(wiki_txt).replace("\n", "<br>")
+        url = links.get("wiki", "#")
+        label = "Wikipedia (UK)" if lang == "uk" else "Wikipedia"
+        html_out += f'<div class="desc-block"><a href="{url}" target="_blank" class="desc-header">📖 {label}</a><div class="desc-body">{safe_txt}</div></div>'
+    
+    if not html_out:
+        html_out = "<div style='color:#888; font-style:italic;'>Опис недоступний / No description.</div>"
+        
+    return html_out
+
+# --- ДОПОМІЖНІ ФУНКЦІЇ ПАРСИНГУ ---
+
+def _is_str(x):
+    return isinstance(x, str)
+
+def _clean_str(s: str) -> str:
+    return (s or "").strip()
+
+def extract_genres_from_product(props: dict) -> list:
+    out = []
+    candidates = []
+    for key in ("Categories", "Category", "Subcategory", "Genres", "Genre"):
+        v = props.get(key)
+        if isinstance(v, list):
+            candidates.extend(v)
+        elif _is_str(v) and v:
+            candidates.append(v)
+    for g in candidates:
+        if not _is_str(g): continue
+        g = _clean_str(g)
+        if not g: continue
+        if g.startswith("{") or g.startswith("['") or g.lower() in ("game", "gaming", "application"):
+            continue
+        if g not in out:
+            out.append(g)
+    return out
+
+def pick_best_image_uri(p: dict, lp_main: dict) -> str:
+    priority = [
+        "Poster", "BoxArt", "BrandedKeyArt", "KeyArt", "SuperHeroArt", "Hero",
+        "TitledHeroArt", "FeaturePromotionalSquareArt", "Tile", "Logo", "Screenshot"
+    ]
+    imgs = []
+    # 1) Main Localized Props
+    if isinstance(lp_main, dict):
+        imgs = lp_main.get("Images") or []
+    # 2) SKU Localized Props
+    if (not imgs) and p.get("DisplaySkuAvailabilities"):
         try:
-            with open(tmp, "w", encoding="utf-8") as f: 
-                json.dump(data, f, ensure_ascii=False, indent=2)
-            os.replace(tmp, path)
-        except Exception as e:
-            print(f"[ERROR] Не вдалося записати {path}: {e}")
+            skus = p["DisplaySkuAvailabilities"][0].get("Sku", {}).get("LocalizedProperties", [])
+            if skus:
+                imgs = skus[0].get("Images") or []
+        except Exception: pass
+    # 3) MarketProperties
+    if (not imgs) and p.get("MarketProperties"):
+        try:
+            imgs = p["MarketProperties"][0].get("Images") or []
+        except Exception: pass
 
-def clean_html(txt):
-    if not txt: return ""
-    return re.sub(r'<[^>]+>', '', txt).strip()
+    def _purpose(img: dict) -> str:
+        return (img.get("ImagePurpose") or img.get("Purpose") or img.get("ImageType") or "").strip()
 
-# --- БІЗНЕС-ЛОГІКА ---
+    uri = ""
+    if isinstance(imgs, list) and imgs:
+        for pur in priority:
+            for img in imgs:
+                if not isinstance(img, dict): continue
+                if _purpose(img) == pur and img.get("Uri"):
+                    uri = img["Uri"]
+                    break
+            if uri: break
+        if not uri: # Fallback to any URI
+            for img in imgs:
+                if isinstance(img, dict) and img.get("Uri"):
+                    uri = img["Uri"]
+                    break
+    if uri and uri.startswith("//"):
+        uri = "https:" + uri
+    return uri
 
 def analyze_metrics(product_raw, wikidata_data, genres_str):
-    """Визначає Tier та Рейтинг."""
     props = product_raw.get("Properties", {})
     market_props = product_raw.get("MarketProperties", [])
     
-    # Видавець (беремо англійську назву як універсальну)
+    # Видавець (шукаємо EN або EN-US)
     lps = product_raw.get("LocalizedProperties", [])
-    lp_en = next((x for x in lps if x.get("Language","").lower() == "en-us"), lps[0] if lps else {})
+    lp_en = next((x for x in lps if x.get("Language","").lower() in ("en-us", "en")), lps[0] if lps else {})
+    
     publisher = (lp_en.get("PublisherName") or props.get("PublisherName") or "").lower()
     
-    # Розмір
+    # Розмір гри
     max_size_gb = 0
     if product_raw.get("DisplaySkuAvailabilities"):
         for sku_avail in product_raw["DisplaySkuAvailabilities"]:
@@ -108,194 +184,119 @@ def analyze_metrics(product_raw, wikidata_data, genres_str):
     
     return tier, round(final_score, 1), score_src
 
-def get_product_data(bid, dirs, lang_pref="uk-ua"):
+# --- ГОЛОВНА ФУНКЦІЯ ПАРСИНГУ ---
+
+def parse_product(bid, dirs, tags=None, log_func=None):
+    """
+    Зчитує JSON файли з дисків, об'єднує дані та повертає фінальний об'єкт для data.js.
+    """
     path = os.path.join(dirs["products"], f"{safe_name(bid)}.json")
-    cache = rw_json(path)
-    if not cache or "product" not in cache: return None 
-        
-    p = cache["product"]
-    props = p.get("Properties", {})
-    lps = p.get("LocalizedProperties", [])
     
-    # --- DUAL LANGUAGE EXTRACTION (patched) ---
-    name_uk, name_en, lp_uk, lp_en, lp_main = pick_best_titles(lps, props, bid)
+    # 1. Завантаження JSON продукту
+    if log_func: log_func(bid, "load product json")
+    store_data = {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            full_json = json.load(f)
+            if "product" in full_json:
+                store_data = full_json["product"]
+    except: return None # Файл битий або відсутній
 
+    if log_func: log_func(bid, "parse properties")
+    props = store_data.get("Properties", {})
+    lps = store_data.get("LocalizedProperties", [])
     
-    # Назви
-    name_uk = lp_uk.get("ProductTitle") or lp_en.get("ProductTitle") or p.get("ProductTitle") or ""
-    name_en = lp_en.get("ProductTitle") or name_uk
+    # 2. Вибір локалізації (FIX: Loose language matching)
+    lp_uk = next((x for x in lps if x.get("Language","").lower() in ("uk-ua", "uk")), {})
+    lp_en = next((x for x in lps if x.get("Language","").lower() in ("en-us", "en")), {})
     
-    # Описи (Store)
-    desc_uk = clean_html(lp_uk.get("ShortDescription") or lp_uk.get("ProductDescription") or "")
-    desc_en = clean_html(lp_en.get("ShortDescription") or lp_en.get("ProductDescription") or "")
-    
-    if not name_uk: return None
-    # Картинка (patched)
-    img_url = pick_best_image_uri(p, lp_main)
+    # Fallbacks
+    if not lp_uk: lp_uk = lp_en
+    if not lp_en: lp_en = lp_uk
+    if not lp_uk and lps: lp_uk = lps[0] # First available
+    if not lp_en and lps: lp_en = lps[0]
 
+    # 3. Назви
+    name = lp_uk.get("ProductTitle") or lp_en.get("ProductTitle") or props.get("ProductTitle") or f"UnknownID_{bid}"
+    clean_name = name.replace("(PC)", "").replace("(Windows)", "").strip()
+    clean_id = safe_name(clean_name)
 
-    # Пошук в кешах (Wiki/HLTB) робимо за очищеною назвою
-    search_name = name_en.replace("(Game Preview)", "").replace("(PC)", "").strip()
+    # 4. Описи
+    desc_store_uk = clean_text(lp_uk.get("ProductDescription") or lp_uk.get("ShortDescription") or "")
+    desc_store_en = clean_text(lp_en.get("ProductDescription") or lp_en.get("ShortDescription") or desc_store_uk)
 
-    # Wikidata
-    wd_cache_name = rw_json(os.path.join(dirs["wikidata"], f"{safe_name(search_name)}.json"))
-    qid = wd_cache_name.get("qid") if wd_cache_name else None
+    # 5. Wikidata Check
+    if log_func: log_func(bid, "wiki check/cache")
+    wiki_desc_uk = ""
+    wiki_url = ""
     wd_data = {}
-    if qid:
-        wd_raw = rw_json(os.path.join(dirs["wd_sparql"], f"{safe_name(qid)}.json"))
-        if wd_raw and "data" in wd_raw: wd_data = wd_raw["data"]
+    try:
+        wd_f = os.path.join(dirs['wikidata'], f'{clean_id}.json')
+        if os.path.exists(wd_f):
+            with open(wd_f) as f: qid = json.load(f).get('qid')
+            if qid:
+                sp_f = os.path.join(dirs["wd_sparql"], f"{safe_name(qid)}.json")
+                if os.path.exists(sp_f):
+                    with open(sp_f) as f:
+                        wd_data = json.load(f).get('data', {})
+                        wiki_desc_uk = clean_text(wd_data.get('Description_UK', ''))
+                        wiki_url = wd_data.get('WikiUrl', '')
+    except: pass
 
-    # HLTB
-    hltb_raw = rw_json(os.path.join(dirs["hltb"], f"{safe_name(search_name)}.json"))
-    hours = hltb_raw.get("hours","") if hltb_raw else ""
-    # Жанри (patched)
-    genres = extract_genres_from_product(props)
-    genre_uk = wd_data.get("Genres_UK") or (genres[0] if genres else "")
+    # 6. HLTB Check
+    if log_func: log_func(bid, "hltb check/cache")
+    hours = ""
+    try:
+        h_f = os.path.join(dirs["hltb"], f"{clean_id}.json")
+        if os.path.exists(h_f):
+            with open(h_f) as f: 
+                h_val = json.load(f).get("hours", "0")
+                if h_val != "0": hours = h_val
+    except: pass
 
-            
-    # Аналіз
-    tier, score, score_src = analyze_metrics(p, wd_data, genre_uk or "")
-
-    # Описи для модального вікна
-    # Формуємо об'єкт для фронтенду
+    # 7. Аналіз та Метрики
+    if log_func: log_func(bid, "metrics")
     
+    # Жанри (з пропсів або вікі)
+    genres_list = extract_genres_from_product(props)
+    genre_str = ", ".join(genres_list)
+    
+    # Tier / Rating
+    tier, rating, rating_src = analyze_metrics(store_data, wd_data, genre_str)
+    
+    # Картинка
+    image_url = pick_best_image_uri(store_data, lp_uk) # lp_uk is best approximation of main
+
+    # Посилання
+    links = { "store": f"https://www.xbox.com/en-us/games/store/{bid}", "wiki": wiki_url }
+
+    # 8. HTML Генерація
+    html_uk = make_html_desc(desc_store_uk, wiki_desc_uk, links, "uk")
+    html_en = make_html_desc(desc_store_en, "", links, "en")
+
+    # Жанр для відображення (беремо перший або category)
+    display_genre = props.get("Category", "Unknown")
+    if genres_list: display_genre = genres_list[0]
+
+    year = wd_data.get("Year_WD") or (props.get("OriginalReleaseDate") or "")[:4]
+
     return {
         "id": bid,
+        "name": clean_name,
+        "clean_id": clean_id,
+        "genre": display_genre,
         "tier": tier,
-        "rating": score,
-        "ratingSource": score_src,
-        "year": wd_data.get("Year_WD") or (props.get("OriginalReleaseDate") or "")[:4],
+        "rating": rating,
+        "ratingSource": rating_src,
+        "year": year,
         "hours": hours,
-        "publisher": lp_en.get("PublisherName") or props.get("PublisherName") or "",
-        "developer": lp_en.get("DeveloperName") or lp_uk.get("DeveloperName") or "",
-        "image": img_url,
-        
-        # I18N Data Blocks
+        "tags": tags or [],
+        "publisher": props.get("PublisherName", ""),
+        "developer": props.get("DeveloperName", ""),
+        "image": image_url,
         "i18n": {
-            "uk": {
-                "name": name_uk,
-                "genre": genre_uk or "Невідомо",
-                "desc": wd_data.get("Description_UK") or desc_uk or "Опис відсутній."
-            },
-            "en": {
-                "name": name_en,
-                "genre": props.get("Category", "Unknown"), # Тут можна покращити, якщо парсити WD англійською
-                "desc": desc_en or "Description not available."
-            }
+            "uk": { "name": clean_name, "genre": display_genre, "desc": html_uk },
+            "en": { "name": clean_name, "genre": display_genre, "desc": html_en }
         },
-        
-        # Посилання
-        "links": {
-            "wiki": wd_data.get("WikipediaUrl") or wd_data.get("WikidataUrl"),
-            "store": f"https://www.xbox.com/uk-ua/games/store/-/{bid}"
-        }
+        "links": links
     }
-
-# --- PATCH: robust genre/image/name extraction (2026-01-04) ---
-
-def _is_str(x):
-    return isinstance(x, str)
-
-def _clean_str(s: str) -> str:
-    return (s or "").strip()
-
-def extract_genres_from_product(props: dict) -> list:
-    """Return list of genre/category strings only (exclude capability dicts)."""
-    out = []
-    # Common fields in DisplayCatalog
-    candidates = []
-    for key in ("Categories", "Category", "Subcategory", "Genres", "Genre"):
-        v = props.get(key)
-        if isinstance(v, list):
-            candidates.extend(v)
-        elif _is_str(v) and v:
-            candidates.append(v)
-    # Filter
-    for g in candidates:
-        if not _is_str(g):
-            continue
-        g = _clean_str(g)
-        if not g:
-            continue
-        # exclude serialized dicts or technical markers
-        if g.startswith("{") or g.startswith("['") or g.lower() in ("game", "gaming", "application"):
-            continue
-        if g not in out:
-            out.append(g)
-    return out
-
-def pick_best_image_uri(p: dict, lp_main: dict) -> str:
-    """Pick best image url from product/sku localized props."""
-    priority = [
-        "Poster", "BoxArt", "BrandedKeyArt", "KeyArt", "SuperHeroArt", "Hero",
-        "TitledHeroArt", "FeaturePromotionalSquareArt", "Tile", "Logo", "Screenshot"
-    ]
-    imgs = []
-    # 1) LocalizedProperties[*].Images
-    if isinstance(lp_main, dict):
-        imgs = lp_main.get("Images") or []
-    # 2) SKU localized props images
-    if (not imgs) and p.get("DisplaySkuAvailabilities"):
-        try:
-            skus = p["DisplaySkuAvailabilities"][0].get("Sku", {}).get("LocalizedProperties", [])
-            if skus:
-                imgs = skus[0].get("Images") or []
-        except Exception:
-            pass
-    # 3) MarketProperties images (sometimes)
-    if (not imgs) and p.get("MarketProperties"):
-        try:
-            imgs = p["MarketProperties"][0].get("Images") or []
-        except Exception:
-            pass
-
-    def _purpose(img: dict) -> str:
-        return (img.get("ImagePurpose") or img.get("Purpose") or img.get("ImageType") or "").strip()
-
-    uri = ""
-    if isinstance(imgs, list) and imgs:
-        # Try by purpose priority
-        for pur in priority:
-            for img in imgs:
-                if not isinstance(img, dict):
-                    continue
-                if _purpose(img) == pur and img.get("Uri"):
-                    uri = img["Uri"]
-                    break
-            if uri:
-                break
-        # Fallback first valid Uri
-        if not uri:
-            for img in imgs:
-                if isinstance(img, dict) and img.get("Uri"):
-                    uri = img["Uri"]
-                    break
-    if uri and uri.startswith("//"):
-        uri = "https:" + uri
-    return uri
-
-def pick_best_titles(lps: list, props: dict, bid: str) -> tuple:
-    """Return (uk_title, en_title, lp_main) with safe fallbacks."""
-    lp_uk = next((x for x in lps if (x.get("Language","").lower() == "uk-ua")), {}) if isinstance(lps, list) else {}
-    lp_en = next((x for x in lps if (x.get("Language","").lower() == "en-us")), {}) if isinstance(lps, list) else {}
-    lp_main = lp_uk or lp_en or (lps[0] if isinstance(lps, list) and lps else {})
-    def _title(lp):
-        if not isinstance(lp, dict): return ""
-        return lp.get("ProductTitle") or lp.get("Title") or ""
-    name_uk = _clean_str(_title(lp_uk))
-    name_en = _clean_str(_title(lp_en))
-    # extra fallbacks
-    if not name_en:
-        name_en = _clean_str(_title(lp_main))
-    if not name_uk:
-        name_uk = name_en
-    if not name_en:
-        # sometimes in Properties
-        name_en = _clean_str(props.get("ProductTitle") or props.get("Title") or "")
-    if not name_uk:
-        name_uk = name_en
-    if not name_uk:
-        name_uk = f"UnknownID_{bid}"
-    if not name_en:
-        name_en = name_uk
-    return name_uk, name_en, lp_uk, lp_en, lp_main

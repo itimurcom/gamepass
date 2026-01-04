@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Game Pass Catalog</title>
+<title>Game Pass Games List</title>
 <style>
 :root {
     --bg: #f5f5f7;
@@ -36,7 +36,12 @@
 }
 
 body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding-bottom: 80px; transition: background 0.3s, color 0.3s; }
-.container { max-width:1400px; margin:0 auto; padding:20px; padding-top: 80px; }
+.container { 
+    max-width:1400px; 
+    margin:0 auto; 
+    padding:20px; 
+    padding-top: 80px; 
+}
 
 /* === LANGUAGE SWITCH (Top Left) === */
 #btnLang {
@@ -64,19 +69,15 @@ body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-sys
     z-index: 900;
 }
 
-/* Hide default checkbox */
-.theme-switch-wrapper input {
-    display: none;
-}
+.theme-switch-wrapper input { display: none; }
 
-/* The Track */
 .theme-slider {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 150px;
     height: 44px;
-    background-color: #e4e4e4; /* Day bg */
+    background-color: #e4e4e4;
     border-radius: 22px;
     position: relative;
     cursor: pointer;
@@ -87,7 +88,6 @@ body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-sys
     overflow: hidden;
 }
 
-/* The Text Labels */
 .slider-text {
     position: absolute;
     font-size: 13px;
@@ -98,20 +98,9 @@ body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-sys
     user-select: none;
     letter-spacing: 0.5px;
 }
+.text-day { right: 14px; color: #000; opacity: 1; }
+.text-night { left: 14px; color: #fff; opacity: 0; }
 
-.text-day {
-    right: 14px;
-    color: #000;
-    opacity: 1;
-}
-
-.text-night {
-    left: 14px;
-    color: #fff;
-    opacity: 0;
-}
-
-/* The Knob (White Circle) */
 .slider-knob {
     width: 36px;
     height: 36px;
@@ -128,42 +117,32 @@ body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-sys
     z-index: 2;
 }
 
-/* Icons inside Knob */
 .slider-knob svg {
     width: 20px;
     height: 20px;
     position: absolute;
     transition: opacity 0.3s ease, transform 0.4s ease;
-    fill: #000; /* Icons are always black inside white knob */
+    fill: #000;
 }
 
 .icon-moon { opacity: 0; transform: rotate(-20deg) scale(0.5); }
 .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
 
-/* === CHECKED STATE (Night Mode) === */
-#theme-toggle:checked + .theme-slider {
-    background-color: #111; /* Night bg */
-}
-
-#theme-toggle:checked + .theme-slider .slider-knob {
-    transform: translateX(106px); /* Move right */
-}
-
+#theme-toggle:checked + .theme-slider { background-color: #111; }
+#theme-toggle:checked + .theme-slider .slider-knob { transform: translateX(106px); }
 #theme-toggle:checked + .theme-slider .text-day { opacity: 0; }
 #theme-toggle:checked + .theme-slider .text-night { opacity: 1; }
-
-#theme-toggle:checked + .theme-slider .icon-sun { 
-    opacity: 0; 
-    transform: rotate(90deg) scale(0.5); 
-}
-#theme-toggle:checked + .theme-slider .icon-moon { 
-    opacity: 1; 
-    transform: rotate(0deg) scale(1); 
-}
+#theme-toggle:checked + .theme-slider .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+#theme-toggle:checked + .theme-slider .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
 
 
 /* MAIN UI STYLES */
-h1 { font-size: 26px; margin: 0 0 20px 0; font-weight: 700; text-align: center; }
+h1 { 
+    font-size: 26px; 
+    margin: 0 0 20px 0; 
+    font-weight: 700; 
+    text-align: left; 
+}
 
 .controls { display:flex; flex-wrap:wrap; gap:16px; padding:20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow); margin-bottom:24px; align-items: flex-end; }
 .field { display:flex; flex-direction:column; gap:6px; flex:1; min-width:160px; }
@@ -185,7 +164,8 @@ td { padding:12px 16px; border-bottom:1px solid var(--border); vertical-align: m
 tr:hover { background-color: rgba(0,0,0,0.02); }
 [data-theme="dark"] tr:hover { background-color: rgba(255,255,255,0.05); }
 
-img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; background: #eee; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: block; }
+img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; background: #eee; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: block; cursor: pointer; transition: transform 0.2s; }
+img.cover:hover { transform: scale(1.05); }
 
 .tier-badge { display: inline-block; padding: 3px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 4px; margin-right: 4px; }
 .tier-AAA { background: var(--accent); color: white; }
@@ -200,9 +180,7 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 [data-theme="dark"] .rating-high { color: #30d158; }
 [data-theme="dark"] .rating-mid { color: #ffd60a; }
 
-.btn-read { color: var(--accent); background: rgba(10, 132, 255, 0.1); padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; }
-.btn-read:hover { background: rgba(10, 132, 255, 0.2); }
-.fav { background:none; border:none; font-size:26px; color:var(--border); cursor:pointer; line-height: 1; padding: 0; transition: color 0.2s; }
+.fav { background:none; border:none; font-size:36px; color:var(--border); cursor:pointer; line-height: 1; padding: 0; transition: color 0.2s; margin-right: 8px; }
 .fav.on { color:var(--accent); } 
 
 /* Tiles */
@@ -247,29 +225,13 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
     pointer-events: none;
     z-index: 900;
 }
-.btn-top.show {
-    opacity: 0.6;
-    pointer-events: auto;
-}
-.btn-top:hover {
-    opacity: 1 !important;
-    transform: translateY(-3px);
-}
-.btn-top svg {
-    width: 50px;
-    height: 50px;
-    fill: var(--arrow-color);
-}
+.btn-top.show { opacity: 0.6; pointer-events: auto; }
+.btn-top:hover { opacity: 1 !important; transform: translateY(-3px); }
+.btn-top svg { width: 50px; height: 50px; fill: var(--arrow-color); }
 
 /* === ADAPTIVE NO AVATAR === */
-.no-avatar { 
-    content: var(--pl-light); 
-    border: 1px dashed var(--border);
-    opacity: 0.9;
-}
-[data-theme="dark"] .no-avatar { 
-    content: var(--pl-dark); 
-}
+.no-avatar { content: var(--pl-light); border: 1px dashed var(--border); opacity: 0.9; }
+[data-theme="dark"] .no-avatar { content: var(--pl-dark); }
 
 .desc-block { margin-bottom: 24px; }
 .desc-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--accent); text-decoration: none; margin-bottom: 8px; }
@@ -289,19 +251,15 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
             <span class="slider-text text-night">NIGHTMODE</span>
             <span class="slider-text text-day">DAYMODE</span>
             <div class="slider-knob">
-                <svg class="icon-sun" viewBox="0 0 24 24">
-                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.93c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zm13.43 14.14c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zM1.99 18.36c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L4.99 15.53c.39.39.39 1.02 0 1.41.39.39 1.02.39 1.41 0l-1.41 1.42zM16.95 5.63c.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41z"/>
-                </svg>
-                <svg class="icon-moon" viewBox="0 0 24 24">
-                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
-                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.93c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zm13.43 14.14c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zM1.99 18.36c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L4.99 15.53c.39.39.39 1.02 0 1.41.39.39 1.02.39 1.41 0l-1.41 1.42zM16.95 5.63c.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41z"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
             </div>
         </div>
     </label>
 </div>
 
 <div class="container">
-    <h1 id="lblTitle">Game Pass Catalog</h1>
+    <h1 id="lblTitle">Game Pass Games List</h1>
     
     <div class="controls">
         <div class="field" style="flex: 0 0 auto;">
@@ -344,11 +302,9 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
             <th style="width:80px" data-t="poster">Постер</th>
             <th class="sortable" data-key="name"><div class="th-content"><span data-t="name">Назва</span> <span class="sort-icon">↕</span></div></th>
             <th style="width:15%" data-t="genre">Жанр</th>
-            <th style="width:80px" data-t="info">Інфо</th>
             <th class="sortable sort-desc" data-key="rating"><div class="th-content"><span data-t="rating">Рейт</span> <span class="sort-icon">▼</span></div></th>
             <th class="sortable" data-key="year"><div class="th-content"><span data-t="year">Рік</span> <span class="sort-icon">↕</span></div></th>
             <th class="sortable" data-key="hours"><div class="th-content"><span data-t="time">Час</span> <span class="sort-icon">↕</span></div></th>
-            <th data-t="actions">Дії</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
     </table></div></div>
@@ -358,9 +314,7 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 </div>
 
 <button id="btnTop" class="btn-top" title="Вгору" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-    <svg viewBox="0 0 24 24">
-        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM13 12H16L12 8L8 12H11V16H13V12Z" />
-    </svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM13 12H16L12 8L8 12H11V16H13V12Z"/></svg>
 </button>
 
 <div class="modal-overlay" id="modalOverlay">
@@ -373,10 +327,47 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
     </div>
 </div>
 
+<template id="tmpl-row">
+    <tr>
+        <td><img class="cover img-src" loading="lazy" style="cursor:pointer"></td>
+        <td>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+                <button class="fav btn-fav" style="margin-top:-4px;">★</button>
+                <div>
+                    <div class="txt-name" style="font-weight:700; font-size:16px; margin-bottom:4px;"></div>
+                    <div class="tags-container"></div>
+                    <div class="txt-dev" style="font-size:12px; color:var(--text-sec); margin-top:4px;"></div>
+                </div>
+            </div>
+        </td>
+        <td class="txt-genre"></td>
+        <td>
+            <div class="rating-val txt-rating"></div>
+            <div class="txt-rating-src" style="font-size:10px; color:var(--text-sec);"></div>
+        </td>
+        <td class="txt-year"></td>
+        <td class="txt-hours"></td>
+    </tr>
+</template>
+
+<template id="tmpl-tile">
+    <div class="tile">
+        <div style="position:relative">
+            <img class="img-src" loading="lazy">
+            <div class="tags-container" style="position:absolute; top:8px; left:8px; display:flex;"></div>
+            <button class="fav btn-fav" onclick="event.stopPropagation(); toggleFav(this)">★</button>
+        </div>
+        <div class="tile-title txt-name"></div>
+        <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
+            <span class="txt-year"></span>
+            <span class="txt-rating" style="font-weight:bold;"></span>
+        </div>
+    </div>
+</template>
+
 <script src="data.js"></script> 
 <script src="app.js"></script>
 <script>
-// Inline Logic for Scroll Button
 const btnTop = document.getElementById("btnTop");
 window.onscroll = function() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {

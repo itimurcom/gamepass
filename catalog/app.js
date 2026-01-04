@@ -1,44 +1,33 @@
-// app.js — Main Logic (Fixed: Theme Switcher Priority)
+// app.js — Main Logic (Clean DOM Manipulation)
 
-// Load Data from Global Variable
 const DATA = window.GP_DATA || [];
-
-// 1x1 Transparent GIF (to prevent broken image icon)
 const TRANSPARENT_PIXEL = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-
 const PAGE_SIZE = 50;
 let CUR_PAGE = 1;
 let FILTERED_LIST = DATA;
 let SORT = { key: 'rating', asc: false };
-// Default to light if not set
 let CUR_THEME = localStorage.getItem("gp_theme") || "light"; 
 let CUR_LANG = localStorage.getItem("gp_lang") || "uk";
 let OPEN_GAME_ID = null;
 
 const I18N = {
     uk: {
-        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", cat: "КАТЕГОРІЯ", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути", sort: "СОРТУВАННЯ",
-        viewList: "☰ Список", viewTiles: "▦ Плитка", poster: "Постер", name: "Назва", info: "Інфо", time: "Час", actions: "Дії", details: "Деталі гри", read: "Читати", hours: "год."
+        title: "Game Pass Games List", search: "ПОШУК", year: "РІК", genre: "ЖАНР", cat: "КАТЕГОРІЯ", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути", sort: "СОРТУВАННЯ",
+        viewList: "☰ Список", viewTiles: "▦ Плитка", poster: "Постер", name: "Назва", info: "Інфо", time: "Час", details: "Деталі гри", read: "Читати", hours: "год."
     },
     en: {
-        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", cat: "CATEGORY", rating: "RATING", fav: "Favorites", reset: "✕ Reset", sort: "SORT BY",
-        viewList: "☰ List", viewTiles: "▦ Tiles", poster: "Poster", name: "Name", info: "Info", time: "Time", actions: "Actions", details: "Game Details", read: "Read", hours: "h"
+        title: "Game Pass Games List", search: "SEARCH", year: "YEAR", genre: "GENRE", cat: "CATEGORY", rating: "RATING", fav: "Favorites", reset: "✕ Reset", sort: "SORT BY",
+        viewList: "☰ List", viewTiles: "▦ Tiles", poster: "Poster", name: "Name", info: "Info", time: "Time", details: "Game Details", read: "Read", hours: "h"
     }
 };
 
 function init() {
-    // 1. Спершу ініціалізуємо UI (Тема та Мова), щоб вони працювали завжди
     setupThemeLogic();
     setupLangLogic();
-
-    // 2. Перевіряємо наявність даних
     if(!DATA.length) { 
         const titleEl = document.getElementById("lblTitle");
-        if(titleEl) titleEl.innerText = "Game Pass (0)";
-        // Навіть якщо даних немає, не робимо return, щоб працював інтерфейс
+        if(titleEl) titleEl.innerText = "Game Pass Games List (0)";
     }
-    
-    // 3. Запускаємо фільтри та рендерінг
     applyLang(CUR_LANG);
     setupFilters();
     applyFilters();
@@ -46,31 +35,21 @@ function init() {
 
 function setupThemeLogic() {
     const themeToggle = document.getElementById("theme-toggle");
-    
-    // Функція застосування теми
     window.applyTheme = function(theme) {
         document.documentElement.setAttribute("data-theme", theme);
         CUR_THEME = theme;
         localStorage.setItem("gp_theme", theme);
-        
-        // Синхронізуємо стан чекбокса, якщо функцію викликали програмно
         if(themeToggle && themeToggle.checked !== (theme === "dark")) {
             themeToggle.checked = (theme === "dark");
         }
     };
-
-    // Слухач подій на чекбокс
     if(themeToggle) {
-        // Встановлюємо початковий стан перемикача
         themeToggle.checked = (CUR_THEME === "dark");
-        
         themeToggle.addEventListener('change', (e) => {
             const newTheme = e.target.checked ? "dark" : "light";
             window.applyTheme(newTheme);
         });
     }
-
-    // Застосовуємо тему при старті
     window.applyTheme(CUR_THEME);
 }
 
@@ -86,7 +65,6 @@ function applyLang(lang) {
     localStorage.setItem("gp_lang", lang);
     const btn = document.getElementById("btnLang");
     if(btn) btn.innerText = (lang === 'uk' ? 'EN' : 'UK');
-    
     const t = I18N[lang];
     document.querySelectorAll("[data-t]").forEach(el => {
         const k = el.getAttribute("data-t");
@@ -95,11 +73,7 @@ function applyLang(lang) {
             else el.innerText = t[k];
         }
     });
-    
-    // Оновлюємо рендер, якщо є дані
     if(DATA.length) render(); 
-    
-    // Оновлюємо модалку, якщо відкрита
     if(document.getElementById("modalOverlay").classList.contains("open") && OPEN_GAME_ID) {
         const idx = FILTERED_LIST.findIndex(x => x.id === OPEN_GAME_ID);
         if(idx !== -1) openModal(idx);
@@ -116,17 +90,18 @@ function openModal(idx) {
     const content = document.getElementById("modalContent");
     const t = I18N[CUR_LANG];
     const i18nData = game.i18n ? game.i18n[CUR_LANG] : { name: game.name, genre: game.genre, desc: "No data" };
-    
     const imgClass = game.no_avatar ? "game-poster no-avatar" : "game-poster";
     const imgSrc = game.no_avatar ? TRANSPARENT_PIXEL : esc(game.image);
-
+    
+    // Using string concat here ONLY for modal content simplicity, 
+    // but main list is now strict DOM.
     let tagsHtml = "";
     (game.tags || []).forEach(tg => {
         if(tg.includes("Leaving")) tagsHtml += `<span class="tag tag-leaving">${tg}</span> `;
         else if(tg.includes("New")) tagsHtml += `<span class="tag tag-new">${tg}</span> `;
         else tagsHtml += `<span class="tag">${tg}</span> `;
     });
-
+    
     content.innerHTML = `
         <div class="game-hero">
             <img src="${imgSrc}" class="${imgClass}">
@@ -147,7 +122,6 @@ function openModal(idx) {
         </div>
         <div class="desc-text">${i18nData.desc}</div>
     `;
-    
     document.getElementById("modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
 }
@@ -187,7 +161,7 @@ function renderPagination(total) {
 }
 
 function applyFilters() {
-    if(!DATA.length) return; // Якщо даних немає, не фільтруємо
+    if(!DATA.length) return;
 
     const txtEl = document.getElementById("searchTxt");
     const txt = txtEl ? txtEl.value.toLowerCase() : "";
@@ -208,9 +182,15 @@ function applyFilters() {
     const r = rEl ? Number(rEl.value) : 0;
     
     const fEl = document.getElementById("filterFav");
-    const f = fEl ? fEl.checked : false;
+    let f = fEl ? fEl.checked : false;
     
     const favs = getFavs();
+
+    // AUTO-UNCHECK FAV IF EMPTY
+    if (f && favs.size === 0) {
+        if(fEl) fEl.checked = false;
+        f = false;
+    }
 
     FILTERED_LIST = DATA.filter(x => {
         const name = (x.i18n && x.i18n[CUR_LANG] ? x.i18n[CUR_LANG].name : x.name).toLowerCase();
@@ -219,13 +199,10 @@ function applyFilters() {
         
         const gStr = x.i18n?.uk?.genre || "";
         if(genres.length && !gStr.split(", ").some(g=>genres.includes(g))) return false;
-        
-        // Tags Filter
         if(tags.length) {
             const myTags = x.tags || [];
             if(!myTags.some(t => tags.includes(t))) return false;
         }
-
         if(tier && x.tier !== tier) return false;
         if(r && (x.rating || 0) < r) return false;
         if(f && !favs.has(x.id)) return false;
@@ -236,14 +213,29 @@ function applyFilters() {
     render();
 }
 
+// === HELPER TO CREATE BADGES via DOM (No HTML strings) ===
+function createBadge(text, type) {
+    const span = document.createElement("span");
+    span.textContent = text;
+    if (type === 'leaving') {
+        span.className = "tag-badge tag-leaving";
+        span.style.cssText = "font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;";
+    } else if (type === 'new') {
+        span.className = "tag-badge tag-new";
+        span.style.cssText = "font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;";
+    } else if (type === 'tier') {
+        span.className = text === 'AAA' ? "tier-badge tier-AAA" : "tier-badge tier-Indie";
+    } else {
+        span.className = "tier-badge tag-badge";
+    }
+    return span;
+}
+
 function render() {
     const t = I18N[CUR_LANG];
-    
-    // UPDATE COUNTER
     const titleEl = document.getElementById("lblTitle");
-    if(titleEl) titleEl.innerText = `Game Pass (${FILTERED_LIST.length})`;
+    if(titleEl) titleEl.innerText = `${t.title} (${FILTERED_LIST.length})`;
 
-    // SYNC SORT DROPDOWN (Ensure UI matches state)
     const sortSel = document.getElementById("sortSelect");
     if(sortSel) {
         const val = `${SORT.key}_${SORT.asc?'asc':'desc'}`;
@@ -283,10 +275,14 @@ function render() {
 
     const tableV = document.getElementById("tableView");
     if(tableV) tableV.style.display = isTiles ? "none" : "block";
-    
+    const tbody = document.getElementById("tbody");
+    if(tbody) tbody.innerHTML = ""; // Clear via innerHTML only for reset
+
     const tilesV = document.getElementById("tilesView");
     if(tilesV) tilesV.style.display = isTiles ? "block" : "none";
-    
+    const tilesContainer = document.getElementById("tiles");
+    if(tilesContainer) tilesContainer.innerHTML = "";
+
     const btnTable = document.getElementById("btnTable");
     if(btnTable) btnTable.className = isTiles ? "btn" : "btn active";
     
@@ -300,77 +296,95 @@ function render() {
         return { ...x, displayName: d.name, displayGenre: d.genre };
     };
 
-    if(isTiles) {
-        const tilesContainer = document.getElementById("tiles");
-        if(tilesContainer) {
-            tilesContainer.innerHTML = pageData.map((raw, i) => {
-                const x = getRowData(raw);
-                const globalIdx = start + i;
-                const imgClass = x.no_avatar ? "no-avatar" : "";
-                const imgSrc = x.no_avatar ? TRANSPARENT_PIXEL : esc(x.image);
-                
-                // Render Badges
-                let tagsHtml = "";
-                (x.tags || []).forEach(tg => {
-                     if(tg === "Leaving Soon") tagsHtml += `<span class="tag-badge tag-leaving" style="font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;">👋</span>`;
-                     else if(tg === "New Added") tagsHtml += `<span class="tag-badge tag-new" style="font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;">NEW</span>`;
-                });
+    // === TEMPLATE BASED RENDERING ===
+    
+    // Templates
+    const tmplRow = document.getElementById("tmpl-row");
+    const tmplTile = document.getElementById("tmpl-tile");
 
-                return `
-                <div class="tile" onclick="openModal(${globalIdx})">
-                    <div style="position:relative">
-                        <img src="${imgSrc}" loading="lazy" class="${imgClass}">
-                        <div style="position:absolute; top:8px; left:8px; display:flex;">${tagsHtml}</div>
-                        <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="event.stopPropagation(); toggleFav(this)">★</button>
-                    </div>
-                    <div class="tile-title">${esc(x.displayName)}</div>
-                    <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
-                        <span>${esc(x.year)}</span>
-                        <span style="font-weight:bold; color:${x.rating>=80?'#008a4b':(x.rating>=60?'#bf8600':'var(--text-sec)')}">★ ${x.rating||'-'}</span>
-                    </div>
-                </div>`
-            }).join("");
-        }
-    } else {
-        const tbody = document.getElementById("tbody");
-        if(tbody) {
-            tbody.innerHTML = pageData.map((raw, i) => {
-                const x = getRowData(raw);
-                const globalIdx = start + i;
-                const imgClass = x.no_avatar ? "cover no-avatar" : "cover";
-                const imgSrc = x.no_avatar ? TRANSPARENT_PIXEL : esc(x.image);
-                
-                let tagsHtml = "";
-                (x.tags || []).forEach(tg => {
-                     if(tg === "Leaving Soon") tagsHtml += `<span class="tier-badge tag-leaving">Leaving</span>`;
-                     else if(tg === "New Added") tagsHtml += `<span class="tier-badge tag-new">New</span>`;
-                     else if(tg !== "PC" && tg !== "Console" && tg !== "Ultimate") tagsHtml += `<span class="tier-badge tag-badge">${tg}</span>`;
-                });
+    pageData.forEach((raw, i) => {
+        const x = getRowData(raw);
+        const globalIdx = start + i;
+        const imgClass = x.no_avatar ? "no-avatar" : "";
+        const imgSrc = x.no_avatar ? TRANSPARENT_PIXEL : x.image;
+        const isFav = favs.has(x.id);
 
-                return `
-                <tr>
-                    <td><img src="${imgSrc}" class="${imgClass}" loading="lazy" style="cursor:pointer" onclick="openModal(${globalIdx})"></td>
-                    <td>
-                        <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
-                        ${tagsHtml}
-                        ${x.tier === "AAA" ? '<span class="tier-badge tier-AAA">AAA</span>' : '<span class="tier-badge tier-Indie">Indie/AA</span>'}
-                        <div style="font-size:12px; color:var(--text-sec); margin-top:4px;">${esc(x.developer)}</div>
-                    </td>
-                    <td>${esc(x.displayGenre)}</td>
-                    <td><button class="btn-read" onclick="openModal(${globalIdx})">${t.read}</button></td>
-                    <td>
-                        <div class="rating-val ${x.rating>=80?'rating-high':(x.rating>=60?'rating-mid':'rating-low')}">${esc(x.rating || '-')}</div>
-                        <div style="font-size:10px; color:var(--text-sec);">${esc(x.ratingSource)}</div>
-                    </td>
-                    <td>${esc(x.year)}</td>
-                    <td>${esc(x.hours)}</td>
-                    <td>
-                        <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="toggleFav(this)">★</button>
-                    </td>
-                </tr>`
-            }).join("");
+        if (isTiles && tmplTile) {
+            const clone = tmplTile.content.cloneNode(true);
+            
+            // Image
+            const img = clone.querySelector(".img-src");
+            img.src = imgSrc;
+            if(x.no_avatar) img.classList.add("no-avatar");
+            
+            // Onclick
+            clone.querySelector(".tile").onclick = () => openModal(globalIdx);
+
+            // Tags
+            const tagsCont = clone.querySelector(".tags-container");
+            (x.tags || []).forEach(tg => {
+                if(tg === "Leaving Soon") tagsCont.appendChild(createBadge("👋", 'leaving'));
+                else if(tg === "New Added") tagsCont.appendChild(createBadge("NEW", 'new'));
+            });
+
+            // Fav
+            const favBtn = clone.querySelector(".btn-fav");
+            if(isFav) favBtn.classList.add("on");
+            favBtn.dataset.id = x.id;
+            favBtn.onclick = (e) => { e.stopPropagation(); toggleFav(favBtn); };
+
+            // Text
+            clone.querySelector(".txt-name").textContent = x.displayName;
+            clone.querySelector(".txt-year").textContent = x.year;
+            
+            const rateEl = clone.querySelector(".txt-rating");
+            rateEl.textContent = `★ ${x.rating || '-'}`;
+            rateEl.style.color = x.rating>=80?'#008a4b':(x.rating>=60?'#bf8600':'var(--text-sec)');
+
+            tilesContainer.appendChild(clone);
+
+        } else if (!isTiles && tmplRow) {
+            const clone = tmplRow.content.cloneNode(true);
+            
+            // Image
+            const img = clone.querySelector(".img-src");
+            img.src = imgSrc;
+            img.classList.add(x.no_avatar ? "no-avatar" : "cover"); // Ensure base class + modifier
+            img.onclick = () => openModal(globalIdx);
+
+            // Fav
+            const favBtn = clone.querySelector(".btn-fav");
+            if(isFav) favBtn.classList.add("on");
+            favBtn.dataset.id = x.id;
+            favBtn.onclick = () => toggleFav(favBtn);
+
+            // Text info
+            clone.querySelector(".txt-name").textContent = x.displayName;
+            clone.querySelector(".txt-dev").textContent = x.developer;
+            
+            // Tags (badges)
+            const tagsCont = clone.querySelector(".tags-container");
+            (x.tags || []).forEach(tg => {
+                if(tg === "Leaving Soon") tagsCont.appendChild(createBadge("Leaving", 'leaving'));
+                else if(tg === "New Added") tagsCont.appendChild(createBadge("New", 'new'));
+                else if(!["PC","Console","Ultimate"].includes(tg)) tagsCont.appendChild(createBadge(tg, 'other'));
+            });
+            tagsCont.appendChild(createBadge(x.tier === "AAA" ? "AAA" : "Indie/AA", 'tier'));
+
+            // Other cols
+            clone.querySelector(".txt-genre").textContent = x.displayGenre;
+            
+            const rateVal = clone.querySelector(".txt-rating");
+            rateVal.textContent = x.rating || '-';
+            rateVal.className = `rating-val ${x.rating>=80?'rating-high':(x.rating>=60?'rating-mid':'rating-low')}`;
+            
+            clone.querySelector(".txt-rating-src").textContent = x.ratingSource;
+            clone.querySelector(".txt-year").textContent = x.year;
+            clone.querySelector(".txt-hours").textContent = x.hours;
+
+            tbody.appendChild(clone);
         }
-    }
+    });
 }
 
 function toggleFav(btn) {
@@ -385,17 +399,14 @@ function toggleFav(btn) {
 
 function setupFilters() {
     if(!DATA.length) return;
-
     const years = [...new Set(DATA.map(x=>x.year).filter(Boolean))].sort().reverse();
     const genres = [...new Set(DATA.flatMap(x=> (x.i18n?.uk?.genre || "").split(", ")).filter(Boolean))].sort();
     const tags = [...new Set(DATA.flatMap(x => x.tags || []))].sort();
 
     const yEl = document.getElementById("filterYear");
     if(yEl) yEl.innerHTML = years.map(y=>`<option>${y}</option>`).join("");
-    
     const gEl = document.getElementById("filterGenre");
     if(gEl) gEl.innerHTML = genres.map(g=>`<option>${g}</option>`).join("");
-    
     const tEl = document.getElementById("filterTag");
     if(tEl) tEl.innerHTML = tags.map(t=>`<option>${t}</option>`).join("");
     
@@ -413,7 +424,6 @@ function setupFilters() {
     
     const btnTable = document.getElementById("btnTable");
     if(btnTable) btnTable.onclick = () => { localStorage.setItem("gp_view","table"); render(); };
-    
     const btnTiles = document.getElementById("btnTiles");
     if(btnTiles) btnTiles.onclick = () => { localStorage.setItem("gp_view","tiles"); render(); };
     
@@ -429,7 +439,6 @@ function setupFilters() {
         };
     });
 
-    // NEW SORT DROPDOWN LISTENER
     const sortSel = document.getElementById("sortSelect");
     if(sortSel) {
         sortSel.onchange = (e) => {
@@ -441,7 +450,6 @@ function setupFilters() {
     }
 }
 
-// Запускаємо init
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
 } else {

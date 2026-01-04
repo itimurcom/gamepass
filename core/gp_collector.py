@@ -179,27 +179,45 @@ def download_wiki_data(name, clean_id, dirs):
                 }
             atomic_save(path_sp, {"data": data_p})
 
-def download_hltb_data(name, clean_id, dirs):
-    try: from howlongtobeatpy import HowLongToBeat
-    except ImportError: return
+def download_hltb_data(name, clean_id, dirs, status_cb=None):
+    """Завантажує HLTB у кеш.
+
+    ВАЖЛИВО: Не друкуємо напряму у stdout, щоб не перекривати progress-лінію.
+    Для повідомлень використовуйте status_cb(msg) — тоді UI вирішує, як показувати.
+    """
+    try:
+        from howlongtobeatpy import HowLongToBeat
+    except ImportError:
+        if status_cb:
+            status_cb("HLTB: howlongtobeatpy не встановлено")
+        return
 
     path = os.path.join(dirs["hltb"], f"{clean_id}.json")
-    if os.path.exists(path): return
-    
-    if name.startswith("UnknownID"): return # SKIP BAD NAMES
+    if os.path.exists(path):
+        if status_cb:
+            status_cb(f"HLTB cache ✓ ({clean_id})")
+        return
+
+    if name.startswith("UnknownID"):
+        if status_cb:
+            status_cb("HLTB: пропуск UnknownID")
+        return  # SKIP BAD NAMES
 
     clean_search = clean_game_title(name)
-    print(f"\r   > HLTB Пошук: {clean_search[:30]:<30}", end="", flush=True)
-    
+    if status_cb:
+        status_cb(f"HLTB запит… {clean_search[:50]}")
+
     hours = "0"
     try:
         res = HowLongToBeat().search(clean_search)
         if res:
             best = max(res, key=lambda x: x.similarity)
             hours = str(best.main_story)
-    except: pass
-    
+    except Exception:
+        pass
+
     atomic_save(path, {"hours": hours})
+
 
 # --- EXPORTER ---
 def clean_text(text):

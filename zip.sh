@@ -10,7 +10,7 @@ OUTPUT_ARCHIVE="backup_${TIMESTAMP}.zip"
 
 # 3. Вкажіть файли та папки для архівації (через пробіл)
 # Зверніть увагу: без лапок навколо змінної $FILES_TO_ZIP у команді zip
-FILES_TO_ZIP="gamepass.py core/*.py core/*.html"
+FILES_TO_ZIP="gamepass.py core/*.py core/*.html catalog/index.html catalog/app.js"
 
 # 4. ЩО ВИКЛЮЧИТИ (через пробіл)
 # Приклад: виключити кеш пітона, логи або конкретний файл

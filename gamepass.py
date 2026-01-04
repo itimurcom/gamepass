@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# gamepass.py — v11.1 (Hotfix: Variable Scope)
+# gamepass.py — v11.2 (Image Logic Fix)
 
 import argparse
 import os
@@ -13,7 +13,7 @@ from datetime import datetime
 
 from core import gp_collector 
 
-SCRIPT_VERSION = "v11.1"
+SCRIPT_VERSION = "v11.2"
 
 # --- SIGNAL HANDLER ---
 def aggressive_stop(signum, frame):
@@ -80,17 +80,44 @@ def make_html_desc(store_txt, wiki_txt, links, lang="uk"):
         
     return html_out
 
-def get_best_image(images_list):
-    if not images_list: return ""
+def get_best_image(store_data, lp_uk, lp_en):
+    """
+    Розумний пошук зображення:
+    1. Шукаємо в локалізованих даних (UK), потім (EN), потім в загальних.
+    2. Пріоритет типів: Poster > BoxArt > BrandedKeyArt > SuperHeroArt.
+    """
+    candidates = []
+    
+    # Збираємо всі можливі картинки в єдиний список
+    if lp_uk.get("Images"): candidates.extend(lp_uk["Images"])
+    if lp_en.get("Images"): candidates.extend(lp_en["Images"])
+    if store_data.get("Images"): candidates.extend(store_data["Images"])
+    
+    if not candidates: return ""
+
+    # Пріоритети типів зображень
+    priority_types = ["Poster", "BoxArt", "BrandedKeyArt", "TitledHeroArt", "SuperHeroArt", "Image"]
+    
     target_url = ""
-    for img in images_list:
-        if img.get("ImagePurpose") == "Poster":
-            target_url = img.get("Uri", "")
-            break
-    if not target_url and images_list:
-        target_url = images_list[0].get("Uri", "")
+    
+    # Прохід 1: Шукаємо ідеальний збіг за типом
+    for p_type in priority_types:
+        for img in candidates:
+            if img.get("ImagePurpose") == p_type and img.get("Uri"):
+                target_url = img["Uri"]
+                break
+        if target_url: break
+    
+    # Прохід 2: Якщо не знайшли, беремо перше ліпше, що має Uri
+    if not target_url:
+        for img in candidates:
+            if img.get("Uri"):
+                target_url = img["Uri"]
+                break
+                
     if target_url.startswith("//"):
         target_url = "https:" + target_url
+        
     return target_url
 
 def parse_product_local(bid, dirs):
@@ -120,7 +147,7 @@ def parse_product_local(bid, dirs):
     if genre.lower() == "game": genre = "Unknown" 
 
     desc_store_uk = clean_text(lp_uk.get("ProductDescription") or lp_uk.get("ShortDescription") or "")
-    # FIX: Використовуємо desc_store_uk як фолбек замість desc_store_en (self-reference)
+    # Fix v11.1: Fallback to UK if EN is missing
     desc_store_en = clean_text(lp_en.get("ProductDescription") or lp_en.get("ShortDescription") or desc_store_uk)
 
     clean_id = gp_collector.safe_name(clean_name)
@@ -162,8 +189,8 @@ def parse_product_local(bid, dirs):
         rating_src = "Microsoft"
 
     set_stage(bid, "images")
-    raw_images = store_data.get("Images", [])
-    image_url = get_best_image(raw_images)
+    # Fix v11.2: Передаємо всі джерела даних для пошуку кращої картинки
+    image_url = get_best_image(store_data, lp_uk, lp_en)
 
     links = { "store": f"https://www.xbox.com/en-us/games/store/{bid}", "wiki": wiki_url }
 

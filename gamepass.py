@@ -28,6 +28,16 @@ DATA_LANG = "uk-ua"
 DISPLAY_LANGS = "uk-ua,en-us"
 
 # UI UTILS
+
+# --- PROGRESS STAGE TRACKING ---
+CURRENT_STAGE = ""
+CURRENT_BID = ""
+
+def set_stage(bid, stage):
+    global CURRENT_STAGE, CURRENT_BID
+    CURRENT_STAGE = stage
+    CURRENT_BID = bid
+
 IS_TTY = sys.stdout.isatty()
 def _c(txt, code): return f"\033[{code}m{txt}\033[0m" if IS_TTY else txt
 
@@ -39,7 +49,8 @@ def print_progress(current, total, prefix=""):
     if not IS_TTY: return
     p = 100 * (current / float(total)) if total > 0 else 0
     bar = '=' * int(30 * current // total) + '-' * (30 - int(30 * current // total))
-    sys.stdout.write(f"\r{prefix}: |{_c(bar, '36')}| {current}/{total} ({p:.0f}%)")
+    suffix = f" | {CURRENT_BID} | {CURRENT_STAGE}" if CURRENT_STAGE else ""
+    sys.stdout.write(f"\r{prefix}: |{_c(bar, '36')}| {current}/{total} ({p:.0f}%)" + suffix)
     sys.stdout.flush()
 
 def clean_text(text):
@@ -95,6 +106,7 @@ def get_best_image(images_list):
 def parse_product_local(bid, dirs):
     path = os.path.join(dirs["products"], f"{gp_collector.safe_name(bid)}.json")
     
+    set_stage(bid, "load product json")
     store_data = {}
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -103,7 +115,9 @@ def parse_product_local(bid, dirs):
                 store_data = full_json["product"]
     except: return None
 
+    set_stage(bid, "parse properties")
     props = store_data.get("Properties", {})
+    set_stage(bid, "parse localized properties")
     lps = store_data.get("LocalizedProperties", [])
     
     lp_uk = next((x for x in lps if x.get("Language","").lower() == "uk-ua"), {})
@@ -122,6 +136,7 @@ def parse_product_local(bid, dirs):
     clean_id = gp_collector.safe_name(clean_name)
     year = (props.get("OriginalReleaseDate") or "")[:4]
     
+    set_stage(bid, "wiki check/cache")
     # Wiki
     wiki_desc_uk = ""
     wiki_url = ""
@@ -139,6 +154,7 @@ def parse_product_local(bid, dirs):
                         wiki_url = wdata.get('WikiUrl', '')
     except: pass
 
+    set_stage(bid, "hltb check/cache")
     # HLTB
     hours = ""
     try:
@@ -149,6 +165,7 @@ def parse_product_local(bid, dirs):
                 if h_val != "0": hours = h_val
     except: pass
 
+    set_stage(bid, "rating")
     # Rating (float fix)
     rating = 0.0
     rating_src = ""
@@ -157,15 +174,18 @@ def parse_product_local(bid, dirs):
         rating = round(ms_score * 20, 1)
         rating_src = "Microsoft"
 
+    set_stage(bid, "images")
     # Image processing
     raw_images = store_data.get("Images", [])
     image_url = get_best_image(raw_images)
 
     links = { "store": f"https://www.xbox.com/en-us/games/store/{bid}", "wiki": wiki_url }
 
+    set_stage(bid, "assemble html")
     html_uk = make_html_desc(desc_store_uk, wiki_desc_uk, links, "uk")
     html_en = make_html_desc(desc_store_en, "", links, "en")
 
+    set_stage(bid, "done")
     return {
         "id": bid,
         "name": clean_name,
@@ -240,12 +260,17 @@ def main():
     total = len(valid_ids)
 
     for i, bid in enumerate(valid_ids, 1):
+        set_stage(bid, "parse")
+        set_stage(bid, "parse")
         row = parse_product_local(bid, DIRS)
         
         if row:
             if not args.quick and not row["name"].startswith("UnknownID"):
+                set_stage(bid, "wiki download")
                 gp_collector.download_wiki_data(row["i18n"]["en"]["name"], gp_collector.safe_name(row["i18n"]["en"]["name"]), DIRS)
+                set_stage(bid, "hltb download")
                 gp_collector.download_hltb_data(row["i18n"]["en"]["name"], gp_collector.safe_name(row["i18n"]["en"]["name"]), DIRS)
+                set_stage(bid, "re-parse")
                 row = parse_product_local(bid, DIRS)
 
             final_rows.append(row)

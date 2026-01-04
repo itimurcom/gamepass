@@ -1,27 +1,24 @@
 # core/gp_collector.py
-# Версія: 11.5 (Clean Path: index.html)
+# Версія: 11.9 (Cleaned: No Deprecated Code)
 
 import os
 import json
 import time
-import html
-import re
-import csv
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# --- ДЖЕРЕЛА (Updated with Xbox lists) ---
+# --- ДЖЕРЕЛА ---
 SIGL_SOURCES = {
-    "PC Games":      "fdd9e2a7-0fee-49f6-ad69-4354098401ff",
-    "Console/Ult":   "29a81209-df6f-41fd-a528-2ae6b91f719c",
+    "PC":            "fdd9e2a7-0fee-49f6-ad69-4354098401ff",
+    "Console":       "f6f1f99f-9b49-4ccd-b3bf-4d9767a77f5e",
+    "Ultimate":      "29a81209-df6f-41fd-a528-2ae6b91f719c",
     "EA Play":       "1084205d-3543-4537-97d5-d32247fb7280",
     "Bethesda":      "25654f59-002d-4522-a89e-2710dc25c68f",
-    # Lists from Xbox.com
     "Leaving Soon":  "393f05bf-158a-4677-827e-854941a4253c",
     "Coming Soon":   "095bda36-f587-4631-9ea6-a496d6695508",
-    "Most Played":   "50190333-6625-46d5-af90-33630a916327",
-    "New Added":     "85639a09-90c7-4340-8452-9720498b58a1"
+    "New Added":     "85639a09-90c7-4340-8452-9720498b58a1",
+    "Most Played":   "50190333-6625-46d5-af90-33630a916327"
 }
 
 # --- SYSTEM ---
@@ -50,8 +47,6 @@ def setup_paths(base_dir):
     for d in dirs.values(): os.makedirs(d, exist_ok=True)
     files = {
         "sigl": os.path.join(base_dir, "sigl_merged.json"),
-        # ЗМІНА: тепер посилаємось на core/index.html
-        "master_html": "core/index.html", 
         "out_csv": "gamepass_catalog.csv",
         "missing_log": "missing_ids_report.txt"
     }
@@ -73,6 +68,8 @@ def http_get_json(url, headers=None, retries=3):
 # --- COLLECTOR ---
 def get_all_ids(market, lang, log_func=print):
     all_ids = set()
+    id_tags_map = {}
+    
     log_func(f"Опитування каталогів...", "МЕРЕЖА", "36")
     
     for name, uuid in SIGL_SOURCES.items():
@@ -86,10 +83,22 @@ def get_all_ids(market, lang, log_func=print):
                 if isinstance(item, dict):
                     gid = item.get("id") or item.get("productId")
                     if gid: 
-                        all_ids.add(str(gid))
+                        gid_str = str(gid)
+                        all_ids.add(gid_str)
+                        if gid_str not in id_tags_map: id_tags_map[gid_str] = []
+                        if name not in id_tags_map[gid_str]: id_tags_map[gid_str].append(name)
                         c += 1
+        elif isinstance(data, dict) and "id" in data:
+             gid = data.get("id")
+             if gid:
+                 gid_str = str(gid)
+                 all_ids.add(gid_str)
+                 if gid_str not in id_tags_map: id_tags_map[gid_str] = []
+                 id_tags_map[gid_str].append(name)
+                 c = 1
         print(f"   > {name:<15}: {c}")
-    return list(all_ids)
+        
+    return list(all_ids), id_tags_map
 
 def download_store_batch(ids, dirs, market, lang):
     if not ids: return
@@ -212,64 +221,25 @@ def download_hltb_data(name, clean_id, dirs, status_cb=None):
 # --- MULTI-THREADING HANDLERS ---
 
 def _worker_metadata(task):
-    # task = (bid, name, clean_id, dirs)
     bid, name, clean_id, dirs = task
-    
-    # 1. Wiki
-    try:
-        download_wiki_data(name, clean_id, dirs)
-    except Exception:
-        pass
-    
-    # 2. HLTB
-    try:
-        download_hltb_data(name, clean_id, dirs)
-    except Exception:
-        pass
-    
+    try: download_wiki_data(name, clean_id, dirs)
+    except: pass
+    try: download_hltb_data(name, clean_id, dirs)
+    except: pass
     return bid
 
 def download_metadata_threaded(tasks, dirs, log_func=print):
-    """
-    Виконує завантаження метаданих паралельно.
-    tasks: список кортежів (bid, name, clean_id)
-    """
-    if not tasks:
-        return
-    
+    if not tasks: return
     total = len(tasks)
     log_func(f"Паралельне завантаження для {total} ігор...", "ПОТОКИ", "35")
-    
-    # Підготовка повних даних для воркерів
     worker_tasks = [(t[0], t[1], t[2], dirs) for t in tasks]
-    
     completed = 0
     with ThreadPoolExecutor(max_workers=20) as executor:
         futures = {executor.submit(_worker_metadata, t): t for t in worker_tasks}
-        
         for future in as_completed(futures):
             completed += 1
             if completed % 5 == 0 or completed == total:
                 p = int((completed / total) * 100)
-                # Виводимо прогрес бар
                 bar = '=' * int(20 * completed // total) + '-' * (20 - int(20 * completed // total))
                 print(f"\r   > Прогрес: |{bar}| {completed}/{total} ({p}%)", end="", flush=True)
-    
-    print() # New line after bar
-
-# --- EXPORTER ---
-def clean_text(text):
-    if not text: return ""
-    text = html.unescape(text)
-    text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
-    text = re.sub(r'<[^>]+>', '', text)
-    text = text.replace('\xa0', ' ').replace('\r', '')
-    text = re.sub(r'[ \t]+', ' ', text)
-    text = re.sub(r'(\n\s*){3,}', '\n\n', text)
-    return text.strip()
-
-def save_html_report(rows, template_path, out_path):
-    return False, "DEPRECATED: Use gp_export.save_static_web_report"
-
-def save_csv_report(rows, out_path):
-    return False, "DEPRECATED: Use gp_export.save_csv_report"
+    print()

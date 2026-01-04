@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# gamepass.py — v11.5 (MVC Clean)
+# gamepass.py — v11.8 (Fix: No Template Check)
 
 import argparse
 import os
@@ -14,7 +14,7 @@ from datetime import datetime
 from core import gp_collector 
 from core import gp_export
 
-SCRIPT_VERSION = "v11.5"
+SCRIPT_VERSION = "v11.8"
 
 # --- SIGNAL HANDLER ---
 def aggressive_stop(signum, frame):
@@ -110,7 +110,7 @@ def get_best_image(store_data, lp_uk, lp_en):
         
     return target_url
 
-def parse_product_local(bid, dirs):
+def parse_product_local(bid, dirs, tags=None):
     path = os.path.join(dirs["products"], f"{gp_collector.safe_name(bid)}.json")
     
     set_stage(bid, "load product json")
@@ -197,6 +197,7 @@ def parse_product_local(bid, dirs):
         "ratingSource": rating_src,
         "year": year,
         "hours": hours,
+        "tags": tags or [],
         "publisher": props.get("PublisherName", ""),
         "developer": props.get("DeveloperName", ""),
         "image": image_url,
@@ -216,7 +217,8 @@ def main():
         print(f"          Виконайте: {_c('pip install howlongtobeatpy --break-system-packages', '33')}\n")
 
     p = argparse.ArgumentParser()
-    p.add_argument("--reset-cache", action="store_true")
+    p.add_argument("--reset-cache", action="store_true", help="Delete EVERYTHING (images, data, list)")
+    p.add_argument("--reset-merged", action="store_true", help="Delete only ID list to fetch new sources")
     p.add_argument("--quick", action="store_true")
     args = p.parse_args()
     
@@ -226,16 +228,29 @@ def main():
     if args.reset_cache:
         shutil.rmtree(CACHE_DIR, ignore_errors=True)
         DIRS, FILES = gp_collector.setup_paths(CACHE_DIR)
-        log("Кеш очищено.", "КЕШ", "33")
+        log("Повний кеш очищено.", "КЕШ", "33")
+    
+    if args.reset_merged:
+        if os.path.exists(FILES["sigl"]):
+            try:
+                os.remove(FILES["sigl"])
+                log("Список ID очищено (нове сканування джерел).", "КЕШ", "33")
+            except Exception as e:
+                log(f"Не вдалося видалити файл списку: {e}", "ПОМИЛКА", "31")
 
     ids = []
+    id_tags_map = {}
+
     if os.path.exists(FILES["sigl"]) and not args.reset_cache:
-        try: ids = json.load(open(FILES["sigl"]))["ids"]
+        try: 
+            data = json.load(open(FILES["sigl"]))
+            ids = data.get("ids", [])
+            id_tags_map = data.get("tags", {})
         except: pass
     
     if not ids:
-        ids = gp_collector.get_all_ids(MARKET, DATA_LANG, log)
-        gp_collector.atomic_save(FILES["sigl"], {"ids": ids})
+        ids, id_tags_map = gp_collector.get_all_ids(MARKET, DATA_LANG, log)
+        gp_collector.atomic_save(FILES["sigl"], {"ids": ids, "tags": id_tags_map})
     else:
         log(f"Локальний список: {len(ids)}", "КЕШ", "32")
 
@@ -265,11 +280,12 @@ def main():
     
     total = len(valid_ids)
     for i, bid in enumerate(valid_ids, 1):
-        # Швидкий парсинг (читання локального JSON)
-        row = parse_product_local(bid, DIRS)
+        # Pass tags to parser
+        tags = id_tags_map.get(str(bid), [])
+        row = parse_product_local(bid, DIRS, tags)
+        
         if row:
             rows_map[bid] = row
-            # Якщо режим не Quick і ім'я валідне -> додаємо в чергу на збагачення
             if not args.quick and not row["name"].startswith("UnknownID"):
                 enrich_queue.append((bid, row["i18n"]["en"]["name"], row["clean_id"]))
         
@@ -290,7 +306,8 @@ def main():
         total_q = len(enrich_queue)
         for bid, _, _ in enrich_queue:
             count += 1
-            new_row = parse_product_local(bid, DIRS)
+            tags = id_tags_map.get(str(bid), [])
+            new_row = parse_product_local(bid, DIRS, tags)
             if new_row:
                 rows_map[bid] = new_row
             if count % 20 == 0 or count == total_q: print_progress(count, total_q, "Re-parse")
@@ -303,12 +320,12 @@ def main():
     
     CATALOG_DIR = os.path.join(os.getcwd(), "catalog")
     
-    # 1. HTML/JS Static Export (Using FILES["master_html"] now)
-    ok, msg = gp_export.save_static_web_report(final_rows, FILES["master_html"], CATALOG_DIR)
+    # 1. JS Data Export ONLY
+    ok, msg = gp_export.export_data_js(final_rows, CATALOG_DIR)
     if ok: 
-        log(f"WEB: {os.path.join(CATALOG_DIR, 'index.html')}", "ГОТОВО", "32")
+        log(f"DATA: {os.path.join(CATALOG_DIR, 'data.js')}", "ГОТОВО", "32")
     else:
-        log(f"Помилка WEB: {msg}", "ERROR", "31")
+        log(f"Помилка JS: {msg}", "ERROR", "31")
 
     # 2. CSV Export
     ok, msg = gp_export.save_csv_report(final_rows, FILES["out_csv"])

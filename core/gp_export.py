@@ -1,25 +1,23 @@
 # core/gp_export.py
-# Версія: 11.5 (Clean Logic)
+# Версія: 11.8 (Data Only Mode)
 
 import os
 import json
 import csv
-import shutil
 
 # --- ASSETS ---
 NO_COVER_IMAGE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMyYzJjMmUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM4NjhlOGIiPk5PIElNQUdFPC90ZXh0Pjwvc3ZnPg=="
 
-def save_static_web_report(rows, source_html_path, output_dir):
+def export_data_js(rows, output_dir):
     """
-    Генерує статичний веб-сайт:
-    1. Створює папку output_dir.
-    2. Генерує data.js з даними.
-    3. Копіює туди master_html -> index.html.
+    Генерує ТІЛЬКИ файл даних data.js у вказаній папці.
+    Не чіпає HTML файли.
     """
     if not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
     
     # 1. Підготовка даних (Image Fallback)
+    # Ми модифікуємо rows in-place або копіюємо, тут це безпечно
     for r in rows:
         if not r.get("image"):
             r["image"] = NO_COVER_IMAGE
@@ -33,20 +31,9 @@ def save_static_web_report(rows, source_html_path, output_dir):
         json_str = json.dumps(rows, ensure_ascii=False)
         with open(data_js_path, "w", encoding="utf-8") as f:
             f.write(f"window.GP_DATA = {json_str};")
+        return True, "Updated data.js"
     except Exception as e:
         return False, f"Error writing data.js: {e}"
-
-    # 3. Копіювання майстер-HTML
-    target_html = os.path.join(output_dir, "index.html")
-    if os.path.exists(source_html_path):
-        try:
-            shutil.copy2(source_html_path, target_html)
-        except Exception as e:
-             return False, f"Error copying template: {e}"
-    else:
-        return False, f"Master HTML not found: {source_html_path}"
-
-    return True, "OK"
 
 def save_csv_report(rows, out_path):
     try:

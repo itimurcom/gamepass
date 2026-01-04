@@ -53,9 +53,13 @@ tr:hover { background-color: rgba(0,0,0,0.02); }
 [data-theme="dark"] tr:hover { background-color: rgba(255,255,255,0.05); }
 
 img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; background: #eee; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: block; }
-.tier-badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 4px; }
+
+.tier-badge { display: inline-block; padding: 3px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 4px; margin-right: 4px; }
 .tier-AAA { background: var(--accent); color: white; }
 .tier-Indie { background: rgba(10, 132, 255, 0.15); color: var(--accent); }
+.tag-badge { background: #ff9500; color: white; }
+.tag-leaving { background: #ff3b30; color: white; }
+.tag-new { background: #30d158; color: white; }
 
 .rating-val { font-weight: 700; font-size: 15px; }
 .rating-high { color: #008a4b; }
@@ -103,8 +107,15 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 .fab-mini { width: 44px; height: 44px; border-radius: 50%; background: var(--card); color: var(--text); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-weight: bold; }
 @keyframes slideUpFab { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* NO AVATAR STYLE */
-.no-avatar { filter: grayscale(100%) opacity(0.6); border: 1px dashed var(--border); }
+/* === ADAPTIVE NO AVATAR === */
+.no-avatar { 
+    filter: invert(0.85) grayscale(100%);
+    border: 1px dashed var(--border);
+    opacity: 0.8;
+}
+[data-theme="dark"] .no-avatar { 
+    filter: grayscale(100%) opacity(0.6);
+}
 
 /* INJECTED CSS FOR DESCRIPTION BLOCKS */
 .desc-block { margin-bottom: 24px; }
@@ -126,8 +137,9 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
             </div>
         </div>
         <div class="field"><label data-t="search">Пошук</label><input id="searchTxt"></div>
-        <div class="field"><label data-t="year">Рік</label><select id="filterYear" multiple></select></div>
+        <div class="field"><label data-t="cat">Категорія</label><select id="filterTag" multiple></select></div>
         <div class="field"><label data-t="genre">Жанр</label><select id="filterGenre" multiple></select></div>
+        <div class="field"><label data-t="year">Рік</label><select id="filterYear" multiple></select></div>
         <div class="field"><label>Tier</label><select id="filterTier"><option value="">All</option><option value="AAA">AAA</option><option value="Indie/AA">Indie/AA</option></select></div>
         <div class="field" style="flex:0 0 80px;"><label data-t="rating">Рейт. ≥</label><input id="filterRating" type="number" min="0" max="100"></div>
         <div class="field" style="flex:0 0 auto; justify-content:center; padding-bottom: 10px;">
@@ -190,22 +202,21 @@ let OPEN_GAME_ID = null;
 
 const I18N = {
     uk: {
-        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути",
+        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", cat: "КАТЕГОРІЯ", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути",
         viewList: "☰ Список", viewTiles: "▦ Плитка", poster: "Постер", name: "Назва", info: "Інфо", time: "Час", actions: "Дії", details: "Деталі гри", read: "Читати", hours: "год."
     },
     en: {
-        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", rating: "RATING", fav: "Favorites", reset: "✕ Reset",
+        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", cat: "CATEGORY", rating: "RATING", fav: "Favorites", reset: "✕ Reset",
         viewList: "☰ List", viewTiles: "▦ Tiles", poster: "Poster", name: "Name", info: "Info", time: "Time", actions: "Actions", details: "Game Details", read: "Read", hours: "h"
     }
 };
 
 function init() {
     if(!DATA.length) { 
-        // Silent fail or minimal UI update if no data is present yet
-        document.getElementById("lblTitle").innerText = "Game Pass (0)";
+        const titleEl = document.getElementById("lblTitle");
+        if(titleEl) titleEl.innerText = "Game Pass (0)";
         return; 
     }
-    document.getElementById("lblTitle").innerText = `Game Pass (${DATA.length})`;
     applyTheme(CUR_THEME);
     applyLang(CUR_LANG);
     setupFilters();
@@ -225,7 +236,8 @@ function applyTheme(theme) {
 function applyLang(lang) {
     CUR_LANG = lang;
     localStorage.setItem("gp_lang", lang);
-    document.getElementById("btnLang").innerText = lang.toUpperCase();
+    const btn = document.getElementById("btnLang");
+    if(btn) btn.innerText = lang.toUpperCase();
     
     const t = I18N[lang];
     document.querySelectorAll("[data-t]").forEach(el => {
@@ -254,12 +266,21 @@ function openModal(idx) {
     
     const imgClass = game.no_avatar ? "game-poster no-avatar" : "game-poster";
 
+    // Tags in Modal
+    let tagsHtml = "";
+    (game.tags || []).forEach(tg => {
+        if(tg.includes("Leaving")) tagsHtml += `<span class="tag tag-leaving">${tg}</span> `;
+        else if(tg.includes("New")) tagsHtml += `<span class="tag tag-new">${tg}</span> `;
+        else tagsHtml += `<span class="tag">${tg}</span> `;
+    });
+
     content.innerHTML = `
         <div class="game-hero">
             <img src="${esc(game.image)}" class="${imgClass}">
             <div class="game-info">
                 <div style="font-size:24px; font-weight:800; margin-bottom:10px; line-height:1.2;">${esc(i18nData.name)}</div>
                 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:15px;">
+                    ${tagsHtml}
                     <span class="tag">${esc(game.year)}</span>
                     <span class="tag">${esc(game.publisher)}</span>
                     <span class="tag" style="background:${game.tier==='AAA'?'var(--accent)':'var(--bg)'}; color:${game.tier==='AAA'?'#fff':'inherit'}">${esc(game.tier)}</span>
@@ -287,6 +308,7 @@ document.getElementById("modalOverlay").onclick = (e) => { if(e.target === docum
 
 function renderPagination(total) {
     const container = document.getElementById("pagination");
+    if(!container) return;
     container.innerHTML = "";
     if (total <= 1) return; 
     const createBtn = (label, page, isActive = false) => {
@@ -312,20 +334,43 @@ function renderPagination(total) {
 }
 
 function applyFilters() {
-    const txt = document.getElementById("searchTxt").value.toLowerCase();
-    const years = Array.from(document.getElementById("filterYear").selectedOptions).map(o=>o.value);
-    const genres = Array.from(document.getElementById("filterGenre").selectedOptions).map(o=>o.value);
-    const tier = document.getElementById("filterTier").value;
-    const r = Number(document.getElementById("filterRating").value);
-    const f = document.getElementById("filterFav").checked;
+    const txtEl = document.getElementById("searchTxt");
+    const txt = txtEl ? txtEl.value.toLowerCase() : "";
+    
+    const yearEl = document.getElementById("filterYear");
+    const years = yearEl ? Array.from(yearEl.selectedOptions).map(o=>o.value) : [];
+    
+    const genreEl = document.getElementById("filterGenre");
+    const genres = genreEl ? Array.from(genreEl.selectedOptions).map(o=>o.value) : [];
+    
+    const tagEl = document.getElementById("filterTag");
+    const tags = tagEl ? Array.from(tagEl.selectedOptions).map(o=>o.value) : [];
+    
+    const tierEl = document.getElementById("filterTier");
+    const tier = tierEl ? tierEl.value : "";
+    
+    const rEl = document.getElementById("filterRating");
+    const r = rEl ? Number(rEl.value) : 0;
+    
+    const fEl = document.getElementById("filterFav");
+    const f = fEl ? fEl.checked : false;
+    
     const favs = getFavs();
 
     FILTERED_LIST = DATA.filter(x => {
         const name = (x.i18n && x.i18n[CUR_LANG] ? x.i18n[CUR_LANG].name : x.name).toLowerCase();
         if(txt && !name.includes(txt)) return false;
         if(years.length && !years.includes(x.year)) return false;
+        
         const gStr = x.i18n?.uk?.genre || "";
         if(genres.length && !gStr.split(", ").some(g=>genres.includes(g))) return false;
+        
+        // Tags Filter
+        if(tags.length) {
+            const myTags = x.tags || [];
+            if(!myTags.some(t => tags.includes(t))) return false;
+        }
+
         if(tier && x.tier !== tier) return false;
         if(r && (x.rating || 0) < r) return false;
         if(f && !favs.has(x.id)) return false;
@@ -338,6 +383,12 @@ function applyFilters() {
 
 function render() {
     const t = I18N[CUR_LANG];
+    
+    // === FIX v11.11: Update Live Counter ===
+    const titleEl = document.getElementById("lblTitle");
+    if(titleEl) titleEl.innerText = `Game Pass (${FILTERED_LIST.length})`;
+    // ========================================
+
     FILTERED_LIST.sort((a, b) => {
         let valA = a[SORT.key], valB = b[SORT.key];
         if (SORT.key === 'name') {
@@ -353,10 +404,11 @@ function render() {
 
     document.querySelectorAll("th.sortable").forEach(th => {
         th.classList.remove("sort-asc", "sort-desc");
-        th.querySelector(".sort-icon").textContent = "↕";
+        const icon = th.querySelector(".sort-icon");
+        if(icon) icon.textContent = "↕";
         if(th.dataset.key === SORT.key) {
             th.classList.add(SORT.asc ? "sort-asc" : "sort-desc");
-            th.querySelector(".sort-icon").textContent = SORT.asc ? "▲" : "▼";
+            if(icon) icon.textContent = SORT.asc ? "▲" : "▼";
         }
     });
 
@@ -368,10 +420,17 @@ function render() {
     const favs = getFavs();
     const isTiles = localStorage.getItem("gp_view") === "tiles";
 
-    document.getElementById("tableView").style.display = isTiles ? "none" : "block";
-    document.getElementById("tilesView").style.display = isTiles ? "block" : "none";
-    document.getElementById("btnTable").className = isTiles ? "btn" : "btn active";
-    document.getElementById("btnTiles").className = isTiles ? "btn active" : "btn";
+    const tableV = document.getElementById("tableView");
+    if(tableV) tableV.style.display = isTiles ? "none" : "block";
+    
+    const tilesV = document.getElementById("tilesView");
+    if(tilesV) tilesV.style.display = isTiles ? "block" : "none";
+    
+    const btnTable = document.getElementById("btnTable");
+    if(btnTable) btnTable.className = isTiles ? "btn" : "btn active";
+    
+    const btnTiles = document.getElementById("btnTiles");
+    if(btnTiles) btnTiles.className = isTiles ? "btn active" : "btn";
     
     renderPagination(totalPages);
 
@@ -381,49 +440,73 @@ function render() {
     };
 
     if(isTiles) {
-        document.getElementById("tiles").innerHTML = pageData.map((raw, i) => {
-            const x = getRowData(raw);
-            const globalIdx = start + i;
-            const imgClass = x.no_avatar ? "no-avatar" : "";
-            return `
-            <div class="tile" onclick="openModal(${globalIdx})">
-                <div style="position:relative">
-                    <img src="${esc(x.image)}" loading="lazy" class="${imgClass}">
-                    <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="event.stopPropagation(); toggleFav(this)">★</button>
-                </div>
-                <div class="tile-title">${esc(x.displayName)}</div>
-                <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
-                    <span>${esc(x.year)}</span>
-                    <span style="font-weight:bold; color:${x.rating>=80?'#008a4b':(x.rating>=60?'#bf8600':'var(--text-sec)')}">★ ${x.rating||'-'}</span>
-                </div>
-            </div>`
-        }).join("");
+        const tilesContainer = document.getElementById("tiles");
+        if(tilesContainer) {
+            tilesContainer.innerHTML = pageData.map((raw, i) => {
+                const x = getRowData(raw);
+                const globalIdx = start + i;
+                const imgClass = x.no_avatar ? "no-avatar" : "";
+                
+                // Render Badges
+                let tagsHtml = "";
+                (x.tags || []).forEach(tg => {
+                     if(tg === "Leaving Soon") tagsHtml += `<span class="tag-badge tag-leaving" style="font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;">👋</span>`;
+                     else if(tg === "New Added") tagsHtml += `<span class="tag-badge tag-new" style="font-size:10px; padding:2px 4px; border-radius:4px; margin-right:4px;">NEW</span>`;
+                });
+
+                return `
+                <div class="tile" onclick="openModal(${globalIdx})">
+                    <div style="position:relative">
+                        <img src="${esc(x.image)}" loading="lazy" class="${imgClass}">
+                        <div style="position:absolute; top:8px; left:8px; display:flex;">${tagsHtml}</div>
+                        <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="event.stopPropagation(); toggleFav(this)">★</button>
+                    </div>
+                    <div class="tile-title">${esc(x.displayName)}</div>
+                    <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
+                        <span>${esc(x.year)}</span>
+                        <span style="font-weight:bold; color:${x.rating>=80?'#008a4b':(x.rating>=60?'#bf8600':'var(--text-sec)')}">★ ${x.rating||'-'}</span>
+                    </div>
+                </div>`
+            }).join("");
+        }
     } else {
-        document.getElementById("tbody").innerHTML = pageData.map((raw, i) => {
-            const x = getRowData(raw);
-            const globalIdx = start + i;
-            const imgClass = x.no_avatar ? "cover no-avatar" : "cover";
-            return `
-            <tr>
-                <td><img src="${esc(x.image)}" class="${imgClass}" loading="lazy"></td>
-                <td>
-                    <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
-                    ${x.tier === "AAA" ? '<span class="tier-badge tier-AAA">AAA</span>' : '<span class="tier-badge tier-Indie">Indie/AA</span>'}
-                    <div style="font-size:12px; color:var(--text-sec); margin-top:4px;">${esc(x.developer)}</div>
-                </td>
-                <td>${esc(x.displayGenre)}</td>
-                <td><button class="btn-read" onclick="openModal(${globalIdx})">${t.read}</button></td>
-                <td>
-                    <div class="rating-val ${x.rating>=80?'rating-high':(x.rating>=60?'rating-mid':'rating-low')}">${esc(x.rating || '-')}</div>
-                    <div style="font-size:10px; color:var(--text-sec);">${esc(x.ratingSource)}</div>
-                </td>
-                <td>${esc(x.year)}</td>
-                <td>${esc(x.hours)}</td>
-                <td>
-                    <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="toggleFav(this)">★</button>
-                </td>
-            </tr>`
-        }).join("");
+        const tbody = document.getElementById("tbody");
+        if(tbody) {
+            tbody.innerHTML = pageData.map((raw, i) => {
+                const x = getRowData(raw);
+                const globalIdx = start + i;
+                const imgClass = x.no_avatar ? "cover no-avatar" : "cover";
+                
+                let tagsHtml = "";
+                (x.tags || []).forEach(tg => {
+                     if(tg === "Leaving Soon") tagsHtml += `<span class="tier-badge tag-leaving">Leaving</span>`;
+                     else if(tg === "New Added") tagsHtml += `<span class="tier-badge tag-new">New</span>`;
+                     else if(tg !== "PC" && tg !== "Console" && tg !== "Ultimate") tagsHtml += `<span class="tier-badge tag-badge">${tg}</span>`;
+                });
+
+                return `
+                <tr>
+                    <td><img src="${esc(x.image)}" class="${imgClass}" loading="lazy"></td>
+                    <td>
+                        <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
+                        ${tagsHtml}
+                        ${x.tier === "AAA" ? '<span class="tier-badge tier-AAA">AAA</span>' : '<span class="tier-badge tier-Indie">Indie/AA</span>'}
+                        <div style="font-size:12px; color:var(--text-sec); margin-top:4px;">${esc(x.developer)}</div>
+                    </td>
+                    <td>${esc(x.displayGenre)}</td>
+                    <td><button class="btn-read" onclick="openModal(${globalIdx})">${t.read}</button></td>
+                    <td>
+                        <div class="rating-val ${x.rating>=80?'rating-high':(x.rating>=60?'rating-mid':'rating-low')}">${esc(x.rating || '-')}</div>
+                        <div style="font-size:10px; color:var(--text-sec);">${esc(x.ratingSource)}</div>
+                    </td>
+                    <td>${esc(x.year)}</td>
+                    <td>${esc(x.hours)}</td>
+                    <td>
+                        <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="toggleFav(this)">★</button>
+                    </td>
+                </tr>`
+            }).join("");
+        }
     }
 }
 
@@ -433,26 +516,41 @@ function toggleFav(btn) {
     s.has(id) ? s.delete(id) : s.add(id);
     setFavs(s);
     btn.classList.toggle("on");
-    if(document.getElementById("filterFav").checked) applyFilters();
+    const favCheck = document.getElementById("filterFav");
+    if(favCheck && favCheck.checked) applyFilters();
 }
 
 function setupFilters() {
     const years = [...new Set(DATA.map(x=>x.year).filter(Boolean))].sort().reverse();
     const genres = [...new Set(DATA.flatMap(x=> (x.i18n?.uk?.genre || "").split(", ")).filter(Boolean))].sort();
+    const tags = [...new Set(DATA.flatMap(x => x.tags || []))].sort();
+
+    const yEl = document.getElementById("filterYear");
+    if(yEl) yEl.innerHTML = years.map(y=>`<option>${y}</option>`).join("");
     
-    document.getElementById("filterYear").innerHTML = years.map(y=>`<option>${y}</option>`).join("");
-    document.getElementById("filterGenre").innerHTML = genres.map(g=>`<option>${g}</option>`).join("");
+    const gEl = document.getElementById("filterGenre");
+    if(gEl) gEl.innerHTML = genres.map(g=>`<option>${g}</option>`).join("");
+    
+    const tEl = document.getElementById("filterTag");
+    if(tEl) tEl.innerHTML = tags.map(t=>`<option>${t}</option>`).join("");
     
     document.querySelectorAll("select, input").forEach(e => e.onchange = applyFilters);
-    document.getElementById("searchTxt").oninput = applyFilters;
-    document.getElementById("btnReset").onclick = () => {
+    const searchEl = document.getElementById("searchTxt");
+    if(searchEl) searchEl.oninput = applyFilters;
+    
+    const btnReset = document.getElementById("btnReset");
+    if(btnReset) btnReset.onclick = () => {
         document.querySelectorAll("select").forEach(s => Array.from(s.options).forEach(o => o.selected = false));
         document.querySelectorAll("input").forEach(i => {if(i.type==='checkbox')i.checked=false; else i.value=''});
         SORT = { key: 'rating', asc: false };
         applyFilters();
     };
-    document.getElementById("btnTable").onclick = () => { localStorage.setItem("gp_view","table"); render(); };
-    document.getElementById("btnTiles").onclick = () => { localStorage.setItem("gp_view","tiles"); render(); };
+    
+    const btnTable = document.getElementById("btnTable");
+    if(btnTable) btnTable.onclick = () => { localStorage.setItem("gp_view","table"); render(); };
+    
+    const btnTiles = document.getElementById("btnTiles");
+    if(btnTiles) btnTiles.onclick = () => { localStorage.setItem("gp_view","tiles"); render(); };
     
     document.querySelectorAll("th.sortable").forEach(th => {
         th.onclick = () => {

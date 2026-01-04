@@ -1,5 +1,5 @@
 # core/gp_collector.py
-# Версія: 11.0 (Threading Support)
+# Версія: 11.5 (Clean Path: index.html)
 
 import os
 import json
@@ -11,13 +11,17 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# --- ДЖЕРЕЛА ---
+# --- ДЖЕРЕЛА (Updated with Xbox lists) ---
 SIGL_SOURCES = {
     "PC Games":      "fdd9e2a7-0fee-49f6-ad69-4354098401ff",
     "Console/Ult":   "29a81209-df6f-41fd-a528-2ae6b91f719c",
     "EA Play":       "1084205d-3543-4537-97d5-d32247fb7280",
     "Bethesda":      "25654f59-002d-4522-a89e-2710dc25c68f",
-    "New Games":     "88908819-21c6-4560-9b48-d3f3f59e9791"
+    # Lists from Xbox.com
+    "Leaving Soon":  "393f05bf-158a-4677-827e-854941a4253c",
+    "Coming Soon":   "095bda36-f587-4631-9ea6-a496d6695508",
+    "Most Played":   "50190333-6625-46d5-af90-33630a916327",
+    "New Added":     "85639a09-90c7-4340-8452-9720498b58a1"
 }
 
 # --- SYSTEM ---
@@ -46,8 +50,8 @@ def setup_paths(base_dir):
     for d in dirs.values(): os.makedirs(d, exist_ok=True)
     files = {
         "sigl": os.path.join(base_dir, "sigl_merged.json"),
-        "template": "core/template.html",
-        "out_html": "gamepass_catalog.html",
+        # ЗМІНА: тепер посилаємось на core/index.html
+        "master_html": "core/index.html", 
         "out_csv": "gamepass_catalog.csv",
         "missing_log": "missing_ids_report.txt"
     }
@@ -265,42 +269,7 @@ def clean_text(text):
     return text.strip()
 
 def save_html_report(rows, template_path, out_path):
-    if not os.path.exists(template_path): return False, "No template"
-    try:
-        with open(template_path, "r", encoding="utf-8") as f: tmpl = f.read()
-        
-        css = """
-        .desc-block { margin-bottom: 24px; }
-        .desc-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--accent); text-decoration: none; margin-bottom: 8px; }
-        .desc-header:hover { text-decoration: underline; }
-        .desc-body { font-size: 15px; line-height: 1.6; color: var(--text); }
-        .rating-low { color: #ff3b30; }
-        """
-        if ".desc-block" not in tmpl: tmpl = tmpl.replace("</style>", f"{css}\n</style>")
-        
-        # Safe replacement for template literals
-        tmpl = tmpl.replace("${esc(i18nData.desc)}", "${i18nData.desc}")
-        out = tmpl.replace("__TITLE__", f"Game Pass ({len(rows)})")
-        out = out.replace('title: "Каталог Game Pass"', f'title: "Game Pass Catalog ({len(rows)})"')
-        out = out.replace("__DATA_JSON__", json.dumps(rows, ensure_ascii=False))
-        
-        with open(out_path, "w", encoding="utf-8") as f: f.write(out)
-        return True, "OK"
-    except Exception as e: return False, str(e)
+    return False, "DEPRECATED: Use gp_export.save_static_web_report"
 
 def save_csv_report(rows, out_path):
-    try:
-        with open(out_path, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=["id","name","rating","hours","year","desc_preview"], extrasaction="ignore")
-            w.writeheader()
-            for r in rows:
-                w.writerow({
-                    "id": r["id"],
-                    "name": r["i18n"]["uk"]["name"],
-                    "rating": r["rating"],
-                    "hours": r["hours"],
-                    "year": r["year"],
-                    "desc_preview": clean_text(r["i18n"]["uk"]["desc"])[:200]
-                })
-        return True, "OK"
-    except Exception as e: return False, str(e)
+    return False, "DEPRECATED: Use gp_export.save_csv_report"

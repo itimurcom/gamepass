@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# gamepass.py — v11.2 (Image Logic Fix)
+# gamepass.py — v11.5 (MVC Clean)
 
 import argparse
 import os
@@ -12,8 +12,9 @@ import signal
 from datetime import datetime
 
 from core import gp_collector 
+from core import gp_export
 
-SCRIPT_VERSION = "v11.2"
+SCRIPT_VERSION = "v11.5"
 
 # --- SIGNAL HANDLER ---
 def aggressive_stop(signum, frame):
@@ -81,26 +82,16 @@ def make_html_desc(store_txt, wiki_txt, links, lang="uk"):
     return html_out
 
 def get_best_image(store_data, lp_uk, lp_en):
-    """
-    Розумний пошук зображення:
-    1. Шукаємо в локалізованих даних (UK), потім (EN), потім в загальних.
-    2. Пріоритет типів: Poster > BoxArt > BrandedKeyArt > SuperHeroArt.
-    """
     candidates = []
-    
-    # Збираємо всі можливі картинки в єдиний список
     if lp_uk.get("Images"): candidates.extend(lp_uk["Images"])
     if lp_en.get("Images"): candidates.extend(lp_en["Images"])
     if store_data.get("Images"): candidates.extend(store_data["Images"])
     
     if not candidates: return ""
 
-    # Пріоритети типів зображень
     priority_types = ["Poster", "BoxArt", "BrandedKeyArt", "TitledHeroArt", "SuperHeroArt", "Image"]
-    
     target_url = ""
     
-    # Прохід 1: Шукаємо ідеальний збіг за типом
     for p_type in priority_types:
         for img in candidates:
             if img.get("ImagePurpose") == p_type and img.get("Uri"):
@@ -108,7 +99,6 @@ def get_best_image(store_data, lp_uk, lp_en):
                 break
         if target_url: break
     
-    # Прохід 2: Якщо не знайшли, беремо перше ліпше, що має Uri
     if not target_url:
         for img in candidates:
             if img.get("Uri"):
@@ -147,7 +137,6 @@ def parse_product_local(bid, dirs):
     if genre.lower() == "game": genre = "Unknown" 
 
     desc_store_uk = clean_text(lp_uk.get("ProductDescription") or lp_uk.get("ShortDescription") or "")
-    # Fix v11.1: Fallback to UK if EN is missing
     desc_store_en = clean_text(lp_en.get("ProductDescription") or lp_en.get("ShortDescription") or desc_store_uk)
 
     clean_id = gp_collector.safe_name(clean_name)
@@ -189,7 +178,6 @@ def parse_product_local(bid, dirs):
         rating_src = "Microsoft"
 
     set_stage(bid, "images")
-    # Fix v11.2: Передаємо всі джерела даних для пошуку кращої картинки
     image_url = get_best_image(store_data, lp_uk, lp_en)
 
     links = { "store": f"https://www.xbox.com/en-us/games/store/{bid}", "wiki": wiki_url }
@@ -296,14 +284,12 @@ def main():
         log("Фаза 2: Пропуск (всі дані є або режим quick)", "SKIP", "33")
 
     # --- ЕТАП 3: Оновлення (Re-Assemble) ---
-    # Оновлюємо дані тільки для тих, хто був у черзі (бо з'явилися нові файли Wiki/HLTB)
     if enrich_queue:
         log("Фаза 3: Оновлення змінених записів...", "ОНОВЛЕННЯ", "36")
         count = 0
         total_q = len(enrich_queue)
         for bid, _, _ in enrich_queue:
             count += 1
-            # Перечитуємо, тепер Wiki/HLTB файли існують і підтягнуться
             new_row = parse_product_local(bid, DIRS)
             if new_row:
                 rows_map[bid] = new_row
@@ -312,12 +298,22 @@ def main():
 
     final_rows = list(rows_map.values())
 
+    # --- EXPORT TO STATIC WEB ---
     log("Збереження...", "ЕКСПОРТ", "32")
-    ok, msg = gp_collector.save_html_report(final_rows, FILES["template"], FILES["out_html"])
-    if ok: log(f"HTML: {FILES['out_html']}", "ГОТОВО", "32")
     
-    ok, msg = gp_collector.save_csv_report(final_rows, FILES["out_csv"])
-    if ok: log(f"CSV: {FILES['out_csv']}", "ГОТОВО", "32")
+    CATALOG_DIR = os.path.join(os.getcwd(), "catalog")
+    
+    # 1. HTML/JS Static Export (Using FILES["master_html"] now)
+    ok, msg = gp_export.save_static_web_report(final_rows, FILES["master_html"], CATALOG_DIR)
+    if ok: 
+        log(f"WEB: {os.path.join(CATALOG_DIR, 'index.html')}", "ГОТОВО", "32")
+    else:
+        log(f"Помилка WEB: {msg}", "ERROR", "31")
+
+    # 2. CSV Export
+    ok, msg = gp_export.save_csv_report(final_rows, FILES["out_csv"])
+    if ok: 
+        log(f"CSV: {FILES['out_csv']}", "ГОТОВО", "32")
 
     log(f"Успішно: {_c(str(len(final_rows)), '32')}", "РЕЗУЛЬТАТ", "32")
 

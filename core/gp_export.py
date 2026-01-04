@@ -1,85 +1,71 @@
 # core/gp_export.py
-# Export helpers (HTML/CSV) extracted from gp_collector to keep responsibilities clean.
+# Версія: 11.5 (Clean Logic)
 
 import os
 import json
 import csv
+import shutil
 
-def save_html_report(rows, template_path, out_path):
+# --- ASSETS ---
+NO_COVER_IMAGE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMyYzJjMmUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM4NjhlOGIiPk5PIElNQUdFPC90ZXh0Pjwvc3ZnPg=="
+
+def save_static_web_report(rows, source_html_path, output_dir):
     """
-    Render a single self-contained HTML file using core/template.html.
-
-    The template is expected to contain the placeholder:
-        __DATASET_JSON__
-    which will be replaced by a JSON array of rows.
+    Генерує статичний веб-сайт:
+    1. Створює папку output_dir.
+    2. Генерує data.js з даними.
+    3. Копіює туди master_html -> index.html.
     """
-    if not os.path.exists(template_path):
-        return False, "No template"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+    
+    # 1. Підготовка даних (Image Fallback)
+    for r in rows:
+        if not r.get("image"):
+            r["image"] = NO_COVER_IMAGE
+            r["no_avatar"] = True
+        else:
+            r["no_avatar"] = False
 
+    # 2. Запис даних у JS файл
+    data_js_path = os.path.join(output_dir, "data.js")
     try:
-        with open(template_path, "r", encoding="utf-8") as f:
-            tmpl = f.read()
-
-        dataset_json = json.dumps(rows, ensure_ascii=False)
-        # JS-safety: avoid U+2028/U+2029 breaking <script> parsing
-        dataset_json = dataset_json.replace(" ", "\\u2028").replace(" ", "\\u2029")
-        # Basic hardening for embedded scripts
-        dataset_json = dataset_json.replace("</", "<\/")
-        out = tmpl
-        # Support both placeholders (template versions differ)
-        out = out.replace("__DATASET_JSON__", dataset_json)
-        out = out.replace("__DATA_JSON__", dataset_json)
-        out = out.replace("__TITLE__", "Game Pass Catalog")
-
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(out)
-
-        return True, "OK"
+        json_str = json.dumps(rows, ensure_ascii=False)
+        with open(data_js_path, "w", encoding="utf-8") as f:
+            f.write(f"window.GP_DATA = {json_str};")
     except Exception as e:
-        return False, str(e)
+        return False, f"Error writing data.js: {e}"
+
+    # 3. Копіювання майстер-HTML
+    target_html = os.path.join(output_dir, "index.html")
+    if os.path.exists(source_html_path):
+        try:
+            shutil.copy2(source_html_path, target_html)
+        except Exception as e:
+             return False, f"Error copying template: {e}"
+    else:
+        return False, f"Master HTML not found: {source_html_path}"
+
+    return True, "OK"
 
 def save_csv_report(rows, out_path):
-    """
-    Export a lightweight CSV snapshot for debugging/analysis.
-    """
     try:
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        def _clean(t):
+            if not t: return ""
+            return str(t).replace("\n", " ").replace("\r", "")
+
         with open(out_path, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(
-                f,
-                fieldnames=[
-                    "id", "name_uk", "name_en", "genres", "rating", "ratingSource",
-                    "year", "hours", "publisher", "developer", "isAAA", "isIndie"
-                ],
-                extrasaction="ignore"
-            )
+            w = csv.DictWriter(f, fieldnames=["id","name","rating","hours","year","desc_preview"], extrasaction="ignore")
             w.writeheader()
-
             for r in rows:
-                i18n = r.get("i18n", {})
-                uk = i18n.get("uk", {})
-                en = i18n.get("en", {})
-
-                genres = r.get("genres") or []
-                if isinstance(genres, list):
-                    genres_csv = ", ".join([str(x) for x in genres if x])
-                else:
-                    genres_csv = str(genres)
-
                 w.writerow({
-                    "id": r.get("id", ""),
-                    "name_uk": uk.get("name", ""),
-                    "name_en": en.get("name", ""),
-                    "genres": genres_csv,
-                    "rating": r.get("rating", ""),
-                    "ratingSource": r.get("ratingSource", ""),
-                    "year": r.get("year", ""),
-                    "hours": r.get("hours", ""),
-                    "publisher": r.get("publisher", ""),
-                    "developer": r.get("developer", ""),
-                    "isAAA": r.get("isAAA", False),
-                    "isIndie": r.get("isIndie", False),
+                    "id": r["id"],
+                    "name": r["i18n"]["uk"]["name"],
+                    "rating": r["rating"],
+                    "hours": r["hours"],
+                    "year": r["year"],
+                    "desc_preview": _clean(r["i18n"]["uk"]["desc"])[:200]
                 })
-
         return True, "OK"
-    except Exception as e:
-        return False, str(e)
+    except Exception as e: return False, str(e)

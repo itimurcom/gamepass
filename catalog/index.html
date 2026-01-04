@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__TITLE__</title>
+<title>Game Pass Catalog</title>
 <style>
 :root {
     --bg: #f5f5f7;
@@ -16,7 +16,6 @@
     --shadow: 0 4px 20px rgba(0,0,0,0.08);
     --input-bg: #fff;
 }
-/* Dark Mode */
 [data-theme="dark"] {
     --bg: #1c1c1e;
     --card: #2c2c2e;
@@ -95,7 +94,7 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 .tag { background: var(--bg); padding: 4px 10px; border-radius: 6px; color: var(--text); border: 1px solid var(--border); }
 .desc-text { font-size: 16px; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
 
-/* FLOATING SETTINGS - Z-INDEX FIXED */
+/* FLOATING SETTINGS */
 .float-settings { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column-reverse; gap: 10px; align-items: center; }
 .fab-main { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; border: none; transition: transform 0.2s; }
 .fab-main:hover { transform: scale(1.1); }
@@ -104,7 +103,15 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 .fab-mini { width: 44px; height: 44px; border-radius: 50%; background: var(--card); color: var(--text); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-weight: bold; }
 @keyframes slideUpFab { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
+/* NO AVATAR STYLE */
+.no-avatar { filter: grayscale(100%) opacity(0.6); border: 1px dashed var(--border); }
+
 /* INJECTED CSS FOR DESCRIPTION BLOCKS */
+.desc-block { margin-bottom: 24px; }
+.desc-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--accent); text-decoration: none; margin-bottom: 8px; }
+.desc-header:hover { text-decoration: underline; }
+.desc-body { font-size: 15px; line-height: 1.6; color: var(--text); }
+.rating-low { color: #ff3b30; }
 </style>
 </head>
 <body>
@@ -167,15 +174,19 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
     </div>
 </div>
 
+<script src="data.js"></script> 
+
 <script>
-const DATA = __DATA_JSON__;
+// Load Data from Global Variable
+const DATA = window.GP_DATA || [];
+
 const PAGE_SIZE = 50;
 let CUR_PAGE = 1;
 let FILTERED_LIST = DATA;
 let SORT = { key: 'rating', asc: false };
 let CUR_THEME = localStorage.getItem("gp_theme") || "light";
 let CUR_LANG = localStorage.getItem("gp_lang") || "uk";
-let OPEN_GAME_ID = null; // Track opened game
+let OPEN_GAME_ID = null;
 
 const I18N = {
     uk: {
@@ -189,6 +200,12 @@ const I18N = {
 };
 
 function init() {
+    if(!DATA.length) { 
+        // Silent fail or minimal UI update if no data is present yet
+        document.getElementById("lblTitle").innerText = "Game Pass (0)";
+        return; 
+    }
+    document.getElementById("lblTitle").innerText = `Game Pass (${DATA.length})`;
     applyTheme(CUR_THEME);
     applyLang(CUR_LANG);
     setupFilters();
@@ -210,9 +227,7 @@ function applyLang(lang) {
     localStorage.setItem("gp_lang", lang);
     document.getElementById("btnLang").innerText = lang.toUpperCase();
     
-    // 1. Static UI
     const t = I18N[lang];
-    document.getElementById("lblTitle").innerText = t.title;
     document.querySelectorAll("[data-t]").forEach(el => {
         const k = el.getAttribute("data-t");
         if(t[k]) {
@@ -220,11 +235,7 @@ function applyLang(lang) {
             else el.innerText = t[k];
         }
     });
-    
-    // 2. Refresh Table
     render(); 
-    
-    // 3. Refresh Modal if open (INSTANTLY)
     if(document.getElementById("modalOverlay").classList.contains("open") && OPEN_GAME_ID) {
         const idx = FILTERED_LIST.findIndex(x => x.id === OPEN_GAME_ID);
         if(idx !== -1) openModal(idx);
@@ -241,9 +252,11 @@ function openModal(idx) {
     const t = I18N[CUR_LANG];
     const i18nData = game.i18n ? game.i18n[CUR_LANG] : { name: game.name, genre: game.genre, desc: "No data" };
     
+    const imgClass = game.no_avatar ? "game-poster no-avatar" : "game-poster";
+
     content.innerHTML = `
         <div class="game-hero">
-            <img src="${esc(game.image)}" class="game-poster">
+            <img src="${esc(game.image)}" class="${imgClass}">
             <div class="game-info">
                 <div style="font-size:24px; font-weight:800; margin-bottom:10px; line-height:1.2;">${esc(i18nData.name)}</div>
                 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:15px;">
@@ -259,7 +272,7 @@ function openModal(idx) {
             </div>
         </div>
         <div class="desc-text">${i18nData.desc}</div>
-    `; // Using innerHTML for desc because it contains HTML blocks now
+    `;
     
     document.getElementById("modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
@@ -296,6 +309,31 @@ function renderPagination(total) {
         else container.appendChild(createBtn(p, p, CUR_PAGE === p));
     });
     container.appendChild(createBtn("→", Math.min(total, CUR_PAGE + 1)));
+}
+
+function applyFilters() {
+    const txt = document.getElementById("searchTxt").value.toLowerCase();
+    const years = Array.from(document.getElementById("filterYear").selectedOptions).map(o=>o.value);
+    const genres = Array.from(document.getElementById("filterGenre").selectedOptions).map(o=>o.value);
+    const tier = document.getElementById("filterTier").value;
+    const r = Number(document.getElementById("filterRating").value);
+    const f = document.getElementById("filterFav").checked;
+    const favs = getFavs();
+
+    FILTERED_LIST = DATA.filter(x => {
+        const name = (x.i18n && x.i18n[CUR_LANG] ? x.i18n[CUR_LANG].name : x.name).toLowerCase();
+        if(txt && !name.includes(txt)) return false;
+        if(years.length && !years.includes(x.year)) return false;
+        const gStr = x.i18n?.uk?.genre || "";
+        if(genres.length && !gStr.split(", ").some(g=>genres.includes(g))) return false;
+        if(tier && x.tier !== tier) return false;
+        if(r && (x.rating || 0) < r) return false;
+        if(f && !favs.has(x.id)) return false;
+        return true;
+    });
+    
+    CUR_PAGE = 1;
+    render();
 }
 
 function render() {
@@ -346,10 +384,11 @@ function render() {
         document.getElementById("tiles").innerHTML = pageData.map((raw, i) => {
             const x = getRowData(raw);
             const globalIdx = start + i;
+            const imgClass = x.no_avatar ? "no-avatar" : "";
             return `
             <div class="tile" onclick="openModal(${globalIdx})">
                 <div style="position:relative">
-                    <img src="${esc(x.image)}" loading="lazy">
+                    <img src="${esc(x.image)}" loading="lazy" class="${imgClass}">
                     <button class="fav ${favs.has(x.id)?"on":""}" data-id="${x.id}" onclick="event.stopPropagation(); toggleFav(this)">★</button>
                 </div>
                 <div class="tile-title">${esc(x.displayName)}</div>
@@ -363,9 +402,10 @@ function render() {
         document.getElementById("tbody").innerHTML = pageData.map((raw, i) => {
             const x = getRowData(raw);
             const globalIdx = start + i;
+            const imgClass = x.no_avatar ? "cover no-avatar" : "cover";
             return `
             <tr>
-                <td><img src="${esc(x.image)}" class="cover" loading="lazy"></td>
+                <td><img src="${esc(x.image)}" class="${imgClass}" loading="lazy"></td>
                 <td>
                     <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
                     ${x.tier === "AAA" ? '<span class="tier-badge tier-AAA">AAA</span>' : '<span class="tier-badge tier-Indie">Indie/AA</span>'}
@@ -425,29 +465,6 @@ function setupFilters() {
             render();
         };
     });
-}
-
-function applyFilters() {
-    const txt = document.getElementById("searchTxt").value.toLowerCase();
-    const years = Array.from(document.getElementById("filterYear").selectedOptions).map(o=>o.value);
-    const genres = Array.from(document.getElementById("filterGenre").selectedOptions).map(o=>o.value);
-    const tier = document.getElementById("filterTier").value;
-    const r = Number(document.getElementById("filterRating").value);
-    const f = document.getElementById("filterFav").checked;
-    const favs = getFavs();
-
-    FILTERED_LIST = DATA.filter(x => {
-        const name = (x.i18n && x.i18n[CUR_LANG] ? x.i18n[CUR_LANG].name : x.name).toLowerCase();
-        if(txt && !name.includes(txt)) return false;
-        if(years.length && !years.includes(x.year)) return false;
-        const gStr = x.i18n?.uk?.genre || "";
-        if(genres.length && !gStr.split(", ").some(g=>genres.includes(g))) return false;
-        if(tier && x.tier !== tier) return false;
-        if(r && (Number(x.rating)||0) < r) return false;
-        if(f && !favs.has(x.id)) return false;
-        return true;
-    });
-    CUR_PAGE = 1; render();
 }
 
 init();

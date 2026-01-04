@@ -15,12 +15,10 @@
     --border: #d2d2d7;
     --shadow: 0 4px 20px rgba(0,0,0,0.08);
     --input-bg: #fff;
+    --arrow-color: #86868b;
 
     /* === IMAGE ASSETS === */
-    /* Light Theme Placeholder */
     --pl-light: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNmMmYyZjciLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMWMxYzFlIj5OTyBJTUFHRTwvdGV4dD48L3N2Zz4=');
-    
-    /* Dark Theme Placeholder */
     --pl-dark: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMyYzJjMmUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNDQ0Ij5OTyBJTUFHRTwvdGV4dD48L3N2Zz4=');
 }
 
@@ -34,12 +32,139 @@
     --border: #3a3a3c;
     --shadow: 0 4px 20px rgba(0,0,0,0.3);
     --input-bg: #1c1c1e;
+    --arrow-color: #ffffff;
 }
 
 body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding-bottom: 80px; transition: background 0.3s, color 0.3s; }
-.container { max-width:1400px; margin:0 auto; padding:20px; }
+.container { max-width:1400px; margin:0 auto; padding:20px; padding-top: 80px; }
 
-h1 { font-size: 26px; margin: 0 0 20px 0; font-weight: 700; }
+/* === LANGUAGE SWITCH (Top Left) === */
+#btnLang {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 900;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-sec);
+    cursor: pointer;
+    padding: 0;
+    font-family: monospace, sans-serif;
+    transition: color 0.2s;
+}
+#btnLang:hover { color: var(--accent); }
+
+/* === THEME SWITCHER (Top Right) === */
+.theme-switch-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 900;
+}
+
+/* Hide default checkbox */
+.theme-switch-wrapper input {
+    display: none;
+}
+
+/* The Track */
+.theme-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    height: 44px;
+    background-color: #e4e4e4; /* Day bg */
+    border-radius: 22px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* The Text Labels */
+.slider-text {
+    position: absolute;
+    font-size: 13px;
+    font-weight: 800;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    user-select: none;
+    letter-spacing: 0.5px;
+}
+
+.text-day {
+    right: 14px;
+    color: #000;
+    opacity: 1;
+}
+
+.text-night {
+    left: 14px;
+    color: #fff;
+    opacity: 0;
+}
+
+/* The Knob (White Circle) */
+.slider-knob {
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Icons inside Knob */
+.slider-knob svg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    fill: #000; /* Icons are always black inside white knob */
+}
+
+.icon-moon { opacity: 0; transform: rotate(-20deg) scale(0.5); }
+.icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* === CHECKED STATE (Night Mode) === */
+#theme-toggle:checked + .theme-slider {
+    background-color: #111; /* Night bg */
+}
+
+#theme-toggle:checked + .theme-slider .slider-knob {
+    transform: translateX(106px); /* Move right */
+}
+
+#theme-toggle:checked + .theme-slider .text-day { opacity: 0; }
+#theme-toggle:checked + .theme-slider .text-night { opacity: 1; }
+
+#theme-toggle:checked + .theme-slider .icon-sun { 
+    opacity: 0; 
+    transform: rotate(90deg) scale(0.5); 
+}
+#theme-toggle:checked + .theme-slider .icon-moon { 
+    opacity: 1; 
+    transform: rotate(0deg) scale(1); 
+}
+
+
+/* MAIN UI STYLES */
+h1 { font-size: 26px; margin: 0 0 20px 0; font-weight: 700; text-align: center; }
+
 .controls { display:flex; flex-wrap:wrap; gap:16px; padding:20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow); margin-bottom:24px; align-items: flex-end; }
 .field { display:flex; flex-direction:column; gap:6px; flex:1; min-width:160px; }
 .field label { font-size:11px; font-weight:700; color:var(--text-sec); text-transform:uppercase; letter-spacing: 0.5px; }
@@ -106,14 +231,35 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 .tag { background: var(--bg); padding: 4px 10px; border-radius: 6px; color: var(--text); border: 1px solid var(--border); }
 .desc-text { font-size: 16px; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
 
-/* FLOATING SETTINGS */
-.float-settings { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column-reverse; gap: 10px; align-items: center; }
-.fab-main { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; border: none; transition: transform 0.2s; }
-.fab-main:hover { transform: scale(1.1); }
-.fab-opts { display: none; flex-direction: column; gap: 10px; padding-bottom: 10px; }
-.float-settings:hover .fab-opts { display: flex; animation: slideUpFab 0.2s; }
-.fab-mini { width: 44px; height: 44px; border-radius: 50%; background: var(--card); color: var(--text); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-weight: bold; }
-@keyframes slideUpFab { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+/* SCROLL TOP BUTTON */
+.btn-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.2s;
+    pointer-events: none;
+    z-index: 900;
+}
+.btn-top.show {
+    opacity: 0.6;
+    pointer-events: auto;
+}
+.btn-top:hover {
+    opacity: 1 !important;
+    transform: translateY(-3px);
+}
+.btn-top svg {
+    width: 50px;
+    height: 50px;
+    fill: var(--arrow-color);
+}
 
 /* === ADAPTIVE NO AVATAR === */
 .no-avatar { 
@@ -133,6 +279,27 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 </style>
 </head>
 <body>
+
+<button id="btnLang" title="Switch Language">EN</button>
+
+<div class="theme-switch-wrapper">
+    <label for="theme-toggle">
+        <input type="checkbox" id="theme-toggle">
+        <div class="theme-slider">
+            <span class="slider-text text-night">NIGHTMODE</span>
+            <span class="slider-text text-day">DAYMODE</span>
+            <div class="slider-knob">
+                <svg class="icon-sun" viewBox="0 0 24 24">
+                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.93c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zm13.43 14.14c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zM1.99 18.36c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L4.99 15.53c.39.39.39 1.02 0 1.41.39.39 1.02.39 1.41 0l-1.41 1.42zM16.95 5.63c.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41z"/>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24">
+                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </div>
+        </div>
+    </label>
+</div>
+
 <div class="container">
     <h1 id="lblTitle">Game Pass Catalog</h1>
     
@@ -175,13 +342,11 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
     <div class="pagination" id="pagination"></div>
 </div>
 
-<div class="float-settings">
-    <button class="fab-main">⚙</button>
-    <div class="fab-opts">
-        <button class="fab-mini" id="btnTheme" title="Theme">◑</button>
-        <button class="fab-mini" id="btnLang" title="Lang">EN</button>
-    </div>
-</div>
+<button id="btnTop" class="btn-top" title="Вгору" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM13 12H16L12 8L8 12H11V16H13V12Z" />
+    </svg>
+</button>
 
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
@@ -195,5 +360,16 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
 
 <script src="data.js"></script> 
 <script src="app.js"></script>
+<script>
+// Inline Logic for Scroll Button
+const btnTop = document.getElementById("btnTop");
+window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btnTop.classList.add("show");
+    } else {
+        btnTop.classList.remove("show");
+    }
+};
+</script>
 </body>
 </html>

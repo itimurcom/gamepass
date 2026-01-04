@@ -1,4 +1,4 @@
-// app.js — Main Logic
+// app.js — Main Logic (Fixed: Theme Switcher Priority)
 
 // Load Data from Global Variable
 const DATA = window.GP_DATA || [];
@@ -10,7 +10,8 @@ const PAGE_SIZE = 50;
 let CUR_PAGE = 1;
 let FILTERED_LIST = DATA;
 let SORT = { key: 'rating', asc: false };
-let CUR_THEME = localStorage.getItem("gp_theme") || "light";
+// Default to light if not set
+let CUR_THEME = localStorage.getItem("gp_theme") || "light"; 
 let CUR_LANG = localStorage.getItem("gp_lang") || "uk";
 let OPEN_GAME_ID = null;
 
@@ -26,32 +27,65 @@ const I18N = {
 };
 
 function init() {
+    // 1. Спершу ініціалізуємо UI (Тема та Мова), щоб вони працювали завжди
+    setupThemeLogic();
+    setupLangLogic();
+
+    // 2. Перевіряємо наявність даних
     if(!DATA.length) { 
         const titleEl = document.getElementById("lblTitle");
         if(titleEl) titleEl.innerText = "Game Pass (0)";
-        return; 
+        // Навіть якщо даних немає, не робимо return, щоб працював інтерфейс
     }
-    applyTheme(CUR_THEME);
+    
+    // 3. Запускаємо фільтри та рендерінг
     applyLang(CUR_LANG);
     setupFilters();
     applyFilters();
 }
 
-function esc(s){return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-const getFavs=()=>{try{return new Set(JSON.parse(localStorage.getItem("gp_favs")||"[]"))}catch{return new Set()}};
-const setFavs=s=>localStorage.setItem("gp_favs",JSON.stringify(Array.from(s)));
+function setupThemeLogic() {
+    const themeToggle = document.getElementById("theme-toggle");
+    
+    // Функція застосування теми
+    window.applyTheme = function(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        CUR_THEME = theme;
+        localStorage.setItem("gp_theme", theme);
+        
+        // Синхронізуємо стан чекбокса, якщо функцію викликали програмно
+        if(themeToggle && themeToggle.checked !== (theme === "dark")) {
+            themeToggle.checked = (theme === "dark");
+        }
+    };
 
-function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    CUR_THEME = theme;
-    localStorage.setItem("gp_theme", theme);
+    // Слухач подій на чекбокс
+    if(themeToggle) {
+        // Встановлюємо початковий стан перемикача
+        themeToggle.checked = (CUR_THEME === "dark");
+        
+        themeToggle.addEventListener('change', (e) => {
+            const newTheme = e.target.checked ? "dark" : "light";
+            window.applyTheme(newTheme);
+        });
+    }
+
+    // Застосовуємо тему при старті
+    window.applyTheme(CUR_THEME);
+}
+
+function setupLangLogic() {
+    const btnLang = document.getElementById("btnLang");
+    if (btnLang) {
+        btnLang.onclick = () => applyLang(CUR_LANG === "uk" ? "en" : "uk");
+    }
 }
 
 function applyLang(lang) {
     CUR_LANG = lang;
     localStorage.setItem("gp_lang", lang);
     const btn = document.getElementById("btnLang");
-    if(btn) btn.innerText = lang.toUpperCase();
+    if(btn) btn.innerText = (lang === 'uk' ? 'EN' : 'UK');
     
     const t = I18N[lang];
     document.querySelectorAll("[data-t]").forEach(el => {
@@ -61,15 +95,20 @@ function applyLang(lang) {
             else el.innerText = t[k];
         }
     });
-    render(); 
+    
+    // Оновлюємо рендер, якщо є дані
+    if(DATA.length) render(); 
+    
+    // Оновлюємо модалку, якщо відкрита
     if(document.getElementById("modalOverlay").classList.contains("open") && OPEN_GAME_ID) {
         const idx = FILTERED_LIST.findIndex(x => x.id === OPEN_GAME_ID);
         if(idx !== -1) openModal(idx);
     }
 }
 
-document.getElementById("btnTheme").onclick = () => applyTheme(CUR_THEME === "light" ? "dark" : "light");
-document.getElementById("btnLang").onclick = () => applyLang(CUR_LANG === "uk" ? "en" : "uk");
+function esc(s){return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+const getFavs=()=>{try{return new Set(JSON.parse(localStorage.getItem("gp_favs")||"[]"))}catch{return new Set()}};
+const setFavs=s=>localStorage.setItem("gp_favs",JSON.stringify(Array.from(s)));
 
 function openModal(idx) {
     const game = FILTERED_LIST[idx]; 
@@ -81,7 +120,6 @@ function openModal(idx) {
     const imgClass = game.no_avatar ? "game-poster no-avatar" : "game-poster";
     const imgSrc = game.no_avatar ? TRANSPARENT_PIXEL : esc(game.image);
 
-    // Tags in Modal
     let tagsHtml = "";
     (game.tags || []).forEach(tg => {
         if(tg.includes("Leaving")) tagsHtml += `<span class="tag tag-leaving">${tg}</span> `;
@@ -149,6 +187,8 @@ function renderPagination(total) {
 }
 
 function applyFilters() {
+    if(!DATA.length) return; // Якщо даних немає, не фільтруємо
+
     const txtEl = document.getElementById("searchTxt");
     const txt = txtEl ? txtEl.value.toLowerCase() : "";
     
@@ -337,6 +377,8 @@ function toggleFav(btn) {
 }
 
 function setupFilters() {
+    if(!DATA.length) return;
+
     const years = [...new Set(DATA.map(x=>x.year).filter(Boolean))].sort().reverse();
     const genres = [...new Set(DATA.flatMap(x=> (x.i18n?.uk?.genre || "").split(", ")).filter(Boolean))].sort();
     const tags = [...new Set(DATA.flatMap(x => x.tags || []))].sort();
@@ -381,4 +423,9 @@ function setupFilters() {
     });
 }
 
-init();
+// Запускаємо init
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}

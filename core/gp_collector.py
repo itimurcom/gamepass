@@ -1,5 +1,5 @@
 # core/gp_collector.py
-# Версія: 10.4 (Check UnknownID)
+# Версія: 11.0 (Threading Support)
 
 import os
 import json
@@ -9,6 +9,7 @@ import re
 import csv
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # --- ДЖЕРЕЛА ---
 SIGL_SOURCES = {
@@ -180,33 +181,19 @@ def download_wiki_data(name, clean_id, dirs):
             atomic_save(path_sp, {"data": data_p})
 
 def download_hltb_data(name, clean_id, dirs, status_cb=None):
-    """Завантажує HLTB у кеш.
-
-    ВАЖЛИВО: Не друкуємо напряму у stdout, щоб не перекривати progress-лінію.
-    Для повідомлень використовуйте status_cb(msg) — тоді UI вирішує, як показувати.
-    """
     try:
         from howlongtobeatpy import HowLongToBeat
     except ImportError:
-        if status_cb:
-            status_cb("HLTB: howlongtobeatpy не встановлено")
         return
 
     path = os.path.join(dirs["hltb"], f"{clean_id}.json")
     if os.path.exists(path):
-        if status_cb:
-            status_cb(f"HLTB cache ✓ ({clean_id})")
         return
 
     if name.startswith("UnknownID"):
-        if status_cb:
-            status_cb("HLTB: пропуск UnknownID")
-        return  # SKIP BAD NAMES
+        return
 
     clean_search = clean_game_title(name)
-    if status_cb:
-        status_cb(f"HLTB запит… {clean_search[:50]}")
-
     hours = "0"
     try:
         res = HowLongToBeat().search(clean_search)
@@ -218,6 +205,53 @@ def download_hltb_data(name, clean_id, dirs, status_cb=None):
 
     atomic_save(path, {"hours": hours})
 
+# --- MULTI-THREADING HANDLERS ---
+
+def _worker_metadata(task):
+    # task = (bid, name, clean_id, dirs)
+    bid, name, clean_id, dirs = task
+    
+    # 1. Wiki
+    try:
+        download_wiki_data(name, clean_id, dirs)
+    except Exception:
+        pass
+    
+    # 2. HLTB
+    try:
+        download_hltb_data(name, clean_id, dirs)
+    except Exception:
+        pass
+    
+    return bid
+
+def download_metadata_threaded(tasks, dirs, log_func=print):
+    """
+    Виконує завантаження метаданих паралельно.
+    tasks: список кортежів (bid, name, clean_id)
+    """
+    if not tasks:
+        return
+    
+    total = len(tasks)
+    log_func(f"Паралельне завантаження для {total} ігор...", "ПОТОКИ", "35")
+    
+    # Підготовка повних даних для воркерів
+    worker_tasks = [(t[0], t[1], t[2], dirs) for t in tasks]
+    
+    completed = 0
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        futures = {executor.submit(_worker_metadata, t): t for t in worker_tasks}
+        
+        for future in as_completed(futures):
+            completed += 1
+            if completed % 5 == 0 or completed == total:
+                p = int((completed / total) * 100)
+                # Виводимо прогрес бар
+                bar = '=' * int(20 * completed // total) + '-' * (20 - int(20 * completed // total))
+                print(f"\r   > Прогрес: |{bar}| {completed}/{total} ({p}%)", end="", flush=True)
+    
+    print() # New line after bar
 
 # --- EXPORTER ---
 def clean_text(text):
@@ -229,16 +263,6 @@ def clean_text(text):
     text = re.sub(r'[ \t]+', ' ', text)
     text = re.sub(r'(\n\s*){3,}', '\n\n', text)
     return text.strip()
-
-def format_block(title, url, text, icon):
-    if not text: return ""
-    safe_text = html.escape(text).replace("\n", "<br>")
-    header = f'<a href="{url}" target="_blank" class="desc-header">{icon} {title}</a>'
-    body = f'<div class="desc-body">{safe_text}</div>'
-    return f'<div class="desc-block">{header}{body}</div>'
-
-def build_html_description(bid, row, dirs):
-    pass 
 
 def save_html_report(rows, template_path, out_path):
     if not os.path.exists(template_path): return False, "No template"
@@ -252,9 +276,9 @@ def save_html_report(rows, template_path, out_path):
         .desc-body { font-size: 15px; line-height: 1.6; color: var(--text); }
         .rating-low { color: #ff3b30; }
         """
-        tmpl = tmpl.replace(".source-block", "/* old */ .source-block")
         if ".desc-block" not in tmpl: tmpl = tmpl.replace("</style>", f"{css}\n</style>")
         
+        # Safe replacement for template literals
         tmpl = tmpl.replace("${esc(i18nData.desc)}", "${i18nData.desc}")
         out = tmpl.replace("__TITLE__", f"Game Pass ({len(rows)})")
         out = out.replace('title: "Каталог Game Pass"', f'title: "Game Pass Catalog ({len(rows)})"')

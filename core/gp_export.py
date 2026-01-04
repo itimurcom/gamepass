@@ -21,6 +21,10 @@ def save_html_report(rows, template_path, out_path):
             tmpl = f.read()
 
         dataset_json = json.dumps(rows, ensure_ascii=False)
+        # JS-safety: avoid U+2028/U+2029 breaking <script> parsing
+        dataset_json = dataset_json.replace(" ", "\\u2028").replace(" ", "\\u2029")
+        # Basic hardening for embedded scripts
+        dataset_json = dataset_json.replace("</", "<\/")
         out = tmpl
         # Support both placeholders (template versions differ)
         out = out.replace("__DATASET_JSON__", dataset_json)

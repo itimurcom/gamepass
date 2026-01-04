@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# gamepass.py — v10.6 (Image Protocol Fix)
+# gamepass.py — v11.1 (Hotfix: Variable Scope)
 
 import argparse
 import os
@@ -13,7 +13,7 @@ from datetime import datetime
 
 from core import gp_collector 
 
-SCRIPT_VERSION = "v10.6"
+SCRIPT_VERSION = "v11.1"
 
 # --- SIGNAL HANDLER ---
 def aggressive_stop(signum, frame):
@@ -28,8 +28,6 @@ DATA_LANG = "uk-ua"
 DISPLAY_LANGS = "uk-ua,en-us"
 
 # UI UTILS
-
-# --- PROGRESS STAGE TRACKING ---
 CURRENT_STAGE = ""
 CURRENT_BID = ""
 
@@ -83,24 +81,16 @@ def make_html_desc(store_txt, wiki_txt, links, lang="uk"):
     return html_out
 
 def get_best_image(images_list):
-    """Шукає постер, додає протокол https."""
     if not images_list: return ""
-    
     target_url = ""
-    # 1. Пріоритет: Poster
     for img in images_list:
         if img.get("ImagePurpose") == "Poster":
             target_url = img.get("Uri", "")
             break
-    
-    # 2. Якщо немає постера, беремо першу картинку
     if not target_url and images_list:
         target_url = images_list[0].get("Uri", "")
-        
-    # 3. FIX: Додаємо https, якщо посилання починається з //
     if target_url.startswith("//"):
         target_url = "https:" + target_url
-        
     return target_url
 
 def parse_product_local(bid, dirs):
@@ -117,7 +107,6 @@ def parse_product_local(bid, dirs):
 
     set_stage(bid, "parse properties")
     props = store_data.get("Properties", {})
-    set_stage(bid, "parse localized properties")
     lps = store_data.get("LocalizedProperties", [])
     
     lp_uk = next((x for x in lps if x.get("Language","").lower() == "uk-ua"), {})
@@ -131,13 +120,13 @@ def parse_product_local(bid, dirs):
     if genre.lower() == "game": genre = "Unknown" 
 
     desc_store_uk = clean_text(lp_uk.get("ProductDescription") or lp_uk.get("ShortDescription") or "")
+    # FIX: Використовуємо desc_store_uk як фолбек замість desc_store_en (self-reference)
     desc_store_en = clean_text(lp_en.get("ProductDescription") or lp_en.get("ShortDescription") or desc_store_uk)
 
     clean_id = gp_collector.safe_name(clean_name)
     year = (props.get("OriginalReleaseDate") or "")[:4]
     
     set_stage(bid, "wiki check/cache")
-    # Wiki
     wiki_desc_uk = ""
     wiki_url = ""
     try:
@@ -155,7 +144,6 @@ def parse_product_local(bid, dirs):
     except: pass
 
     set_stage(bid, "hltb check/cache")
-    # HLTB
     hours = ""
     try:
         h_f = os.path.join(dirs["hltb"], f"{clean_id}.json")
@@ -166,7 +154,6 @@ def parse_product_local(bid, dirs):
     except: pass
 
     set_stage(bid, "rating")
-    # Rating (float fix)
     rating = 0.0
     rating_src = ""
     ms_score = store_data.get("MarketProperties", [{}])[0].get("UsageData", [{}])[0].get("AverageRating", 0)
@@ -175,7 +162,6 @@ def parse_product_local(bid, dirs):
         rating_src = "Microsoft"
 
     set_stage(bid, "images")
-    # Image processing
     raw_images = store_data.get("Images", [])
     image_url = get_best_image(raw_images)
 
@@ -189,6 +175,7 @@ def parse_product_local(bid, dirs):
     return {
         "id": bid,
         "name": clean_name,
+        "clean_id": clean_id,
         "genre": genre,
         "tier": "Standard",
         "rating": rating,
@@ -197,7 +184,7 @@ def parse_product_local(bid, dirs):
         "hours": hours,
         "publisher": props.get("PublisherName", ""),
         "developer": props.get("DeveloperName", ""),
-        "image": image_url, # Now strictly HTTPS
+        "image": image_url,
         "i18n": {
             "uk": { "name": clean_name, "genre": genre, "desc": html_uk },
             "en": { "name": clean_name, "genre": genre, "desc": html_en }
@@ -252,32 +239,51 @@ def main():
     else:
         log("Всі файли на місці.", "КЕШ", "32")
 
-    log("Обробка файлів (v10 Parser)...", "ОБРОБКА", "36")
-    final_rows = []
+    # --- ЕТАП 1: Попередній аналіз (Fast Scan) ---
+    log("Фаза 1: Швидке сканування локальних файлів...", "АНАЛІЗ", "36")
     
     files_on_disk = set(os.listdir(DIRS["products"]))
     valid_ids = [bid for bid in ids if f"{gp_collector.safe_name(bid)}.json" in files_on_disk]
+    
+    rows_map = {}
+    enrich_queue = [] # (bid, name, clean_id)
+    
     total = len(valid_ids)
-
     for i, bid in enumerate(valid_ids, 1):
-        set_stage(bid, "parse")
-        set_stage(bid, "parse")
+        # Швидкий парсинг (читання локального JSON)
         row = parse_product_local(bid, DIRS)
-        
         if row:
+            rows_map[bid] = row
+            # Якщо режим не Quick і ім'я валідне -> додаємо в чергу на збагачення
             if not args.quick and not row["name"].startswith("UnknownID"):
-                set_stage(bid, "wiki download")
-                gp_collector.download_wiki_data(row["i18n"]["en"]["name"], gp_collector.safe_name(row["i18n"]["en"]["name"]), DIRS)
-                set_stage(bid, "hltb download")
-                gp_collector.download_hltb_data(row["i18n"]["en"]["name"], gp_collector.safe_name(row["i18n"]["en"]["name"]), DIRS)
-                set_stage(bid, "re-parse")
-                row = parse_product_local(bid, DIRS)
-
-            final_rows.append(row)
+                enrich_queue.append((bid, row["i18n"]["en"]["name"], row["clean_id"]))
         
-        if i % 5 == 0 or i == total: print_progress(i, total, "Аналіз")
-
+        if i % 50 == 0 or i == total: print_progress(i, total, "Скан")
     sys.stdout.write("\n")
+
+    # --- ЕТАП 2: Паралельне збагачення (Parallel Enrich) ---
+    if enrich_queue:
+        log(f"Фаза 2: Збагачення даними ({len(enrich_queue)} задач)...", "NET", "35")
+        gp_collector.download_metadata_threaded(enrich_queue, DIRS, log)
+    else:
+        log("Фаза 2: Пропуск (всі дані є або режим quick)", "SKIP", "33")
+
+    # --- ЕТАП 3: Оновлення (Re-Assemble) ---
+    # Оновлюємо дані тільки для тих, хто був у черзі (бо з'явилися нові файли Wiki/HLTB)
+    if enrich_queue:
+        log("Фаза 3: Оновлення змінених записів...", "ОНОВЛЕННЯ", "36")
+        count = 0
+        total_q = len(enrich_queue)
+        for bid, _, _ in enrich_queue:
+            count += 1
+            # Перечитуємо, тепер Wiki/HLTB файли існують і підтягнуться
+            new_row = parse_product_local(bid, DIRS)
+            if new_row:
+                rows_map[bid] = new_row
+            if count % 20 == 0 or count == total_q: print_progress(count, total_q, "Re-parse")
+        sys.stdout.write("\n")
+
+    final_rows = list(rows_map.values())
 
     log("Збереження...", "ЕКСПОРТ", "32")
     ok, msg = gp_collector.save_html_report(final_rows, FILES["template"], FILES["out_html"])

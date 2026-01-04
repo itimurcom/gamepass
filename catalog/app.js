@@ -17,11 +17,11 @@ let OPEN_GAME_ID = null;
 
 const I18N = {
     uk: {
-        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", cat: "КАТЕГОРІЯ", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути",
+        title: "Каталог Game Pass", search: "ПОШУК", year: "РІК", genre: "ЖАНР", cat: "КАТЕГОРІЯ", rating: "РЕЙТИНГ", fav: "Обране", reset: "✕ Скинути", sort: "СОРТУВАННЯ",
         viewList: "☰ Список", viewTiles: "▦ Плитка", poster: "Постер", name: "Назва", info: "Інфо", time: "Час", actions: "Дії", details: "Деталі гри", read: "Читати", hours: "год."
     },
     en: {
-        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", cat: "CATEGORY", rating: "RATING", fav: "Favorites", reset: "✕ Reset",
+        title: "Game Pass Catalog", search: "SEARCH", year: "YEAR", genre: "GENRE", cat: "CATEGORY", rating: "RATING", fav: "Favorites", reset: "✕ Reset", sort: "SORT BY",
         viewList: "☰ List", viewTiles: "▦ Tiles", poster: "Poster", name: "Name", info: "Info", time: "Time", actions: "Actions", details: "Game Details", read: "Read", hours: "h"
     }
 };
@@ -243,6 +243,13 @@ function render() {
     const titleEl = document.getElementById("lblTitle");
     if(titleEl) titleEl.innerText = `Game Pass (${FILTERED_LIST.length})`;
 
+    // SYNC SORT DROPDOWN (Ensure UI matches state)
+    const sortSel = document.getElementById("sortSelect");
+    if(sortSel) {
+        const val = `${SORT.key}_${SORT.asc?'asc':'desc'}`;
+        sortSel.value = val;
+    }
+
     FILTERED_LIST.sort((a, b) => {
         let valA = a[SORT.key], valB = b[SORT.key];
         if (SORT.key === 'name') {
@@ -342,7 +349,7 @@ function render() {
 
                 return `
                 <tr>
-                    <td><img src="${imgSrc}" class="${imgClass}" loading="lazy"></td>
+                    <td><img src="${imgSrc}" class="${imgClass}" loading="lazy" style="cursor:pointer" onclick="openModal(${globalIdx})"></td>
                     <td>
                         <div style="font-weight:700; font-size:16px; margin-bottom:4px;">${esc(x.displayName)}</div>
                         ${tagsHtml}
@@ -421,6 +428,17 @@ function setupFilters() {
             render();
         };
     });
+
+    // NEW SORT DROPDOWN LISTENER
+    const sortSel = document.getElementById("sortSelect");
+    if(sortSel) {
+        sortSel.onchange = (e) => {
+            const parts = e.target.value.split("_");
+            SORT.key = parts[0];
+            SORT.asc = (parts[1] === "asc");
+            render();
+        };
+    }
 }
 
 // Запускаємо init

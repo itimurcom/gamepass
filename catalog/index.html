@@ -311,6 +311,21 @@ img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; ba
             </div>
         </div>
         <div class="field"><label data-t="search">Пошук</label><input id="searchTxt"></div>
+        
+        <div class="field" style="flex:0 0 130px;">
+            <label data-t="sort">Сортування</label>
+            <select id="sortSelect">
+                <option value="rating_desc">Rating ▼</option>
+                <option value="rating_asc">Rating ▲</option>
+                <option value="name_asc">Name (A-Z)</option>
+                <option value="name_desc">Name (Z-A)</option>
+                <option value="year_desc">Year ▼</option>
+                <option value="year_asc">Year ▲</option>
+                <option value="hours_desc">Time ▼</option>
+                <option value="hours_asc">Time ▲</option>
+            </select>
+        </div>
+
         <div class="field"><label data-t="cat">Категорія</label><select id="filterTag" multiple></select></div>
         <div class="field"><label data-t="genre">Жанр</label><select id="filterGenre" multiple></select></div>
         <div class="field"><label data-t="year">Рік</label><select id="filterYear" multiple></select></div>

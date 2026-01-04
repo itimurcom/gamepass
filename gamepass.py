@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# gamepass.py — v12.0 (Clean Controller)
+# gamepass.py — v12.1 (Logic Moved to Core + Year Fix)
 
 import argparse
 import os
@@ -14,7 +14,7 @@ from core import gp_collector
 from core import gp_export
 from core import gp_logic
 
-SCRIPT_VERSION = "v12.0"
+SCRIPT_VERSION = "v12.1"
 
 # --- SIGNAL HANDLER ---
 def aggressive_stop(signum, frame):
@@ -51,8 +51,6 @@ def print_progress(current, total, prefix=""):
     suffix = f" | {CURRENT_BID} | {CURRENT_STAGE}" if CURRENT_STAGE else ""
     sys.stdout.write(f"\r{prefix}: |{_c(bar, '36')}| {current}/{total} ({p:.0f}%)" + suffix)
     sys.stdout.flush()
-
-# NOTE: Вся логіка парсингу перенесена в core/gp_logic.py
 
 def main():
     print(f"\n{_c('=== Game Pass Script '+SCRIPT_VERSION+' ===', '37;1')}")
@@ -129,7 +127,7 @@ def main():
         # Pass tags to parser
         tags = id_tags_map.get(str(bid), [])
         
-        # Виклик логіки з gp_logic
+        # ВИКЛИК ЛОГІКИ З ЯДРА (gp_logic.parse_product)
         row = gp_logic.parse_product(bid, DIRS, tags, set_stage)
         
         if row:

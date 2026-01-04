@@ -2680,7 +2680,7 @@
             ],
             "AvailabilityASchema": "Availability;3",
             "AvailabilityBSchema": "AvailabilityGame;1",
-            "AvailabilityId": "B0FG4N0DD72V",
+            "AvailabilityId": "B50T6914LBX9",
             "Conditions": {
               "ClientConditions": {
                 "AllowedPlatforms": [
@@ -2696,11 +2696,11 @@
                   }
                 ]
               },
-              "EndDate": "2025-12-04T09:59:59.0000000Z",
+              "EndDate": "2026-11-16T09:59:59.0000000Z",
               "ResourceSetIds": [
                 "1"
               ],
-              "StartDate": "2025-11-19T20:00:00.0000000Z",
+              "StartDate": "2025-12-04T10:00:00.0000000Z",
               "EligibilityPredicateIds": [
                 "CannotSeenByChinaClient"
               ],
@@ -2719,18 +2719,18 @@
               "Price": {
                 "CurrencyCode": "USD",
                 "IsPIRequired": false,
-                "ListPrice": 13.99,
+                "ListPrice": 19.99,
                 "MSRP": 19.99,
                 "TaxType": "TaxesNotIncluded",
                 "WholesaleCurrencyCode": "USD",
-                "WholesalePrice": 9.79
+                "WholesalePrice": 13.99
               }
             },
             "Properties": {
               "OriginalReleaseDate": "2024-11-15T16:00:00.0000000Z"
             },
             "SkuId": "0010",
-            "DisplayRank": 3,
+            "DisplayRank": 6,
             "AlternateIds": [
               {
                 "IdType": "LegacyTokenIdentifier",

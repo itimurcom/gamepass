@@ -920,9 +920,9 @@
           },
           {
             "AggregateTimeSpan": "30Days",
-            "AverageRating": 4.3,
+            "AverageRating": 4.2,
             "PlayCount": 0,
-            "RatingCount": 26,
+            "RatingCount": 25,
             "RentalCount": "0",
             "TrialCount": "0",
             "PurchaseCount": "0"
@@ -3319,7 +3319,7 @@
             ],
             "AvailabilityASchema": "Availability;3",
             "AvailabilityBSchema": "AvailabilityGame;1",
-            "AvailabilityId": "B3VV1XDRCM5H",
+            "AvailabilityId": "9RQCRP7TMR64",
             "Conditions": {
               "ClientConditions": {
                 "AllowedPlatforms": [
@@ -3335,17 +3335,17 @@
                   }
                 ]
               },
-              "EndDate": "2025-12-04T09:59:59.0000000Z",
+              "EndDate": "2026-01-16T09:59:59.0000000Z",
               "ResourceSetIds": [
                 "1"
               ],
-              "StartDate": "2025-11-19T20:00:00.0000000Z",
+              "StartDate": "2025-12-04T10:00:00.0000000Z",
               "EligibilityPredicateIds": [
                 "CannotSeenByChinaClient"
               ],
               "SupportedCatalogVersion": 7
             },
-            "LastModifiedDate": "2025-07-24T16:28:30.3468527Z",
+            "LastModifiedDate": "2025-12-23T17:43:56.3395999Z",
             "Markets": [
               "US"
             ],
@@ -3366,18 +3366,18 @@
               "Price": {
                 "CurrencyCode": "USD",
                 "IsPIRequired": true,
-                "ListPrice": 5.99,
+                "ListPrice": 29.99,
                 "MSRP": 29.99,
                 "TaxType": "TaxesNotIncluded",
                 "WholesaleCurrencyCode": "USD",
-                "WholesalePrice": 4.19
+                "WholesalePrice": 20.99
               }
             },
             "Properties": {
               "OriginalReleaseDate": "2021-07-29T17:00:00.0000000Z"
             },
             "SkuId": "0001",
-            "DisplayRank": 3,
+            "DisplayRank": 6,
             "AlternateIds": [
               {
                 "IdType": "LegacyTokenIdentifier",

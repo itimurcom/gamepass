@@ -897,7 +897,7 @@
             "AggregateTimeSpan": "7Days",
             "AverageRating": 4.3,
             "PlayCount": 0,
-            "RatingCount": 29,
+            "RatingCount": 28,
             "RentalCount": "0",
             "TrialCount": "0",
             "PurchaseCount": "0"
@@ -906,7 +906,7 @@
             "AggregateTimeSpan": "30Days",
             "AverageRating": 4.5,
             "PlayCount": 0,
-            "RatingCount": 117,
+            "RatingCount": 116,
             "RentalCount": "0",
             "TrialCount": "0",
             "PurchaseCount": "0"
@@ -915,7 +915,7 @@
             "AggregateTimeSpan": "AllTime",
             "AverageRating": 4.3,
             "PlayCount": 0,
-            "RatingCount": 5494,
+            "RatingCount": 5495,
             "RentalCount": "0",
             "TrialCount": "0",
             "PurchaseCount": "0"
@@ -2956,7 +2956,7 @@
             ],
             "AvailabilityASchema": "Availability;3",
             "AvailabilityBSchema": "AvailabilityGame;1",
-            "AvailabilityId": "9W2QDQ578803",
+            "AvailabilityId": "9P92B949WZFN",
             "Conditions": {
               "ClientConditions": {
                 "AllowedPlatforms": [
@@ -2972,17 +2972,17 @@
                   }
                 ]
               },
-              "EndDate": "2025-12-04T09:59:59.0000000Z",
+              "EndDate": "2027-06-16T09:59:59.0000000Z",
               "ResourceSetIds": [
                 "1"
               ],
-              "StartDate": "2025-11-19T20:00:00.0000000Z",
+              "StartDate": "2025-12-04T10:00:00.0000000Z",
               "EligibilityPredicateIds": [
                 "CannotSeenByChinaClient"
               ],
               "SupportedCatalogVersion": 7
             },
-            "LastModifiedDate": "2025-09-25T00:14:10.7521404Z",
+            "LastModifiedDate": "2025-12-30T06:05:42.7291415Z",
             "Markets": [
               "US"
             ],
@@ -2995,18 +2995,18 @@
               "Price": {
                 "CurrencyCode": "USD",
                 "IsPIRequired": false,
-                "ListPrice": 26.24,
+                "ListPrice": 34.99,
                 "MSRP": 34.99,
                 "TaxType": "TaxesNotIncluded",
                 "WholesaleCurrencyCode": "USD",
-                "WholesalePrice": 18.36
+                "WholesalePrice": 24.49
               }
             },
             "Properties": {
               "OriginalReleaseDate": "2025-06-13T12:00:00.0000000Z"
             },
             "SkuId": "0010",
-            "DisplayRank": 4,
+            "DisplayRank": 9,
             "AlternateIds": [
               {
                 "IdType": "LegacyTokenIdentifier",

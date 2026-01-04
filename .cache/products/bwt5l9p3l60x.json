@@ -2464,7 +2464,7 @@
             ],
             "AvailabilityASchema": "Availability;3",
             "AvailabilityBSchema": "AvailabilityGame;1",
-            "AvailabilityId": "9W610W7ZGWP7",
+            "AvailabilityId": "9V6J3XDPCM9S",
             "Conditions": {
               "ClientConditions": {
                 "AllowedPlatforms": [
@@ -2475,17 +2475,17 @@
                   }
                 ]
               },
-              "EndDate": "2025-12-04T09:59:59.0000000Z",
+              "EndDate": "2099-04-25T23:59:59.0000000Z",
               "ResourceSetIds": [
                 "1"
               ],
-              "StartDate": "2025-11-19T20:00:00.0000000Z",
+              "StartDate": "2025-12-04T10:00:00.0000000Z",
               "EligibilityPredicateIds": [
                 "CannotSeenByChinaClient"
               ],
               "SupportedCatalogVersion": 7
             },
-            "LastModifiedDate": "2025-11-20T02:41:51.6678311Z",
+            "LastModifiedDate": "2025-12-26T20:05:28.8659268Z",
             "Markets": [
               "US"
             ],
@@ -2506,18 +2506,18 @@
               "Price": {
                 "CurrencyCode": "USD",
                 "IsPIRequired": true,
-                "ListPrice": 4.49,
+                "ListPrice": 29.99,
                 "MSRP": 29.99,
                 "TaxType": "TaxesNotIncluded",
                 "WholesaleCurrencyCode": "USD",
-                "WholesalePrice": 3.14
+                "WholesalePrice": 20.99
               }
             },
             "Properties": {
               "OriginalReleaseDate": "2018-03-20T00:00:00.0000000Z"
             },
             "SkuId": "0001",
-            "DisplayRank": 2,
+            "DisplayRank": 5,
             "AlternateIds": [
               {
                 "IdType": "LegacyTokenIdentifier",

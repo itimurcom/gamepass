@@ -1,126 +1,86 @@
 #!/usr/bin/env python3
 """
 PC Game Pass catalog dumper (EN/US only) - stdlib only
-Output: .cache directory with one raw Microsoft Store product JSON per game.
+
+Output:
+  .cache/            one raw Microsoft Store product JSON per game (ProductId.json)
+  .cache/_meta/      meta files (SIGL dump etc.)
 """
 
 from __future__ import annotations
 
-import json
-import sys
 import time
-import urllib.parse
-import urllib.request
-from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
-SIGL_URL = "https://catalog.gamepass.com/sigls/v2"
-DISPLAYCATALOG_URL = "https://displaycatalog.mp.microsoft.com/v7.0/products"
-PC_GAMEPASS_SIGL = "fdd9e2a7-0fee-49f6-ad69-4354098401ff"
-
-DEFAULT_HEADERS = {
-    "User-Agent": "gamepass-catalog-dumper/1.0",
-    "Accept": "application/json",
-}
-
-
-@dataclass(frozen=True)
-class Config:
-    market: str
-    language: str
-    out_dir: Path
-    sigl_id: str
-    batch_size: int
-    sleep_s: float
-    timeout_s: float
-    retries: int
-
-
-def _log(msg: str) -> None:
-    print(msg, file=sys.stderr)
-
-
-def _build_url(base: str, params: Dict[str, str]) -> str:
-    return base + "?" + urllib.parse.urlencode(params)
-
-
-def _http_get_json(url: str, timeout_s: float) -> Any:
-    req = urllib.request.Request(url, headers=DEFAULT_HEADERS)
-    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
-        return json.loads(resp.read().decode("utf-8"))
-
-
-def fetch_sigl_big_ids(cfg: Config) -> Tuple[Set[str], Dict[str, Any]]:
-    """
-    SIGL endpoint may return either:
-      - dict with key "products": [ { "id": "..."} ... ]
-      - OR directly a list of products
-    We support both to avoid crashes on payload shape differences.
-    """
-    url = _build_url(SIGL_URL, {"id": cfg.sigl_id, "market": cfg.market, "language": cfg.language})
-    payload = _http_get_json(url, cfg.timeout_s)
-
-    if isinstance(payload, dict):
-        products = payload.get("products", [])
-        raw_payload = payload
-    elif isinstance(payload, list):
-        products = payload
-        raw_payload = payload
-    else:
-        products = []
-        raw_payload = payload
-
-    big_ids: Set[str] = set()
-    for p in products:
-        if isinstance(p, dict):
-            pid = p.get("id")
-            if isinstance(pid, str) and pid:
-                big_ids.add(pid)
-
-    meta = {
-        "sigl_id": cfg.sigl_id,
-        "market": cfg.market,
-        "language": cfg.language,
-        "count": len(big_ids),
-        "timestamp": int(time.time()),
-        "raw": raw_payload,
-    }
-    return big_ids, meta
-
-
-def fetch_products(cfg: Config, big_ids: List[str]) -> List[Dict[str, Any]]:
-    url = _build_url(
-        DISPLAYCATALOG_URL,
-        {"bigIds": ",".join(big_ids), "market": cfg.market, "languages": cfg.language},
-    )
-    payload = _http_get_json(url, cfg.timeout_s)
-    products = payload.get("Products", []) if isinstance(payload, dict) else []
-    return products if isinstance(products, list) else []
-
-
-def chunked(seq: List[str], size: int) -> Iterable[List[str]]:
-    for i in range(0, len(seq), size):
-        yield seq[i:i + size]
+from core.gp_config import Config, PC_GAMEPASS_SIGL
+from core.gp_sigl import fetch_sigl_big_ids
+from core.gp_terminal import (
+    log_error,
+    log_info,
+    log_process,
+    log_warn,
+    progress_done,
+    progress_update,
+)
+from core.core import chunked, ensure_dirs, fetch_products, write_json, write_product
 
 
 def run(cfg: Config) -> None:
-    cfg.out_dir.mkdir(parents=True, exist_ok=True)
-    meta = cfg.out_dir / "_meta"
-    meta.mkdir(exist_ok=True)
+    meta_dir = ensure_dirs(cfg.out_dir)
 
-    ids, sigl_meta = fetch_sigl_big_ids(cfg)
-    (meta / "sigl_US_en-us.json").write_text(json.dumps(sigl_meta, indent=2), encoding="utf-8")
+    log_process(f"Start. Output directory: {cfg.out_dir.resolve()}")
+    log_info(f"Market={cfg.market} Language={cfg.language} SIGL={cfg.sigl_id}")
+    log_info(f"Meta directory: {meta_dir.resolve()}")
 
-    for batch in chunked(sorted(ids), cfg.batch_size):
-        products = fetch_products(cfg, batch)
-        for p in products:
-            if not isinstance(p, dict):
-                continue
-            pid = p.get("ProductId")
-            if isinstance(pid, str) and pid:
-                (cfg.out_dir / f"{pid}.json").write_text(json.dumps(p, indent=2), encoding="utf-8")
+    # Phase: SIGL
+    log_process("Phase: SIGL -> fetch list of bigIds for PC Game Pass")
+    try:
+        ids, sigl_meta = fetch_sigl_big_ids(cfg)
+    except Exception as e:
+        log_error(f"SIGL fetch failed: {e}")
+        raise
+
+    write_json(meta_dir / "sigl_US_en-us.json", sigl_meta)
+    log_info(f"SIGL fetched. Unique bigIds: {len(ids)}. Saved: {meta_dir / 'sigl_US_en-us.json'}")
+
+    if not ids:
+        log_warn("No bigIds received. Nothing to do.")
+        return
+
+    ids_sorted = sorted(ids)
+    batches = list(chunked(ids_sorted, cfg.batch_size))
+    log_process(f"Phase: PRODUCTS -> fetch and dump products in {len(batches)} batches (batch_size={cfg.batch_size})")
+
+    total_products = 0
+    written_files = 0
+
+    for idx, batch in enumerate(batches, start=1):
+        log_process(f"Batch {idx}/{len(batches)}: fetching products for {len(batch)} bigIds")
+        try:
+            products = fetch_products(cfg, batch)
+        except Exception as e:
+            log_error(f"DisplayCatalog fetch failed on batch {idx}/{len(batches)}: {e}")
+            raise
+
+        total_products += len(products)
+
+        batch_written = 0
+        # Progress bar: writing files inside this batch
+        for p_i, p in enumerate(products, start=1):
+            progress_update(p_i, len(products), prefix=f"Writing batch {idx}/{len(batches)} ")
+            if isinstance(p, dict):
+                ok = write_product(cfg.out_dir, p)
+                if ok:
+                    batch_written += 1
+                    written_files += 1
+        progress_done(suffix="")
+
+        log_info(f"Batch {idx}/{len(batches)}: fetched={len(products)} written={batch_written}")
         time.sleep(cfg.sleep_s)
+
+    log_process("Phase: DONE")
+    log_info(f"Summary: bigIds={len(ids_sorted)} products_fetched={total_products} files_written={written_files}")
+    log_info("Finished successfully.")
 
 
 def main() -> None:

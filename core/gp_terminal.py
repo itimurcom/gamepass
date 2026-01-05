@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import os
 import sys
-import time
-from typing import Final, Optional
+from typing import Final
 
 # Colors:
 # PROCESS - light green, INFO - blue, WARN - yellow, ERROR - red
@@ -23,12 +22,27 @@ def _use_color() -> bool:
         return False
 
 
-def _ts() -> str:
-    return time.strftime("%H:%M:%S")
+_last_progress_len: int = 0
+_progress_active: bool = False
+
+
+def _progress_done_internal() -> None:
+    global _last_progress_len, _progress_active
+    if not _progress_active:
+        return
+    sys.stderr.write("\n")
+    sys.stderr.flush()
+    _last_progress_len = 0
+    _progress_active = False
+
+
+def _progress_clear_line() -> None:
+    if _progress_active:
+        _progress_done_internal()
 
 
 def _emit(tag: str, color: str, msg: str) -> None:
-    # If progress bar was on screen, ensure we start on a fresh line
+    # Ensure normal logs don't collide with progress bar line
     _progress_clear_line()
 
     if _use_color():
@@ -38,33 +52,42 @@ def _emit(tag: str, color: str, msg: str) -> None:
 
 
 def log_process(msg: str) -> None:
-    _emit("[PROCESS]", ANSI_GREEN_LIGHT, f"{_ts()} {msg}")
+    _emit("[PROCESS]", ANSI_GREEN_LIGHT, msg)
 
 
 def log_info(msg: str) -> None:
-    _emit("[INFO]", ANSI_BLUE, f"{_ts()} {msg}")
+    _emit("[INFO]", ANSI_BLUE, msg)
 
 
 def log_warn(msg: str) -> None:
-    _emit("[WARN]", ANSI_YELLOW, f"{_ts()} {msg}")
+    _emit("[WARN]", ANSI_YELLOW, msg)
 
 
 def log_error(msg: str) -> None:
-    _emit("[ERROR]", ANSI_RED, f"{_ts()} {msg}")
+    _emit("[ERROR]", ANSI_RED, msg)
 
 
-# -------------------------
-# Progress bar (stderr)
-# -------------------------
-
-_last_progress_len: int = 0
-_progress_active: bool = False
+def print_project(title_with_version: str) -> None:
+    log_info(f"Project: {title_with_version}")
 
 
-def progress_update(current: int, total: int, *, prefix: str = "", width: int = 24) -> None:
+def print_stage(stage_no: int, title: str) -> None:
+    log_process(f"Stage {stage_no}. {title}")
+
+
+def print_stage_result(stage_no: int, result_text: str) -> None:
+    log_info(f"Stage {stage_no} result: {result_text}")
+
+
+def print_overall_result(result_text: str) -> None:
+    log_info(f"Overall result: {result_text}")
+
+
+def progress_update(current: int, total: int, *, text: str = "", width: int = 24) -> None:
     """
-    Draw a simple progress bar on one stderr line.
-    Call repeatedly; call progress_done() when finished.
+    Draw a single-line progress bar WITH a [PROCESS] tag and optional text.
+    Uses '-=' characters (filled='=', empty='-').
+    Each update overwrites the same line using carriage return.
     """
     global _last_progress_len, _progress_active
 
@@ -74,37 +97,48 @@ def progress_update(current: int, total: int, *, prefix: str = "", width: int = 
     current = max(0, min(current, total))
     ratio = current / total
     filled = int(ratio * width)
-    bar = "#" * filled + "-" * (width - filled)
+    bar = "=" * filled + "-" * (width - filled)
     pct = int(ratio * 100)
 
-    text = f"{prefix}[{bar}] {current}/{total} {pct}%"
-    _progress_active = True
+    tag = "[PROCESS]"
+    msg = f"{bar} {current}/{total} {pct}%"
+    if text:
+        msg = f"{msg} | {text}"
 
-    # Carriage return and overwrite
-    sys.stderr.write("\r" + text)
-    pad = max(0, _last_progress_len - len(text))
+    if _use_color():
+        line = f"{ANSI_GREEN_LIGHT}{tag}{ANSI_RESET} {msg}"
+    else:
+        line = f"{tag} {msg}"
+
+    _progress_active = True
+    sys.stderr.write("\r" + line)
+    pad = max(0, _last_progress_len - len(line))
     if pad:
         sys.stderr.write(" " * pad)
     sys.stderr.flush()
-    _last_progress_len = len(text)
+    _last_progress_len = len(line)
 
 
-def progress_done(*, suffix: str = "") -> None:
+def progress_done(*, final_text: str = "") -> None:
+    """
+    Finish the progress bar line with a newline.
+    If final_text is provided, it will replace the progress line one last time.
+    """
     global _last_progress_len, _progress_active
     if not _progress_active:
         return
-    if suffix:
-        sys.stderr.write("\r" + suffix)
-        pad = max(0, _last_progress_len - len(suffix))
+
+    if final_text:
+        tag = "[PROCESS]"
+        if _use_color():
+            line = f"{ANSI_GREEN_LIGHT}{tag}{ANSI_RESET} {final_text}"
+        else:
+            line = f"{tag} {final_text}"
+        sys.stderr.write("\r" + line)
+        pad = max(0, _last_progress_len - len(line))
         if pad:
             sys.stderr.write(" " * pad)
-    sys.stderr.write("\n")
-    sys.stderr.flush()
-    _last_progress_len = 0
-    _progress_active = False
+        sys.stderr.flush()
+        _last_progress_len = len(line)
 
-
-def _progress_clear_line() -> None:
-    # If a progress bar is active, move to new line before normal logs.
-    if _progress_active:
-        progress_done()
+    _progress_done_internal()

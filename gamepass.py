@@ -6,13 +6,9 @@ Output: .cache directory with one raw Microsoft Store product JSON per game.
 
 from __future__ import annotations
 
-import argparse
-import hashlib
 import json
-import os
 import sys
 import time
-import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
@@ -28,6 +24,7 @@ DEFAULT_HEADERS = {
     "Accept": "application/json",
 }
 
+
 @dataclass(frozen=True)
 class Config:
     market: str
@@ -39,31 +36,58 @@ class Config:
     timeout_s: float
     retries: int
 
+
 def _log(msg: str) -> None:
     print(msg, file=sys.stderr)
 
+
 def _build_url(base: str, params: Dict[str, str]) -> str:
     return base + "?" + urllib.parse.urlencode(params)
+
 
 def _http_get_json(url: str, timeout_s: float) -> Any:
     req = urllib.request.Request(url, headers=DEFAULT_HEADERS)
     with urllib.request.urlopen(req, timeout=timeout_s) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
+
 def fetch_sigl_big_ids(cfg: Config) -> Tuple[Set[str], Dict[str, Any]]:
+    """
+    SIGL endpoint may return either:
+      - dict with key "products": [ { "id": "..."} ... ]
+      - OR directly a list of products
+    We support both to avoid crashes on payload shape differences.
+    """
     url = _build_url(SIGL_URL, {"id": cfg.sigl_id, "market": cfg.market, "language": cfg.language})
     payload = _http_get_json(url, cfg.timeout_s)
-    products = payload.get("products", [])
-    ids = {p["id"] for p in products if isinstance(p, dict) and p.get("id")}
+
+    if isinstance(payload, dict):
+        products = payload.get("products", [])
+        raw_payload = payload
+    elif isinstance(payload, list):
+        products = payload
+        raw_payload = payload
+    else:
+        products = []
+        raw_payload = payload
+
+    big_ids: Set[str] = set()
+    for p in products:
+        if isinstance(p, dict):
+            pid = p.get("id")
+            if isinstance(pid, str) and pid:
+                big_ids.add(pid)
+
     meta = {
         "sigl_id": cfg.sigl_id,
         "market": cfg.market,
         "language": cfg.language,
-        "count": len(ids),
+        "count": len(big_ids),
         "timestamp": int(time.time()),
-        "raw": payload,
+        "raw": raw_payload,
     }
-    return ids, meta
+    return big_ids, meta
+
 
 def fetch_products(cfg: Config, big_ids: List[str]) -> List[Dict[str, Any]]:
     url = _build_url(
@@ -71,11 +95,14 @@ def fetch_products(cfg: Config, big_ids: List[str]) -> List[Dict[str, Any]]:
         {"bigIds": ",".join(big_ids), "market": cfg.market, "languages": cfg.language},
     )
     payload = _http_get_json(url, cfg.timeout_s)
-    return payload.get("Products", []) or []
+    products = payload.get("Products", []) if isinstance(payload, dict) else []
+    return products if isinstance(products, list) else []
 
-def chunked(seq: List[str], size: int):
+
+def chunked(seq: List[str], size: int) -> Iterable[List[str]]:
     for i in range(0, len(seq), size):
-        yield seq[i:i+size]
+        yield seq[i:i + size]
+
 
 def run(cfg: Config) -> None:
     cfg.out_dir.mkdir(parents=True, exist_ok=True)
@@ -88,12 +115,15 @@ def run(cfg: Config) -> None:
     for batch in chunked(sorted(ids), cfg.batch_size):
         products = fetch_products(cfg, batch)
         for p in products:
+            if not isinstance(p, dict):
+                continue
             pid = p.get("ProductId")
-            if pid:
+            if isinstance(pid, str) and pid:
                 (cfg.out_dir / f"{pid}.json").write_text(json.dumps(p, indent=2), encoding="utf-8")
         time.sleep(cfg.sleep_s)
 
-def main():
+
+def main() -> None:
     cfg = Config(
         market="US",
         language="en-us",
@@ -105,6 +135,7 @@ def main():
         retries=3,
     )
     run(cfg)
+
 
 if __name__ == "__main__":
     main()

@@ -55,9 +55,34 @@
   }
 
   function getReleaseYear(product) {
-    const raw = getReleaseDateRaw(product);
-    const m = raw.match(/^\d{4}/);
-    return m ? m[0] : "";
+    // Microsoft sometimes returns sentinel dates like 9998/9999 when release date is unknown.
+    // Prefer a "realistic" year; otherwise return empty string.
+    const mp = product && product.MarketProperties;
+    const lp = firstLocalized(product);
+
+    const candidates = [
+      // keep original behavior first
+      getReleaseDateRaw(product),
+      // try a few additional common fields if present
+      (Array.isArray(mp) && mp[0] && (mp[0].OriginalReleaseDateUtc || mp[0].ReleaseDate || mp[0].FirstAvailableDate)) || "",
+      (product && (product.OriginalReleaseDateUtc || product.ReleaseDate || product.FirstAvailableDate)) || "",
+      (lp && (lp.OriginalReleaseDate || lp.OriginalReleaseDateUtc || lp.ReleaseDate)) || "",
+    ];
+
+    const maxYear = (new Date()).getFullYear() + 1;
+    for (const raw0 of candidates) {
+      const raw = safeText(raw0 || "");
+      if (!raw) continue;
+      const m = raw.match(/^\d{4}/);
+      if (!m) continue;
+      const y = parseInt(m[0], 10);
+      if (!Number.isFinite(y)) continue;
+      if (y >= 9000) continue;       // filters 9998/9999 sentinels
+      if (y < 1970) continue;        // unrealistic
+      if (y > maxYear) continue;     // unrealistic future
+      return m[0];
+    }
+    return "";
   }
 
   function getDescription(product) {

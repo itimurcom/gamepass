@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Pass Catalog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="lblTitle">Game Pass Catalog</h1>
+
+    <div class="controls">
+      <div class="field" style="flex: 0 0 auto;">
+        <div style="display:flex; gap:0;">
+          <button id="btnTable" class="btn active" style="border-radius: 21px 0 0 21px;">☰ List</button>
+          <button id="btnTiles" class="btn" style="border-radius: 0 21px 21px 0; border-left:none;">▦ Tiles</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>List</label>
+        <select id="listSel"></select>
+      </div>
+
+      <div class="field">
+        <label>Search</label>
+        <input id="searchTxt" type="search" placeholder="Type to search...">
+      </div>
+
+      <div class="field" style="flex: 0 0 auto;">
+        <label>Games</label>
+        <input id="countTxt" disabled value="Loading...">
+      </div>
+
+      <button id="btnReset" class="btn btn-reset">✕ Reset</button>
+    </div>
+
+    <div id="tableView">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:80px">Poster</th>
+              <th class="sortable" data-key="name">
+                <div class="th-content"><span>Name</span> <span class="sort-icon">↕</span></div>
+              </th>
+              <th class="sortable" data-key="publisher" style="width:22%">
+                <div class="th-content"><span>Publisher</span> <span class="sort-icon">↕</span></div>
+              </th>
+              <th class="sortable" data-key="year" style="width:120px">
+                <div class="th-content"><span>Release</span> <span class="sort-icon">↕</span></div>
+              </th>
+              <th style="width:140px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tilesView" style="display:none">
+      <div class="tiles" id="tiles"></div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <div class="float-settings">
+    <button class="fab-main" id="fabMain">⚙</button>
+    <div class="fab-opts" id="fabOpts">
+      <button class="fab-mini" id="btnTheme" title="Theme">◑</button>
+      <button class="fab-mini" id="btnLang" title="Language">EN</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle" style="margin:0">Details</h3>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

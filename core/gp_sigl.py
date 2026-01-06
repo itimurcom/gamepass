@@ -1,47 +1,95 @@
 from __future__ import annotations
 
-import time
-from typing import Any, Dict, Set, Tuple
+import urllib.parse
+from typing import Any, Dict, List, Tuple
 
 from .gp_config import Config
 from .gp_net import http_get_json
-from .core import build_url
 
-SIGL_URL = "https://catalog.gamepass.com/sigls/v2"
+SIGL_V2_URL = "https://catalog.gamepass.com/sigls/v2"
 
 
-def fetch_sigl_big_ids(cfg: Config) -> Tuple[Set[str], Dict[str, Any]]:
+def _build_sigl_url(*, sigl_id: str, market: str, language: str) -> str:
+    return SIGL_V2_URL + "?" + urllib.parse.urlencode({"id": sigl_id, "market": market, "language": language})
+
+
+def _extract_ids(payload: Any) -> List[str]:
+    """Extract ProductIds from SIGL v2 response.
+
+    Observed shape (SIGL v2):
+      [
+        { "siglId": "...", "title": "...", ... },   # metadata
+        { "id": "9NPDN9R45JX4" },
+        { "id": "BQ1W1T1FC14W" },
+        ...
+      ]
+    Some other endpoints/variants may return dicts or arrays of strings/objects.
     """
-    SIGL endpoint may return either:
-      - dict with key "products": [ { "id": "..."} ... ]
-      - OR directly a list of products
-    """
-    url = build_url(SIGL_URL, {"id": cfg.sigl_id, "market": cfg.market, "language": cfg.language})
+    if isinstance(payload, list):
+        out: List[str] = []
+        for x in payload:
+            if isinstance(x, str) and x:
+                out.append(x)
+                continue
+            if isinstance(x, dict):
+                v = x.get("id") or x.get("Id") or x.get("productId") or x.get("ProductId")
+                if isinstance(v, str) and v:
+                    out.append(v)
+
+        # de-dup while preserving order
+        seen = set()
+        uniq: List[str] = []
+        for v in out:
+            if v in seen:
+                continue
+            seen.add(v)
+            uniq.append(v)
+        return uniq
+
+    if not isinstance(payload, dict):
+        return []
+
+    for key in ("ids", "Ids", "Products", "products"):
+        v = payload.get(key)
+        if isinstance(v, list):
+            out: List[str] = []
+            for x in v:
+                if isinstance(x, str) and x:
+                    out.append(x)
+                elif isinstance(x, dict):
+                    vv = x.get("id") or x.get("Id") or x.get("productId") or x.get("ProductId")
+                    if isinstance(vv, str) and vv:
+                        out.append(vv)
+            if out:
+                seen = set()
+                uniq: List[str] = []
+                for vv in out:
+                    if vv in seen:
+                        continue
+                    seen.add(vv)
+                    uniq.append(vv)
+                return uniq
+
+    for key in ("sigl", "data", "result"):
+        v = payload.get(key)
+        if isinstance(v, dict):
+            out = _extract_ids(v)
+            if out:
+                return out
+
+    return []
+
+
+def fetch_sigl_ids(cfg: Config, *, sigl_id: str) -> Tuple[List[str], Dict[str, Any]]:
+    url = _build_sigl_url(sigl_id=sigl_id, market=cfg.market, language=cfg.language)
     payload = http_get_json(url, cfg.timeout_s)
-
-    if isinstance(payload, dict):
-        products = payload.get("products", [])
-        raw_payload = payload
-    elif isinstance(payload, list):
-        products = payload
-        raw_payload = payload
-    else:
-        products = []
-        raw_payload = payload
-
-    big_ids: Set[str] = set()
-    for p in products:
-        if isinstance(p, dict):
-            pid = p.get("id")
-            if isinstance(pid, str) and pid:
-                big_ids.add(pid)
-
-    meta = {
-        "sigl_id": cfg.sigl_id,
+    ids = _extract_ids(payload)
+    meta: Dict[str, Any] = {
+        "url": url,
+        "sigl_id": sigl_id,
         "market": cfg.market,
         "language": cfg.language,
-        "count": len(big_ids),
-        "timestamp": int(time.time()),
-        "raw": raw_payload,
+        "ids_count": len(ids),
+        "payload_type": type(payload).__name__,
     }
-    return big_ids, meta
+    return ids, meta

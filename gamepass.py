@@ -23,7 +23,7 @@ from core.gp_terminal import (
 )
 from core.core import chunked, ensure_dirs, export_catalog_data_js, fetch_products, write_json, write_product
 
-PROJECT_TITLE_WITH_VERSION = "Gamepass Parser v16.2"
+PROJECT_TITLE_WITH_VERSION = "Gamepass Parser v16.3"
 
 
 def _load_cached_list_items(list_path: Path) -> list[str] | None:

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import time
 from pathlib import Path
@@ -22,23 +23,66 @@ from core.gp_terminal import (
 )
 from core.core import chunked, ensure_dirs, export_catalog_data_js, fetch_products, write_json, write_product
 
-PROJECT_TITLE_WITH_VERSION = "Gamepass Parser v16.1"
+PROJECT_TITLE_WITH_VERSION = "Gamepass Parser v16.2"
+
+
+def _load_cached_list_items(list_path: Path) -> list[str] | None:
+    if not list_path.exists() or not list_path.is_file():
+        return None
+    try:
+        obj = json.loads(list_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if isinstance(obj, dict) and isinstance(obj.get("items"), list):
+        return [x for x in obj["items"] if isinstance(x, str) and x]
+    return None
+
+
+def _get_cached_product_ids(language_out_dir: Path) -> Set[str]:
+    """Cached products are stored as: .cache/<LANG>/<ProductId>.json"""
+    ids: Set[str] = set()
+    if not language_out_dir.exists():
+        return ids
+
+    for p in language_out_dir.glob("*.json"):
+        if not p.is_file():
+            continue
+        stem = p.stem
+        if stem:
+            ids.add(stem)
+    return ids
 
 
 def run_one_language(cfg: Config, *, lang_code: str) -> None:
-    ensure_dirs(Path(cfg.out_dir))
-    lists_dir = Path(cfg.out_dir) / "_lists"
+    out_dir = Path(cfg.out_dir)
+    ensure_dirs(out_dir)
+    lists_dir = out_dir / "_lists"
     lists_dir.mkdir(parents=True, exist_ok=True)
 
     stage_no = 1
-    print_stage(stage_no, f"[{lang_code}] Fetch SIGL v2 lists (store only list->productIds)")
+    print_stage(stage_no, f"[{lang_code}] SIGL v2 lists (use cache; fetch only missing)")
 
     all_ids: Set[str] = set()
     total_steps = max(1, len(SIGL_LISTS)) * 2
     step = 0
-    list_written = 0
+    list_fetched = 0
+    list_cached = 0
 
     for idx, lst in enumerate(SIGL_LISTS, start=1):
+        list_path = lists_dir / f"{lst.key}.json"
+
+        step += 1
+        progress_update(step, total_steps, text=f"[{lang_code}] SIGL {idx}/{len(SIGL_LISTS)}: {lst.key} (load cache)")
+        cached_items = _load_cached_list_items(list_path)
+        if cached_items is not None:
+            for x in cached_items:
+                all_ids.add(x)
+            step += 1
+            progress_update(step, total_steps, text=f"[{lang_code}] SIGL {idx}/{len(SIGL_LISTS)}: {lst.key} (cached)")
+            list_cached += 1
+            continue
+
+        # Cache miss -> fetch from network
         step += 1
         progress_update(step, total_steps, text=f"[{lang_code}] SIGL {idx}/{len(SIGL_LISTS)}: {lst.key} (fetch ids)")
         try:
@@ -52,10 +96,8 @@ def run_one_language(cfg: Config, *, lang_code: str) -> None:
         for x in ids_clean:
             all_ids.add(x)
 
-        step += 1
-        progress_update(step, total_steps, text=f"[{lang_code}] SIGL {idx}/{len(SIGL_LISTS)}: {lst.key} (write list)")
         write_json(
-            lists_dir / f"{lst.key}.json",
+            list_path,
             {
                 "key": lst.key,
                 "title": lst.title,
@@ -67,22 +109,32 @@ def run_one_language(cfg: Config, *, lang_code: str) -> None:
                 "_meta": meta,
             },
         )
-        list_written += 1
+        list_fetched += 1
         time.sleep(cfg.sleep_s)
 
-    progress_done(final_text=f"[{lang_code}] Lists fetched")
-    print_stage_result(stage_no, f"[{lang_code}] lists_saved={list_written}, unique_product_ids={len(all_ids)}")
+    progress_done(final_text=f"[{lang_code}] Lists ready")
+    print_stage_result(
+        stage_no,
+        f"[{lang_code}] lists_cached={list_cached}, lists_fetched={list_fetched}, unique_product_ids={len(all_ids)}",
+    )
 
     stage_no = 2
-    print_stage(stage_no, f"[{lang_code}] Fetch product details once (dedup across lists)")
+    print_stage(stage_no, f"[{lang_code}] Products (use cache; fetch only missing)")
 
     ids_sorted = sorted(all_ids)
     if not ids_sorted:
-        print_stage_result(stage_no, f"[{lang_code}] 0 ids after dedup (nothing to fetch)")
+        print_stage_result(stage_no, f"[{lang_code}] 0 ids after lists (nothing to fetch)")
         log_warn(f"[{lang_code}] No ids found across lists. Nothing to fetch.")
         return
 
-    batches = list(chunked(ids_sorted, cfg.batch_size))
+    cached_ids = _get_cached_product_ids(out_dir)
+    missing_ids = sorted([x for x in ids_sorted if x not in cached_ids])
+
+    if not missing_ids:
+        print_stage_result(stage_no, f"[{lang_code}] All products already cached ({len(cached_ids)}) - skipped network")
+        return
+
+    batches = list(chunked(missing_ids, cfg.batch_size))
     total_steps = len(batches) * 2
     step = 0
     products_fetched = 0
@@ -90,7 +142,7 @@ def run_one_language(cfg: Config, *, lang_code: str) -> None:
 
     for bidx, batch in enumerate(batches, start=1):
         step += 1
-        progress_update(step, total_steps, text=f"[{lang_code}] Fetching batch {bidx}/{len(batches)} ({len(batch)} ids)")
+        progress_update(step, total_steps, text=f"[{lang_code}] Fetch batch {bidx}/{len(batches)} ({len(batch)} missing ids)")
         try:
             products = fetch_products(cfg, batch)
         except Exception as e:
@@ -101,15 +153,18 @@ def run_one_language(cfg: Config, *, lang_code: str) -> None:
         products_fetched += len(products)
 
         step += 1
-        progress_update(step, total_steps, text=f"[{lang_code}] Writing batch {bidx}/{len(batches)} ({len(products)} products)")
+        progress_update(step, total_steps, text=f"[{lang_code}] Write batch {bidx}/{len(batches)} ({len(products)} products)")
         for p in products:
-            if isinstance(p, dict) and write_product(Path(cfg.out_dir), p):
+            if isinstance(p, dict) and write_product(out_dir, p):
                 files_written += 1
 
         time.sleep(cfg.sleep_s)
 
     progress_done(final_text=f"[{lang_code}] Products cached")
-    print_stage_result(stage_no, f"[{lang_code}] products_fetched={products_fetched}, product_files_written={files_written}")
+    print_stage_result(
+        stage_no,
+        f"[{lang_code}] cached_before={len(cached_ids)}, missing_before={len(missing_ids)}, products_fetched={products_fetched}, product_files_written={files_written}",
+    )
 
 
 def build_arg_parser() -> argparse.ArgumentParser:

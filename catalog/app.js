@@ -45,9 +45,97 @@
   }
 
   function getPublisher(product) {
-    return safeText(product.PublisherName || product.Publisher || "");
+    const p = product || {};
+    const props = p.Properties || {};
+    const mp = Array.isArray(p.MarketProperties) ? p.MarketProperties[0] : null;
+    const lp = firstLocalized(p) || {};
+    return safeText(
+      p.PublisherName ||
+      p.Publisher ||
+      props.PublisherName ||
+      props.Publisher ||
+      (mp && (mp.PublisherName || mp.Publisher)) ||
+      lp.PublisherName ||
+      lp.Publisher ||
+      ""
+    );
   }
 
+  function getDeveloper(product) {
+    const p = product || {};
+    const props = p.Properties || {};
+    const mp = Array.isArray(p.MarketProperties) ? p.MarketProperties[0] : null;
+    const lp = firstLocalized(p) || {};
+    return safeText(
+      p.DeveloperName ||
+      p.Developer ||
+      props.DeveloperName ||
+      props.Developer ||
+      (mp && (mp.DeveloperName || mp.Developer)) ||
+      lp.DeveloperName ||
+      lp.Developer ||
+      ""
+    );
+  }
+
+  function extractStringList(v) {
+    if (!v) return [];
+    if (Array.isArray(v)) {
+      const out = [];
+      for (const it of v) {
+        if (!it) continue;
+        if (typeof it === "string") {
+          const s = safeText(it).trim();
+          if (s) out.push(s);
+          continue;
+        }
+        if (typeof it === "object") {
+          const s = safeText(it.Name || it.DisplayName || it.Value || it.Id || "").trim();
+          if (s) out.push(s);
+        }
+      }
+      return out;
+    }
+    if (typeof v === "string") return [safeText(v).trim()].filter(Boolean);
+    return [];
+  }
+
+  function uniq(arr) {
+    const out = [];
+    const seen = new Set();
+    for (const x of arr) {
+      const s = safeText(x).trim();
+      if (!s) continue;
+      const k = s.toLowerCase();
+      if (seen.has(k)) continue;
+      seen.add(k);
+      out.push(s);
+    }
+    return out;
+  }
+
+  function getGenres(product) {
+    const p = product || {};
+    const props = p.Properties || {};
+    const mp = Array.isArray(p.MarketProperties) ? p.MarketProperties[0] : null;
+    const lp = firstLocalized(p) || {};
+
+    const candidates = [
+      props.Genres, p.Genres, lp.Genres,
+      props.Categories, p.Categories, lp.Categories,
+      props.Genre, p.Genre, lp.Genre,
+      props.Category, p.Category, lp.Category,
+      mp && (mp.Genres || mp.Categories || mp.Genre || mp.Category),
+    ];
+
+    let all = [];
+    for (const c of candidates) all = all.concat(extractStringList(c));
+    return uniq(all);
+  }
+
+  function getGenresText(product) {
+    return getGenres(product).join(", ");
+  }
   function getReleaseDateRaw(product) {
     const mp = product && product.MarketProperties;
     const d = (Array.isArray(mp) && mp[0] && mp[0].OriginalReleaseDate) ? mp[0].OriginalReleaseDate : (product.OriginalReleaseDate || "");
@@ -61,9 +149,7 @@
     const lp = firstLocalized(product);
 
     const candidates = [
-      // keep original behavior first
       getReleaseDateRaw(product),
-      // try a few additional common fields if present
       (Array.isArray(mp) && mp[0] && (mp[0].OriginalReleaseDateUtc || mp[0].ReleaseDate || mp[0].FirstAvailableDate)) || "",
       (product && (product.OriginalReleaseDateUtc || product.ReleaseDate || product.FirstAvailableDate)) || "",
       (lp && (lp.OriginalReleaseDate || lp.OriginalReleaseDateUtc || lp.ReleaseDate)) || "",
@@ -78,8 +164,8 @@
       const y = parseInt(m[0], 10);
       if (!Number.isFinite(y)) continue;
       if (y >= 9000) continue;       // filters 9998/9999 sentinels
-      if (y < 1970) continue;        // unrealistic
-      if (y > maxYear) continue;     // unrealistic future
+      if (y < 1970) continue;
+      if (y > maxYear) continue;
       return m[0];
     }
     return "";
@@ -116,9 +202,9 @@
     return any ? any.Uri : "";
   }
 
-  function matchesQuery(title, publisher, q) {
+  function matchesQuery(title, publisher, developer, genre, q) {
     if (!q) return true;
-    const s = (title + " " + publisher).toLowerCase();
+    const s = (title + " " + publisher + " " + developer + " " + genre).toLowerCase();
     return s.includes(q.toLowerCase());
   }
 
@@ -185,13 +271,17 @@
 
       const title = getTitle(product, gameid);
       const pub = getPublisher(product);
-      if (!matchesQuery(title, pub, state.q)) continue;
+      const dev = getDeveloper(product);
+      const genre = getGenresText(product);
+      if (!matchesQuery(title, pub, dev, genre, state.q)) continue;
 
       out.push({
         gameid,
         product,
         title,
         pub,
+        dev,
+        genre,
         year: getReleaseYear(product),
       });
     }
@@ -199,6 +289,8 @@
     const dir = state.sortDir === "asc" ? 1 : -1;
     out.sort((a, b) => {
       if (state.sortKey === "publisher") return a.pub.localeCompare(b.pub) * dir;
+      if (state.sortKey === "developer") return a.dev.localeCompare(b.dev) * dir;
+      if (state.sortKey === "genre") return a.genre.localeCompare(b.genre) * dir;
       if (state.sortKey === "year") return (a.year.localeCompare(b.year) || a.title.localeCompare(b.title)) * dir;
       return a.title.localeCompare(b.title) * dir;
     });
@@ -267,6 +359,12 @@
       const tdPub = document.createElement("td");
       tdPub.textContent = it.pub || "—";
 
+      const tdDev = document.createElement("td");
+      tdDev.textContent = it.dev || "—";
+
+      const tdGenre = document.createElement("td");
+      tdGenre.textContent = it.genre || "—";
+
       const tdYear = document.createElement("td");
       tdYear.textContent = it.year || "—";
 
@@ -281,6 +379,8 @@
       tr.appendChild(tdImg);
       tr.appendChild(tdName);
       tr.appendChild(tdPub);
+      tr.appendChild(tdDev);
+      tr.appendChild(tdGenre);
       tr.appendChild(tdYear);
       tr.appendChild(tdAct);
 
@@ -309,7 +409,8 @@
 
       const sub = document.createElement("div");
       sub.className = "tile-sub";
-      sub.textContent = [it.pub, it.year].filter(Boolean).join(" • ") || "—";
+      const genreShort = it.genre ? it.genre.split(",")[0].trim() : "";
+      sub.textContent = [it.pub, it.dev, it.year, genreShort].filter(Boolean).join(" • ") || "—";
 
       tile.appendChild(img);
       tile.appendChild(title);
@@ -354,7 +455,8 @@
 
     const sub = document.createElement("div");
     sub.className = "game-sub";
-    sub.textContent = [pub, rawDate].filter(Boolean).join(" • ");
+    const dev = getDeveloper(product);
+    sub.textContent = [pub, dev, rawDate].filter(Boolean).join(" • ");
 
     const kv = document.createElement("div");
     kv.className = "kv";
@@ -366,6 +468,12 @@
     };
     kv.appendChild(mkTag("Lang: " + state.lang));
     kv.appendChild(mkTag("ID: " + gameid));
+    const pub2 = getPublisher(product);
+    if (pub2) kv.appendChild(mkTag("Publisher: " + pub2));
+    const dev2 = getDeveloper(product);
+    if (dev2) kv.appendChild(mkTag("Developer: " + dev2));
+    const gn2 = getGenresText(product);
+    if (gn2) kv.appendChild(mkTag("Genre: " + gn2));
     const yr = getReleaseYear(product);
     if (yr) kv.appendChild(mkTag("Year: " + yr));
     kv.appendChild(mkTag("List: " + state.listKey));

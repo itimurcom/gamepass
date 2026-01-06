@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Pass Games List</title>
+<style>
+:root {
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --text-sec: #86868b;
+    --accent: #0071e3;
+    --accent-hover: #0077ED;
+    --border: #d2d2d7;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --input-bg: #fff;
+    --arrow-color: #86868b;
+
+    /* === IMAGE ASSETS === */
+    --pl-light: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNmMmYyZjciLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMWMxYzFlIj5OTyBJTUFHRTwvdGV4dD48L3N2Zz4=');
+    --pl-dark: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMjAwIDMwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMyYzJjMmUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNDQ0Ij5OTyBJTUFHRTwvdGV4dD48L3N2Zz4=');
+}
+
+[data-theme="dark"] {
+    --bg: #1c1c1e;
+    --card: #2c2c2e;
+    --text: #f5f5f7;
+    --text-sec: #a1a1a6;
+    --accent: #0a84ff;
+    --accent-hover: #409cff;
+    --border: #3a3a3c;
+    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+    --input-bg: #1c1c1e;
+    --arrow-color: #ffffff;
+}
+
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding-bottom: 80px; transition: background 0.3s, color 0.3s; }
+.container { 
+    max-width:1400px; 
+    margin:0 auto; 
+    padding:20px; 
+    padding-top: 80px; 
+}
+
+/* === LANGUAGE SWITCH (Top Left) === */
+#btnLang {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 900;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-sec);
+    cursor: pointer;
+    padding: 0;
+    font-family: monospace, sans-serif;
+    transition: color 0.2s;
+}
+#btnLang:hover { color: var(--accent); }
+
+/* === THEME SWITCHER (Top Right) === */
+.theme-switch-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 900;
+}
+
+.theme-switch-wrapper input { display: none; }
+
+.theme-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    height: 44px;
+    background-color: #e4e4e4;
+    border-radius: 22px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.slider-text {
+    position: absolute;
+    font-size: 13px;
+    font-weight: 800;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    user-select: none;
+    letter-spacing: 0.5px;
+}
+.text-day { right: 14px; color: #000; opacity: 1; }
+.text-night { left: 14px; color: #fff; opacity: 0; }
+
+.slider-knob {
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.slider-knob svg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    fill: #000;
+}
+
+.icon-moon { opacity: 0; transform: rotate(-20deg) scale(0.5); }
+.icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+
+#theme-toggle:checked + .theme-slider { background-color: #111; }
+#theme-toggle:checked + .theme-slider .slider-knob { transform: translateX(106px); }
+#theme-toggle:checked + .theme-slider .text-day { opacity: 0; }
+#theme-toggle:checked + .theme-slider .text-night { opacity: 1; }
+#theme-toggle:checked + .theme-slider .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+#theme-toggle:checked + .theme-slider .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+
+/* MAIN UI STYLES */
+h1 { 
+    font-size: 26px; 
+    margin: 0 0 20px 0; 
+    font-weight: 700; 
+    text-align: left; 
+}
+
+.controls { display:flex; flex-wrap:wrap; gap:16px; padding:20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow); margin-bottom:24px; align-items: flex-end; }
+.field { display:flex; flex-direction:column; gap:6px; flex:1; min-width:160px; }
+.field label { font-size:11px; font-weight:700; color:var(--text-sec); text-transform:uppercase; letter-spacing: 0.5px; }
+select, input { width:100%; height:42px; border:1px solid var(--border); border-radius:10px; padding:0 12px; font-size:14px; background: var(--input-bg); color: var(--text); box-sizing: border-box; }
+select[multiple] { height:100px; padding:6px; }
+
+.btn { height:42px; padding:0 24px; border-radius:21px; border:1px solid var(--border); background:var(--card); cursor:pointer; font-weight:600; color: var(--text); font-size: 14px; transition: all 0.2s; }
+.btn:hover { background: var(--bg); }
+.btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.btn-reset { color: #ff3b30; border-color: rgba(255,59,48,0.3); }
+
+/* Table */
+.table-wrap { background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; border: 1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-size:14px; min-width:1100px; }
+th { background:var(--bg); padding:16px; text-align:left; border-bottom:1px solid var(--border); font-weight:600; color: var(--text-sec); position: sticky; top: 0; z-index: 10; cursor: pointer; user-select: none; }
+th .th-content { display: flex; align-items: center; justify-content: space-between; }
+td { padding:12px 16px; border-bottom:1px solid var(--border); vertical-align: middle; }
+tr:hover { background-color: rgba(0,0,0,0.02); }
+[data-theme="dark"] tr:hover { background-color: rgba(255,255,255,0.05); }
+
+img.cover { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; background: #eee; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: block; cursor: pointer; transition: transform 0.2s; }
+img.cover:hover { transform: scale(1.05); }
+
+.tier-badge { display: inline-block; padding: 3px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 4px; margin-right: 4px; }
+.tier-AAA { background: var(--accent); color: white; }
+.tier-Indie { background: rgba(10, 132, 255, 0.15); color: var(--accent); }
+.tag-badge { background: #ff9500; color: white; }
+.tag-leaving { background: #ff3b30; color: white; }
+.tag-new { background: #30d158; color: white; }
+
+.rating-val { font-weight: 700; font-size: 15px; }
+.rating-high { color: #008a4b; }
+.rating-mid { color: #bf8600; }
+[data-theme="dark"] .rating-high { color: #30d158; }
+[data-theme="dark"] .rating-mid { color: #ffd60a; }
+
+.fav { background:none; border:none; font-size:36px; color:var(--border); cursor:pointer; line-height: 1; padding: 0; transition: color 0.2s; margin-right: 8px; }
+.fav.on { color:var(--accent); } 
+
+/* Tiles */
+.tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:24px; }
+.tile { background:var(--card); border-radius:16px; padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; cursor: pointer; transition: transform 0.2s; }
+.tile:hover { transform: translateY(-6px); }
+.tile img { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:10px; margin-bottom:12px; }
+.tile-title { font-weight:700; margin-bottom:6px; font-size:16px; line-height: 1.3; }
+
+/* Pagination */
+.pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 30px; flex-wrap: wrap; }
+.pg-btn { min-width: 36px; height: 36px; padding: 0 6px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 600; cursor: pointer; }
+.pg-active { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; pointer-events: none; }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(4px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal { background: var(--card); color: var(--text); width: 90%; max-width: 800px; max-height: 90vh; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow-y: auto; position: relative; animation: slideUp 0.3s ease-out; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header { position: sticky; top: 0; background: var(--card); padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+.modal-close { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; color: var(--text); }
+.modal-body { padding: 30px; }
+.game-hero { display: flex; gap: 30px; margin-bottom: 30px; }
+.game-poster { width: 200px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); align-self: flex-start; }
+.game-info { flex: 1; }
+.tag { background: var(--bg); padding: 4px 10px; border-radius: 6px; color: var(--text); border: 1px solid var(--border); }
+.desc-text { font-size: 16px; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
+
+/* SCROLL TOP BUTTON */
+.btn-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.2s;
+    pointer-events: none;
+    z-index: 900;
+}
+.btn-top.show { opacity: 0.6; pointer-events: auto; }
+.btn-top:hover { opacity: 1 !important; transform: translateY(-3px); }
+.btn-top svg { width: 50px; height: 50px; fill: var(--arrow-color); }
+
+/* === ADAPTIVE NO AVATAR === */
+.no-avatar { content: var(--pl-light); border: 1px dashed var(--border); opacity: 0.9; }
+[data-theme="dark"] .no-avatar { content: var(--pl-dark); }
+
+.desc-block { margin-bottom: 24px; }
+.desc-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--accent); text-decoration: none; margin-bottom: 8px; }
+.desc-header:hover { text-decoration: underline; }
+.desc-body { font-size: 15px; line-height: 1.6; color: var(--text); }
+.rating-low { color: #ff3b30; }
+</style>
+</head>
+<body>
+
+<button id="btnLang" title="Switch Language">EN</button>
+
+<div class="theme-switch-wrapper">
+    <label for="theme-toggle">
+        <input type="checkbox" id="theme-toggle">
+        <div class="theme-slider">
+            <span class="slider-text text-night">NIGHTMODE</span>
+            <span class="slider-text text-day">DAYMODE</span>
+            <div class="slider-knob">
+                <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.93c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zm13.43 14.14c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42zM1.99 18.36c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L4.99 15.53c.39.39.39 1.02 0 1.41.39.39 1.02.39 1.41 0l-1.41 1.42zM16.95 5.63c.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41z"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </div>
+        </div>
+    </label>
+</div>
+
+<div class="container">
+    <h1 id="lblTitle">Game Pass Games List</h1>
+    
+    <div class="controls">
+        <div class="field" style="flex: 0 0 auto;">
+            <div style="display:flex; gap:0;">
+                <button id="btnTable" class="btn active" style="border-radius: 21px 0 0 21px;" data-t="viewList">☰ Список</button>
+                <button id="btnTiles" class="btn" style="border-radius: 0 21px 21px 0; border-left:none;" data-t="viewTiles">▦ Плитка</button>
+            </div>
+        </div>
+        <div class="field"><label data-t="search">Пошук</label><input id="searchTxt"></div>
+        
+        <div class="field" style="flex:0 0 130px;">
+            <label data-t="sort">Сортування</label>
+            <select id="sortSelect">
+                <option value="rating_desc">Rating ▼</option>
+                <option value="rating_asc">Rating ▲</option>
+                <option value="name_asc">Name (A-Z)</option>
+                <option value="name_desc">Name (Z-A)</option>
+                <option value="year_desc">Year ▼</option>
+                <option value="year_asc">Year ▲</option>
+                <option value="hours_desc">Time ▼</option>
+                <option value="hours_asc">Time ▲</option>
+            </select>
+        </div>
+
+        <div class="field"><label data-t="cat">Категорія</label><select id="filterTag" multiple></select></div>
+        <div class="field"><label data-t="genre">Жанр</label><select id="filterGenre" multiple></select></div>
+        <div class="field"><label data-t="year">Рік</label><select id="filterYear" multiple></select></div>
+        <div class="field"><label>Tier</label><select id="filterTier"><option value="">All</option><option value="AAA">AAA</option><option value="Indie/AA">Indie/AA</option></select></div>
+        <div class="field" style="flex:0 0 80px;"><label data-t="rating">Рейт. ≥</label><input id="filterRating" type="number" min="0" max="100"></div>
+        <div class="field" style="flex:0 0 auto; justify-content:center; padding-bottom: 10px;">
+            <label style="cursor:pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px;">
+                <input id="filterFav" type="checkbox" style="width:18px; height:18px;"> <span data-t="fav">Обране</span>
+            </label>
+        </div>
+        <button id="btnReset" class="btn btn-reset" data-t="reset">✕ Скинути</button>
+    </div>
+
+    <div id="tableView"><div class="table-wrap"><table>
+        <thead><tr>
+            <th style="width:80px" data-t="poster">Постер</th>
+            <th class="sortable" data-key="name"><div class="th-content"><span data-t="name">Назва</span> <span class="sort-icon">↕</span></div></th>
+            <th style="width:15%" data-t="genre">Жанр</th>
+            <th class="sortable sort-desc" data-key="rating"><div class="th-content"><span data-t="rating">Рейт</span> <span class="sort-icon">▼</span></div></th>
+            <th class="sortable" data-key="year"><div class="th-content"><span data-t="year">Рік</span> <span class="sort-icon">↕</span></div></th>
+            <th class="sortable" data-key="hours"><div class="th-content"><span data-t="time">Час</span> <span class="sort-icon">↕</span></div></th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+    </table></div></div>
+    
+    <div id="tilesView" style="display:none"><div class="tiles" id="tiles"></div></div>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<button id="btnTop" class="btn-top" title="Вгору" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM13 12H16L12 8L8 12H11V16H13V12Z"/></svg>
+</button>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 style="margin:0" data-t="details">Деталі</h3>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modalContent"></div>
+    </div>
+</div>
+
+<template id="tmpl-row">
+    <tr>
+        <td><img class="cover img-src" loading="lazy" style="cursor:pointer"></td>
+        <td>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+                <button class="fav btn-fav" style="margin-top:-4px;">★</button>
+                <div>
+                    <div class="txt-name" style="font-weight:700; font-size:16px; margin-bottom:4px;"></div>
+                    <div class="tags-container"></div>
+                    <div class="txt-dev" style="font-size:12px; color:var(--text-sec); margin-top:4px;"></div>
+                </div>
+            </div>
+        </td>
+        <td class="txt-genre"></td>
+        <td>
+            <div class="rating-val txt-rating"></div>
+            <div class="txt-rating-src" style="font-size:10px; color:var(--text-sec);"></div>
+        </td>
+        <td class="txt-year"></td>
+        <td class="txt-hours"></td>
+    </tr>
+</template>
+
+<template id="tmpl-tile">
+    <div class="tile">
+        <div style="position:relative">
+            <img class="img-src" loading="lazy">
+            <div class="tags-container" style="position:absolute; top:8px; left:8px; display:flex;"></div>
+            <button class="fav btn-fav" onclick="event.stopPropagation(); toggleFav(this)">★</button>
+        </div>
+        <div class="tile-title txt-name"></div>
+        <div style="font-size:13px; color:var(--text-sec); display:flex; justify-content:space-between;">
+            <span class="txt-year"></span>
+            <span class="txt-rating" style="font-weight:bold;"></span>
+        </div>
+    </div>
+</template>
+
+<script src="data.js"></script> 
+<script src="app.js"></script>
+<script>
+const btnTop = document.getElementById("btnTop");
+window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btnTop.classList.add("show");
+    } else {
+        btnTop.classList.remove("show");
+    }
+};
+</script>
+</body>
+</html>
